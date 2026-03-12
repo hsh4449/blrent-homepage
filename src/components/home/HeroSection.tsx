@@ -1,7 +1,42 @@
-import { motion } from 'framer-motion'
-import { Shield, Clock, Users, FileCheck, Rocket, FileText, Phone } from 'lucide-react'
+import { useState, useEffect, useCallback, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Shield, Clock, Users, FileCheck, Rocket, FileText, Phone, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/'
+
+const slides = [
+  {
+    heading: (
+      <>
+        장기렌트,<br />
+        가격 그 이상의<br />
+        <span className="text-gradient">가치를 경험하세요</span>
+      </>
+    ),
+    sub: '500개 이상의 렌트사 바로바로 비교견적, 나에게 딱 맞는 장기렌트를 시작하세요',
+    bg: '/hero-bg.jpg',
+  },
+  {
+    heading: (
+      <>
+        중고차도 장기렌트로,<br />
+        <span className="text-gradient">부담 없이 시작하세요</span>
+      </>
+    ),
+    sub: '신차 대비 최대 40% 저렴한 월 납입금, 검증된 중고차만 엄선',
+    bg: '/hero-bg-2.jpg',
+  },
+  {
+    heading: (
+      <>
+        기다림 없이,<br />
+        <span className="text-gradient">로켓출고</span>
+      </>
+    ),
+    sub: '오늘 상담, 내일 출고. 즉시 출고 가능한 차량을 지금 확인하세요',
+    bg: '/hero-bg-3.jpg',
+  },
+]
 
 const features = [
   { icon: Shield, title: '500여개 협력사 비교', desc: '다수의 렌트사 견적을 비교해 최저가로 안내드립니다' },
@@ -10,36 +45,120 @@ const features = [
   { icon: FileCheck, title: '간편한 심사', desc: '최소 서류로 빠른 심사 진행' },
 ]
 
+const bgVariants = {
+  enter: { opacity: 0 },
+  center: { opacity: 1 },
+  exit: { opacity: 0 },
+}
+
+const textVariants = {
+  enter: { opacity: 0, y: 20 },
+  center: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 },
+}
+
 export default function HeroSection() {
+  const [current, setCurrent] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const touchStartX = useRef(0)
+
+  const goTo = useCallback((idx: number) => {
+    setCurrent(((idx % slides.length) + slides.length) % slides.length)
+  }, [])
+
+  const next = useCallback(() => goTo(current + 1), [current, goTo])
+  const prev = useCallback(() => goTo(current - 1), [current, goTo])
+
+  useEffect(() => {
+    if (paused) return
+    const timer = setInterval(next, 5000)
+    return () => clearInterval(timer)
+  }, [paused, next])
+
   return (
-    <section className="relative min-h-screen flex items-end md:items-center pb-10 md:pb-0 pt-20 overflow-hidden">
-      {/* Background */}
-      <img src="/hero-bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
-      <div className="absolute inset-0 bg-gradient-to-t from-bg-main via-transparent to-bg-main/30" />
+    <section
+      className="relative min-h-screen flex items-end md:items-center pb-10 md:pb-0 pt-20 overflow-hidden group/hero"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX }}
+      onTouchEnd={(e) => {
+        const diff = touchStartX.current - e.changedTouches[0].clientX
+        if (Math.abs(diff) > 50) diff > 0 ? next() : prev()
+      }}
+    >
+      {/* Background carousel */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`bg-${current}`}
+          variants={bgVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          className="absolute inset-0"
+        >
+          {slides[current].bg.includes('placeholder') || !slides[current].bg ? (
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black" />
+          ) : (
+            <img src={slides[current].bg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+          )}
+        </motion.div>
+      </AnimatePresence>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40 z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-bg-main via-transparent to-bg-main/30 z-[1]" />
+
+      {/* Arrow buttons */}
+      <button
+        onClick={prev}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full glass flex items-center justify-center opacity-0 group-hover/hero:opacity-100 transition-opacity duration-300 hover:bg-white/10 hidden md:flex"
+        aria-label="이전 슬라이드"
+      >
+        <ChevronLeft size={20} />
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full glass flex items-center justify-center opacity-0 group-hover/hero:opacity-100 transition-opacity duration-300 hover:bg-white/10 hidden md:flex"
+        aria-label="다음 슬라이드"
+      >
+        <ChevronRight size={20} />
+      </button>
+
+      {/* Dot indicators */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              i === current ? 'w-8 bg-accent' : 'w-2 bg-white/30 hover:bg-white/50'
+            }`}
+            aria-label={`슬라이드 ${i + 1}`}
+          />
+        ))}
+      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-end lg:items-center">
           {/* Left content - 3 cols */}
           <div className="lg:col-span-3">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-            >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs text-accent font-medium mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                500여개 렌트사 바로바로 비교견적
-              </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 tracking-tight">
-                장기렌트,<br />
-                가격 그 이상의<br />
-                <span className="text-gradient">가치를 경험하세요</span>
-              </h1>
-              <p className="text-text-secondary text-base md:text-lg mb-8 max-w-lg leading-relaxed">
-                신차부터 중고까지, 최저가 견적을 비교하고<br className="hidden sm:block" />
-                나에게 딱 맞는 장기렌트를 시작하세요
-              </p>
+            <div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`text-${current}`}
+                  variants={textVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
+                >
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 tracking-tight">
+                    {slides[current].heading}
+                  </h1>
+                  <p className="text-text-secondary text-base md:text-lg mb-8 max-w-lg leading-relaxed">
+                    {slides[current].sub}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
               <div className="flex flex-col sm:flex-row flex-wrap gap-3">
                 <motion.a
                   whileHover={{ scale: 1.02 }}
@@ -71,7 +190,7 @@ export default function HeroSection() {
                   로켓출고
                 </motion.a>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right - Bento grid features - 2 cols */}
