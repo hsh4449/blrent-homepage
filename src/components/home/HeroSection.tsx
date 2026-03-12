@@ -14,7 +14,7 @@ const slides = [
       </>
     ),
     sub: '500개 이상의 렌트사 바로바로 비교견적, 나에게 딱 맞는 장기렌트를 시작하세요',
-    bg: '/hero-bg.jpg',
+    bg: '/hero-bg.png',
   },
   {
     heading: (
