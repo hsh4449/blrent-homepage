@@ -19,7 +19,6 @@ const features = [
 
 export default function HeroSection() {
   const [current, setCurrent] = useState(0)
-  const [paused, setPaused] = useState(false)
   const touchStartX = useRef(0)
 
   const goTo = useCallback((idx: number) => {
@@ -30,16 +29,13 @@ export default function HeroSection() {
   const prev = useCallback(() => goTo(current - 1), [current, goTo])
 
   useEffect(() => {
-    if (paused) return
     const timer = setInterval(next, 3000)
     return () => clearInterval(timer)
-  }, [paused, next])
+  }, [next])
 
   return (
     <section
       className="relative min-h-screen flex items-end md:items-center pb-10 md:pb-0 pt-20 overflow-hidden"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
       onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX }}
       onTouchEnd={(e) => {
         const diff = touchStartX.current - e.changedTouches[0].clientX
