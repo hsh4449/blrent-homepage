@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Shield, Clock, Users, FileCheck } from 'lucide-react'
+import { Shield, Clock, Users, FileCheck, Rocket } from 'lucide-react'
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/'
 
@@ -40,24 +40,33 @@ export default function HeroSection() {
                 신차부터 중고까지, 최저가 견적을 비교하고<br className="hidden sm:block" />
                 나에게 딱 맞는 장기렌트를 시작하세요
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3">
                 <motion.a
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   href={KAKAO_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-all glow-accent text-sm"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-all glow-accent text-sm"
                 >
-                  30초 만에 견적 신청하기
+                  즉시 견적 신청
                 </motion.a>
                 <motion.a
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   href={`tel:${import.meta.env.VITE_PHONE_NUMBER || '1234-5678'}`}
-                  className="inline-flex items-center gap-2 px-8 py-4 glass rounded-xl font-semibold text-sm hover:bg-white/10 transition-all"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 glass rounded-xl font-semibold text-sm hover:bg-white/10 transition-all"
                 >
                   전화 상담하기
+                </motion.a>
+                <motion.a
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  href="/new-car"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-sm bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:from-violet-500 hover:to-indigo-500 transition-all shadow-lg shadow-violet-500/25"
+                >
+                  <Rocket size={16} />
+                  로켓출고
                 </motion.a>
               </div>
             </motion.div>
