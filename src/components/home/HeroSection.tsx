@@ -19,7 +19,7 @@ const slides = [
   {
     heading: (
       <>
-        중고차도 장기렌트로,<br />
+        신차보다 낮은 가격, 짧은 기간<br />
         <span className="text-gradient">부담 없이 시작하세요</span>
       </>
     ),
