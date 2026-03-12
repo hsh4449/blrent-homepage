@@ -29,7 +29,7 @@ export default function HeroSection() {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs text-accent font-medium mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                업계 최저가 보장제 운영중
+                500여개 렌트사 바로바로 비교견적
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 tracking-tight">
                 장기렌트,<br />
