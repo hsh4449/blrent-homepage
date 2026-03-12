@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Shield, Clock, Users, FileCheck, Rocket } from 'lucide-react'
+import { Shield, Clock, Users, FileCheck, Rocket, FileText, Phone } from 'lucide-react'
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/'
 
@@ -49,6 +49,7 @@ export default function HeroSection() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-all glow-accent text-sm"
                 >
+                  <FileText size={16} />
                   즉시 견적 신청
                 </motion.a>
                 <motion.a
@@ -57,6 +58,7 @@ export default function HeroSection() {
                   href={`tel:${import.meta.env.VITE_PHONE_NUMBER || '1234-5678'}`}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 glass rounded-xl font-semibold text-sm hover:bg-white/10 transition-all"
                 >
+                  <Phone size={16} />
                   전화 상담하기
                 </motion.a>
                 <motion.a
