@@ -4,7 +4,7 @@ import { Shield, Clock, Users, FileCheck, Rocket } from 'lucide-react'
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/'
 
 const features = [
-  { icon: Shield, title: '업계 최저가 보장', desc: '복수 견적 비교를 통해 최저가를 보장합니다' },
+  { icon: Shield, title: '500여개 협력사 비교', desc: '다수의 렌트사 견적을 비교해 최저가로 안내드립니다' },
   { icon: Clock, title: '즉시 출고 가능', desc: '무심사 즉시 출고 가능 차량 다수 보유' },
   { icon: Users, title: '전담 매니저 배정', desc: '계약부터 반납까지 1:1 전담 케어' },
   { icon: FileCheck, title: '간편한 심사', desc: '최소 서류로 빠른 심사 진행' },
