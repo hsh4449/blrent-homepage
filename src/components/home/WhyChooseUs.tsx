@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { TrendingDown, Zap, HeadphonesIcon, Wrench, BadgeCheck, CarFront } from 'lucide-react'
 
 const items = [
-  { icon: TrendingDown, title: '업계 최저가 보장제', desc: '타사 대비 높은 견적 시 차액의 110%를 보상합니다. 복수 견적 비교로 가장 유리한 조건을 찾아드립니다.', span: 'md:col-span-2' },
+  { icon: TrendingDown, title: '500여개 협력사 비교견적', desc: '다수의 렌트사 견적을 한 번에 비교해, 가장 유리한 조건으로 안내해드립니다.', span: 'md:col-span-2' },
   { icon: Zap, title: '무심사 즉시 출고', desc: '심사 없이 바로 출고 가능한 차량을 다수 보유하고 있습니다.', span: '' },
   { icon: HeadphonesIcon, title: '전담 매니저 1:1 케어', desc: '상담부터 출고, 반납까지 전 과정을 전담 매니저가 책임집니다.', span: '' },
   { icon: Wrench, title: '보험·정비 올인원', desc: '보험, 정비, 사고 처리까지 모든 관리를 원스톱으로 지원합니다.', span: '' },
