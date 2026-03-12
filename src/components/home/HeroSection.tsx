@@ -14,7 +14,7 @@ const slides = [
       </>
     ),
     sub: '500개 이상의 렌트사 바로바로 비교견적, 나에게 딱 맞는 장기렌트를 시작하세요',
-    bg: '/hero-bg.png',
+    bg: '/hero-bg.jpg',
   },
   {
     heading: (
@@ -24,7 +24,7 @@ const slides = [
       </>
     ),
     sub: '신차 대비 최대 40% 저렴한 월 납입금, 검증된 중고차만 엄선',
-    bg: '/hero-bg-2.jpg',
+    bg: '/hero-bg-2.png',
   },
   {
     heading: (
@@ -34,7 +34,7 @@ const slides = [
       </>
     ),
     sub: '오늘 상담, 내일 출고. 즉시 출고 가능한 차량을 지금 확인하세요',
-    bg: '/hero-bg-3.jpg',
+    bg: '/hero-bg-3.png',
   },
 ]
 
