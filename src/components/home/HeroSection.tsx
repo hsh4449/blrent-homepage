@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Shield, Clock, Users, FileCheck, Rocket, FileText, Phone, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Shield, Clock, Users, FileCheck, Rocket, FileText, Phone } from 'lucide-react'
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/'
 
@@ -106,24 +106,6 @@ export default function HeroSection() {
       </AnimatePresence>
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40 z-[1]" />
       <div className="absolute inset-0 bg-gradient-to-t from-bg-main via-transparent to-bg-main/30 z-[1]" />
-
-      {/* Arrow buttons */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20 max-w-7xl mx-auto px-4 sm:px-6 hidden md:flex justify-between pointer-events-none">
-        <button
-          onClick={prev}
-          className="w-10 h-10 rounded-full glass flex items-center justify-center opacity-0 group-hover/hero:opacity-100 transition-opacity duration-300 hover:bg-white/10 pointer-events-auto"
-          aria-label="이전 슬라이드"
-        >
-          <ChevronLeft size={20} />
-        </button>
-        <button
-          onClick={next}
-          className="w-10 h-10 rounded-full glass flex items-center justify-center opacity-0 group-hover/hero:opacity-100 transition-opacity duration-300 hover:bg-white/10 pointer-events-auto"
-          aria-label="다음 슬라이드"
-        >
-          <ChevronRight size={20} />
-        </button>
-      </div>
 
       {/* Dot indicators */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
