@@ -4,16 +4,16 @@ const PHONE = import.meta.env.VITE_PHONE_NUMBER || '1234-5678'
 
 export default function Footer() {
   return (
-    <footer className="bg-bg-main border-t border-white/5 pb-28 md:pb-8">
+    <footer className="bg-gray-50 border-t border-gray-200 pb-28 md:pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
           {/* Logo & Company */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-                <span className="text-text-primary font-bold text-sm">BL</span>
+                <span className="text-white font-bold text-sm">BL</span>
               </div>
-              <span className="font-display font-bold text-lg">렌트카</span>
+              <span className="font-display font-bold text-lg text-text-primary">렌트카</span>
             </div>
             <p className="text-sm text-text-muted leading-relaxed">
               상호: BL렌트카 | 대표: 홍길동<br />
@@ -56,10 +56,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
+        <div className="border-t border-gray-200 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
           <span className="text-xs text-text-muted">&copy; 2026 BL렌트카. All rights reserved.</span>
           <div className="flex items-center gap-4">
-            {/* SNS Icons */}
             {['카카오', '인스타', '블로그'].map((name) => (
               <span key={name} className="text-xs text-text-muted hover:text-text-primary cursor-pointer transition-colors">{name}</span>
             ))}

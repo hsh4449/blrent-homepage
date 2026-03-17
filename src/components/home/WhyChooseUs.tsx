@@ -21,7 +21,7 @@ export default function WhyChooseUs() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-text-primary">
             왜 <span className="text-gradient">BL렌트카</span>인가요?
           </h2>
           <p className="text-text-secondary text-sm md:text-base">고객만족을 위한 차별화된 서비스를 제공합니다</p>
@@ -35,10 +35,10 @@ export default function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className={`glass rounded-2xl p-6 hover:bg-white/[0.08] transition-all duration-300 group cursor-default ${item.span}`}
+              className={`bg-white rounded-2xl border border-gray-200 p-6 hover:border-accent/30 hover:shadow-sm transition-all duration-300 group cursor-default ${item.span}`}
             >
               <item.icon size={24} className="text-accent mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="text-base font-semibold mb-2">{item.title}</h3>
+              <h3 className="text-base font-semibold mb-2 text-text-primary">{item.title}</h3>
               <p className="text-sm text-text-muted leading-relaxed">{item.desc}</p>
             </motion.div>
           ))}

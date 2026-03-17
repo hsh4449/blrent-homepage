@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { vehicles as allVehicles } from '../data/vehicles'
-import type { Vehicle } from '../types/vehicle'
+
 
 interface VehicleFilters {
   rentType?: 'new' | 'used' | 'monthly'

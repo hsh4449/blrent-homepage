@@ -3,18 +3,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 @theme {
-  --color-bg-main: #0A0A0B;
-  --color-bg-card: #111113;
-  --color-bg-sub: #1A1A1D;
+  --color-bg-main: #FFFFFF;
+  --color-bg-card: #F8F9FA;
+  --color-bg-sub: #F3F4F6;
   --color-accent: #FF9D42;
-  --color-accent-hover: #FFB06A;
+  --color-accent-hover: #E88D35;
   --color-accent-glow: rgba(255, 157, 66, 0.3);
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #9CA3AF;
-  --color-text-muted: #6B7280;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-glass: rgba(255, 255, 255, 0.05);
-  --color-glass-hover: rgba(255, 255, 255, 0.08);
+  --color-text-primary: #111827;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #9CA3AF;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-glass: rgba(0, 0, 0, 0.02);
+  --color-glass-hover: rgba(0, 0, 0, 0.04);
   --color-kakao: #FEE500;
   --color-kakao-text: #191919;
 
@@ -24,12 +24,8 @@
 
 @layer base {
   body {
-    background-color: #0A0A0B;
-    background-image:
-      radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255, 157, 66, 0.15) 0%, transparent 60%),
-      radial-gradient(ellipse 80% 50% at 10% 50%, rgba(255, 157, 66, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse 80% 50% at 90% 80%, rgba(255, 157, 66, 0.08) 0%, transparent 50%);
-    color: #FFFFFF;
+    background-color: #FFFFFF;
+    color: #111827;
     font-family: 'Pretendard', 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -40,22 +36,23 @@
 
 @layer utilities {
   .glass {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   }
   .glass-hover:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.03);
   }
   .glow-accent {
-    box-shadow: 0 0 20px rgba(255, 157, 66, 0.3), 0 0 60px rgba(255, 157, 66, 0.1);
+    box-shadow: 0 4px 14px rgba(255, 157, 66, 0.3);
   }
   .glow-accent-sm {
-    box-shadow: 0 0 10px rgba(255, 157, 66, 0.2);
+    box-shadow: 0 2px 8px rgba(255, 157, 66, 0.2);
   }
   .text-gradient {
-    background: linear-gradient(135deg, #FF9D42, #FFB06A);
+    background: linear-gradient(135deg, #FF9D42, #E07B20);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

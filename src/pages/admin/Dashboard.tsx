@@ -54,7 +54,7 @@ export default function Dashboard() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#0A0A0B] p-6 md:p-10">
+    <div className="min-h-screen bg-gray-50 p-6 md:p-10">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -63,8 +63,8 @@ export default function Dashboard() {
       >
         {/* Header */}
         <motion.div variants={itemVariants}>
-          <h1 className="text-2xl md:text-3xl font-bold text-white">관리자 대시보드</h1>
-          <p className="text-[#94A3B8] mt-1">BL렌트 홈페이지 현황을 한눈에 확인하세요.</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">관리자 대시보드</h1>
+          <p className="text-gray-500 mt-1">BL렌트 홈페이지 현황을 한눈에 확인하세요.</p>
         </motion.div>
 
         {/* Stats Grid */}
@@ -73,18 +73,18 @@ export default function Dashboard() {
             <motion.div
               key={card.label}
               variants={itemVariants}
-              className="backdrop-blur-xl bg-white/5 border border-white/[0.08] rounded-2xl p-5 hover:bg-white/[0.08] transition-colors"
+              className="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-sm transition-shadow"
             >
               <div className="flex items-center gap-3 mb-3">
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center"
-                  style={{ backgroundColor: `${card.color}20` }}
+                  style={{ backgroundColor: `${card.color}15` }}
                 >
                   <card.icon size={20} style={{ color: card.color }} />
                 </div>
               </div>
-              <p className="text-2xl md:text-3xl font-bold text-white">{card.value}</p>
-              <p className="text-[#94A3B8] text-sm mt-1">{card.label}</p>
+              <p className="text-2xl md:text-3xl font-bold text-gray-900">{card.value}</p>
+              <p className="text-gray-500 text-sm mt-1">{card.label}</p>
             </motion.div>
           ))}
         </div>
@@ -92,10 +92,10 @@ export default function Dashboard() {
         {/* Recent Vehicles */}
         <motion.div
           variants={itemVariants}
-          className="backdrop-blur-xl bg-white/5 border border-white/[0.08] rounded-2xl p-6"
+          className="bg-white border border-gray-200 rounded-2xl p-6"
         >
           <div className="flex items-center justify-between mb-5">
-            <h2 className="text-lg font-semibold text-white">최근 등록 차량</h2>
+            <h2 className="text-lg font-semibold text-gray-900">최근 등록 차량</h2>
             <Link
               to="/admin/vehicles"
               className="flex items-center gap-1 text-[#FF9D42] text-sm hover:underline"
@@ -105,13 +105,13 @@ export default function Dashboard() {
           </div>
 
           {recentVehicles.length === 0 ? (
-            <p className="text-[#475569] text-sm text-center py-8">등록된 차량이 없습니다.</p>
+            <p className="text-gray-400 text-sm text-center py-8">등록된 차량이 없습니다.</p>
           ) : (
             <div className="space-y-3">
               {recentVehicles.map((v) => (
                 <div
                   key={v.id}
-                  className="flex items-center gap-4 p-3 rounded-xl bg-white/[0.03] border border-white/[0.05]"
+                  className="flex items-center gap-4 p-3 rounded-xl bg-gray-50 border border-gray-100"
                 >
                   {v.image ? (
                     <img
@@ -120,19 +120,19 @@ export default function Dashboard() {
                       className="w-14 h-10 rounded-lg object-cover flex-shrink-0"
                     />
                   ) : (
-                    <div className="w-14 h-10 rounded-lg bg-white/[0.05] flex items-center justify-center flex-shrink-0">
-                      <Car size={16} className="text-[#475569]" />
+                    <div className="w-14 h-10 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
+                      <Car size={16} className="text-gray-400" />
                     </div>
                   )}
                   <div className="min-w-0 flex-1">
-                    <p className="text-white text-sm font-medium truncate">
+                    <p className="text-gray-900 text-sm font-medium truncate">
                       {v.brand} {v.model}
                     </p>
-                    <p className="text-[#475569] text-xs mt-0.5">
+                    <p className="text-gray-400 text-xs mt-0.5">
                       {v.year}년 &middot; 월 {v.monthly_payment?.toLocaleString()}원
                     </p>
                   </div>
-                  <span className="text-[#94A3B8] text-xs whitespace-nowrap">
+                  <span className="text-gray-500 text-xs whitespace-nowrap">
                     {v.rent_type === 'new'
                       ? '신차'
                       : v.rent_type === 'used'
@@ -149,39 +149,39 @@ export default function Dashboard() {
         <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Link
             to="/admin/vehicles"
-            className="flex items-center justify-between p-5 backdrop-blur-xl bg-white/5 border border-white/[0.08] rounded-2xl hover:bg-white/[0.08] transition-colors group"
+            className="flex items-center justify-between p-5 bg-white border border-gray-200 rounded-2xl hover:shadow-sm transition-shadow group"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#FF9D42]/20 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-[#FF9D42]/10 flex items-center justify-center">
                 <Car size={20} className="text-[#FF9D42]" />
               </div>
               <div>
-                <p className="text-white font-medium">차량 관리</p>
-                <p className="text-[#475569] text-sm">차량 등록, 수정, 삭제</p>
+                <p className="text-gray-900 font-medium">차량 관리</p>
+                <p className="text-gray-400 text-sm">차량 등록, 수정, 삭제</p>
               </div>
             </div>
             <ArrowRight
               size={18}
-              className="text-[#475569] group-hover:text-[#FF9D42] transition-colors"
+              className="text-gray-400 group-hover:text-[#FF9D42] transition-colors"
             />
           </Link>
 
           <Link
             to="/admin/consultations"
-            className="flex items-center justify-between p-5 backdrop-blur-xl bg-white/5 border border-white/[0.08] rounded-2xl hover:bg-white/[0.08] transition-colors group"
+            className="flex items-center justify-between p-5 bg-white border border-gray-200 rounded-2xl hover:shadow-sm transition-shadow group"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#FF9D42]/20 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-[#FF9D42]/10 flex items-center justify-center">
                 <Users size={20} className="text-[#FF9D42]" />
               </div>
               <div>
-                <p className="text-white font-medium">상담 관리</p>
-                <p className="text-[#475569] text-sm">상담 요청 확인, 상태 변경</p>
+                <p className="text-gray-900 font-medium">상담 관리</p>
+                <p className="text-gray-400 text-sm">상담 요청 확인, 상태 변경</p>
               </div>
             </div>
             <ArrowRight
               size={18}
-              className="text-[#475569] group-hover:text-[#FF9D42] transition-colors"
+              className="text-gray-400 group-hover:text-[#FF9D42] transition-colors"
             />
           </Link>
         </motion.div>

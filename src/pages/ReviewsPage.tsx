@@ -21,9 +21,9 @@ export default function ReviewsPage() {
             <h1 className="text-2xl md:text-4xl font-bold mb-3">출고 후기</h1>
             <p className="text-text-secondary text-sm md:text-base">BL렌트카를 통해 차량을 출고하신 고객님들의 생생한 후기입니다</p>
           </motion.div>
-          <div className="flex gap-1 mt-8 p-1 rounded-xl bg-white/5 w-fit">
+          <div className="flex gap-1 mt-8 p-1 rounded-xl bg-gray-50 w-fit">
             {tabs.map((tab) => (
-              <button key={tab.key} onClick={() => setFilter(tab.key)} className={`px-5 py-2.5 text-sm font-medium rounded-lg transition-all ${filter === tab.key ? 'bg-accent text-white' : 'text-text-muted hover:text-white'}`}>
+              <button key={tab.key} onClick={() => setFilter(tab.key)} className={`px-5 py-2.5 text-sm font-medium rounded-lg transition-all ${filter === tab.key ? 'bg-accent text-white' : 'text-text-muted hover:text-gray-900'}`}>
                 {tab.label}
               </button>
             ))}

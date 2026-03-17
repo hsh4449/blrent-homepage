@@ -8,7 +8,7 @@ export default function ContactForm() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [form, setForm] = useState({ name: '', phone: '', car: '', message: '' })
-  const inputClass = "w-full bg-white/5 border border-white/[0.08] rounded-xl px-4 py-3.5 text-sm outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all placeholder:text-text-muted"
+  const inputClass = "w-full bg-white border border-gray-200 rounded-xl px-4 py-3.5 text-sm outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all placeholder:text-text-muted"
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -58,7 +58,7 @@ export default function ContactForm() {
         개인정보 수집 및 이용에 동의합니다
       </label>
       {error && (
-        <div className="flex items-center gap-2 text-red-400 text-sm">
+        <div className="flex items-center gap-2 text-red-600 text-sm">
           <AlertCircle size={16} /> {error}
         </div>
       )}

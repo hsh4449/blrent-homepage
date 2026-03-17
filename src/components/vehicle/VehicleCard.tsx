@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { MessageCircle, Fuel, Calendar, Gauge } from 'lucide-react'
+import { MessageCircle, Fuel } from 'lucide-react'
 import type { Vehicle } from '../../types/vehicle'
 
 export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
@@ -8,10 +8,10 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
     <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
       <Link
         to={`/vehicle/${vehicle.id}`}
-        className="block glass rounded-2xl overflow-hidden group hover:border-accent/20 transition-all duration-300"
+        className="block bg-white rounded-2xl overflow-hidden group border-2 border-amber-300 shadow-sm hover:border-accent hover:shadow-lg hover:shadow-accent/10 transition-all duration-300"
       >
         {/* Image */}
-        <div className="relative h-48 overflow-hidden bg-bg-sub">
+        <div className="relative h-48 overflow-hidden bg-gradient-to-br from-gray-50 to-amber-50/30">
           <img
             src={vehicle.image}
             alt={`${vehicle.brand} ${vehicle.model}`}
@@ -28,18 +28,15 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
         </div>
 
         {/* Info */}
-        <div className="p-4">
-          <h3 className="font-semibold text-sm mb-1">{vehicle.model}</h3>
-          <div className="flex items-center gap-3 text-xs text-text-muted mb-3">
-            <span className="flex items-center gap-1"><Calendar size={12} /> {vehicle.year}년</span>
-            <span className="flex items-center gap-1"><Fuel size={12} /> {vehicle.fuel}</span>
-            {vehicle.mileage && <span className="flex items-center gap-1"><Gauge size={12} /> {(vehicle.mileage / 10000).toFixed(1)}만km</span>}
+        <div className="p-4 bg-gradient-to-b from-accent to-amber-600">
+          <h3 className="font-extrabold text-lg mb-2 text-white">{vehicle.model}</h3>
+          <div className="flex items-center gap-1.5 text-sm text-white font-medium mb-3">
+            <Fuel size={14} />
+            <span>{vehicle.fuel}</span>
           </div>
-          <div className="flex items-center justify-between">
-            <div>
-              <span className="text-accent font-bold text-lg">{(vehicle.monthlyPayment / 10000).toFixed(0)}만원</span>
-              <span className="text-text-muted text-xs ml-1">/ 월</span>
-            </div>
+          <div>
+            <span className="text-white font-bold text-lg">{(vehicle.monthlyPayment / 10000).toFixed(0)}만원</span>
+            <span className="text-white/60 text-xs ml-1">/ 월</span>
           </div>
         </div>
       </Link>

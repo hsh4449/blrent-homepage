@@ -19,7 +19,7 @@ interface FilterProps {
 export default function VehicleFilter({ rentType, filters, brands, onChange, onReset }: FilterProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  const selectClass = "w-full bg-white/5 border border-white/[0.08] text-sm rounded-xl px-4 py-3 outline-none focus:border-accent/50 transition-all"
+  const selectClass = "w-full bg-white border border-gray-200 text-sm rounded-xl px-4 py-3 outline-none focus:border-accent/50 transition-all"
 
   const FilterContent = () => (
     <div className="space-y-5">
@@ -56,7 +56,7 @@ export default function VehicleFilter({ rentType, filters, brands, onChange, onR
           <select className={selectClass}><option>전체</option><option>2024</option><option>2023</option><option>2022</option></select>
         </div>
       )}
-      <button onClick={onReset} className="w-full py-2.5 text-sm text-text-muted hover:text-white glass rounded-xl transition-all">필터 초기화</button>
+      <button onClick={onReset} className="w-full py-2.5 text-sm text-text-muted hover:text-gray-900 glass rounded-xl transition-all">필터 초기화</button>
     </div>
   )
 
@@ -81,11 +81,11 @@ export default function VehicleFilter({ rentType, filters, brands, onChange, onR
       {/* Mobile drawer */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
           <motion.div
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
-            className="absolute bottom-0 left-0 right-0 bg-bg-card rounded-t-2xl p-6 max-h-[80vh] overflow-y-auto border-t border-white/5"
+            className="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl p-6 max-h-[80vh] overflow-y-auto border-t border-gray-200"
           >
             <div className="flex items-center justify-between mb-5">
               <h3 className="font-semibold">필터</h3>

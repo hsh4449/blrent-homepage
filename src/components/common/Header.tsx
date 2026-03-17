@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-50 bg-black border-b border-white/10`}
+        className={`fixed top-0 inset-x-0 z-50 bg-white border-b transition-shadow ${scrolled ? 'shadow-sm border-gray-200' : 'border-gray-100'}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -39,7 +39,7 @@ export default function Header() {
             <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
               <span className="text-white font-bold text-sm">BL</span>
             </div>
-            <span className="font-display font-bold text-lg tracking-tight">렌트카</span>
+            <span className="font-display font-bold text-lg tracking-tight text-text-primary">렌트카</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -51,7 +51,7 @@ export default function Header() {
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   location.pathname === item.path
                     ? 'text-accent bg-accent/10'
-                    : 'text-text-secondary hover:text-white hover:bg-white/5'
+                    : 'text-text-secondary hover:text-text-primary hover:bg-gray-100'
                 }`}
               >
                 {item.label}
@@ -63,7 +63,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href={`tel:${PHONE}`}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-white hover:bg-white/5 transition-all"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-gray-100 transition-all"
             >
               <Phone size={16} />
               <span>{PHONE}</span>
@@ -79,7 +79,7 @@ export default function Header() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 rounded-lg text-text-secondary hover:text-white hover:bg-white/5 transition-all"
+            className="lg:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-gray-100 transition-all"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -94,7 +94,7 @@ export default function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden"
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
@@ -102,13 +102,13 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-80 max-w-[85vw] bg-bg-card/95 backdrop-blur-xl border-l border-white/5 lg:hidden"
+              className="fixed top-0 right-0 bottom-0 z-50 w-80 max-w-[85vw] bg-white border-l border-gray-200 lg:hidden shadow-xl"
             >
-              <div className="flex items-center justify-between p-4 border-b border-white/5">
-                <span className="font-display font-bold">메뉴</span>
+              <div className="flex items-center justify-between p-4 border-b border-gray-100">
+                <span className="font-display font-bold text-text-primary">메뉴</span>
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="p-2 rounded-lg hover:bg-white/5"
+                  className="p-2 rounded-lg hover:bg-gray-100"
                 >
                   <X size={20} />
                 </button>
@@ -121,17 +121,17 @@ export default function Header() {
                     className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                       location.pathname === item.path
                         ? 'text-accent bg-accent/10'
-                        : 'text-text-secondary hover:text-white hover:bg-white/5'
+                        : 'text-text-secondary hover:text-text-primary hover:bg-gray-100'
                     }`}
                   >
                     {item.label}
                   </Link>
                 ))}
               </nav>
-              <div className="p-4 space-y-3 border-t border-white/5">
+              <div className="p-4 space-y-3 border-t border-gray-100">
                 <a
                   href={`tel:${PHONE}`}
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl glass text-sm font-medium"
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm font-medium text-text-primary"
                 >
                   <Phone size={16} />
                   전화 상담 {PHONE}

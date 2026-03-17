@@ -26,7 +26,7 @@ export default function SearchBar() {
     navigate(`${path}?${params.toString()}`)
   }
 
-  const selectClass = "w-full bg-white/5 border border-white/[0.08] text-sm rounded-xl px-4 py-3.5 outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all appearance-none cursor-pointer text-text-primary"
+  const selectClass = "w-full bg-gray-50 border border-gray-200 text-sm rounded-xl px-4 py-3.5 outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all appearance-none cursor-pointer text-text-primary"
 
   return (
     <motion.section
@@ -36,8 +36,8 @@ export default function SearchBar() {
       transition={{ duration: 0.6 }}
       className="max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-20"
     >
-      <div className="glass rounded-2xl p-6 md:p-8">
-        <h2 className="text-lg font-semibold mb-5">차량 검색</h2>
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm">
+        <h2 className="text-lg font-semibold mb-5 text-text-primary">차량 검색</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end">
           <div>
             <label className="block text-xs text-text-muted mb-2 font-medium">렌트 유형</label>

@@ -13,7 +13,7 @@ export default function CTABanner() {
   }
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden">
+    <section className="py-20 md:py-28 relative overflow-hidden bg-gray-50">
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -24,7 +24,7 @@ export default function CTABanner() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-2xl md:text-4xl font-bold mb-4 leading-tight">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4 leading-tight text-text-primary">
               지금 바로<br />
               <span className="text-gradient">무료 견적</span>을 받아보세요
             </h2>
@@ -47,21 +47,21 @@ export default function CTABanner() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {submitted ? (
-              <div className="glass rounded-2xl p-8 text-center">
+              <div className="bg-white rounded-2xl border border-gray-200 p-8 text-center shadow-sm">
                 <CheckCircle size={48} className="text-accent mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-2">상담 신청 완료!</h3>
+                <h3 className="text-xl font-bold mb-2 text-text-primary">상담 신청 완료!</h3>
                 <p className="text-text-secondary text-sm">빠른 시간 내에 연락드리겠습니다.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 md:p-8 space-y-4">
-                <h3 className="text-lg font-semibold mb-2">30초 만에 견적 신청하기</h3>
+              <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 space-y-4 shadow-sm">
+                <h3 className="text-lg font-semibold mb-2 text-text-primary">30초 만에 견적 신청하기</h3>
                 <input
                   type="text"
                   placeholder="이름"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   required
-                  className="w-full bg-white/5 border border-white/[0.08] rounded-xl px-4 py-3.5 text-sm outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all placeholder:text-text-muted"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 text-sm outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all placeholder:text-text-muted text-text-primary"
                 />
                 <input
                   type="tel"
@@ -69,14 +69,14 @@ export default function CTABanner() {
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                   required
-                  className="w-full bg-white/5 border border-white/[0.08] rounded-xl px-4 py-3.5 text-sm outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all placeholder:text-text-muted"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 text-sm outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all placeholder:text-text-muted text-text-primary"
                 />
                 <input
                   type="text"
                   placeholder="희망 차종 (선택)"
                   value={form.car}
                   onChange={(e) => setForm({ ...form, car: e.target.value })}
-                  className="w-full bg-white/5 border border-white/[0.08] rounded-xl px-4 py-3.5 text-sm outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all placeholder:text-text-muted"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 text-sm outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all placeholder:text-text-muted text-text-primary"
                 />
                 <label className="flex items-start gap-2 text-xs text-text-muted">
                   <input type="checkbox" required className="mt-0.5 accent-accent" />

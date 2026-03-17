@@ -35,7 +35,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative overflow-hidden"
+      className="relative overflow-hidden bg-gray-50"
       onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX }}
       onTouchEnd={(e) => {
         const diff = touchStartX.current - e.changedTouches[0].clientX
@@ -70,7 +70,7 @@ export default function HeroSection() {
                   key={i}
                   onClick={() => goTo(i)}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    i === current ? 'w-8 bg-accent' : 'w-2 bg-white/30 hover:bg-white/50'
+                    i === current ? 'w-8 bg-accent' : 'w-2 bg-black/20 hover:bg-black/30'
                   }`}
                   aria-label={`슬라이드 ${i + 1}`}
                 />
@@ -86,10 +86,10 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                className="glass rounded-2xl p-4 hover:bg-white/[0.08] transition-all duration-300 cursor-default group flex flex-col items-center justify-center text-center"
+                className="bg-white rounded-2xl border border-gray-200 p-4 hover:border-accent/30 hover:shadow-sm transition-all duration-300 cursor-default group flex flex-col items-center justify-center text-center"
               >
                 <f.icon size={32} className="text-accent mb-3 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xs sm:text-sm font-semibold mb-1">{f.title}</h3>
+                <h3 className="text-xs sm:text-sm font-semibold mb-1 text-text-primary">{f.title}</h3>
                 <p className="text-[10px] sm:text-xs text-text-muted leading-relaxed">{f.desc}</p>
               </motion.div>
             ))}
@@ -113,7 +113,7 @@ export default function HeroSection() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             href={`tel:${import.meta.env.VITE_PHONE_NUMBER || '1234-5678'}`}
-            className="inline-flex items-center justify-center gap-2 px-10 py-4 glass rounded-xl font-semibold text-base hover:bg-white/10 transition-all"
+            className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-white border border-gray-200 rounded-xl font-semibold text-base text-text-primary hover:bg-gray-50 transition-all"
           >
             <Phone size={20} />
             전화 상담하기

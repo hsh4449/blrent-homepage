@@ -27,7 +27,7 @@ export default function AdminLogin() {
       <div className="w-full max-w-md">
         {/* Branding */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white">
+          <h1 className="text-3xl font-bold text-gray-900">
             BL<span className="text-accent">렌트카</span>
           </h1>
           <p className="text-text-secondary mt-2 text-sm">관리자 로그인</p>
@@ -52,11 +52,11 @@ export default function AdminLogin() {
                   setError(false);
                 }}
                 placeholder="비밀번호를 입력하세요"
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-text-muted focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-white border border-gray-200 text-gray-900 placeholder-text-muted focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/30 transition-colors"
                 autoFocus
               />
               {error && (
-                <p className="mt-2 text-sm text-red-400">
+                <p className="mt-2 text-sm text-red-600">
                   비밀번호가 올바르지 않습니다.
                 </p>
               )}

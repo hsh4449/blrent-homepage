@@ -83,8 +83,8 @@ const rentTypeLabel: Record<RentType, string> = {
 const BRAND_TABS = [
   { key: 'hyundai', label: '현대', brands: ['현대'] },
   { key: 'kia', label: '기아', brands: ['기아'] },
-  { key: 'domestic', label: '그외국산', brands: ['제네시스', '쉐보레', '르노', '쌍용', 'KGM'] },
-  { key: 'import', label: '수입차', brands: ['BMW', '벤츠', '아우디', '폭스바겐', '볼보', '렉서스', '토요타', '혼다'] },
+  { key: 'domestic', label: '그외국산', brands: ['쉐보레', '르노', '쌍용', 'KGM'] },
+  { key: 'import', label: '수입차 & 제네시스', brands: ['제네시스', 'BMW', '벤츠', '아우디', '폭스바겐', '볼보', '렉서스', '토요타', '혼다'] },
 ] as const
 
 type BrandTabKey = typeof BRAND_TABS[number]['key']
@@ -97,20 +97,6 @@ const categoryLabel: Record<string, string> = {
 }
 
 const CATEGORY_ORDER = ['compact', 'sedan', 'suv', 'electric'] as const
-
-/* ─── Helpers ────────────────────────────────────────── */
-
-function formatNumber(n: number) {
-  return n.toLocaleString('ko-KR')
-}
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('ko-KR', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  })
-}
 
 /* ─── Component ──────────────────────────────────────── */
 
@@ -307,11 +293,11 @@ export default function VehicleManagement() {
   /* ─── Render ──────────────────────────────────────── */
 
   return (
-    <div className="min-h-screen bg-[#0A0A0B] p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
       {/* Header */}
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          <h1 className="text-2xl font-bold text-white">차량 관리</h1>
+          <h1 className="text-2xl font-bold text-gray-900">차량 관리</h1>
           <button
             onClick={openAddModal}
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#FF9D42] text-white font-semibold hover:bg-[#e88d35] transition-colors"
@@ -328,7 +314,7 @@ export default function VehicleManagement() {
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-              className="mb-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 flex items-center justify-between"
+              className="mb-4 p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 flex items-center justify-between"
             >
               <span>{error}</span>
               <button onClick={() => setError(null)}>
@@ -347,7 +333,7 @@ export default function VehicleManagement() {
               className={`py-3 px-4 rounded-xl text-sm font-semibold transition-all duration-200 ${
                 activeBrandTab === tab.key
                   ? 'bg-[#FF9D42]/10 border border-[#FF9D42]/40 text-[#FF9D42]'
-                  : 'bg-white/5 border border-white/[0.08] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white'
+                  : 'bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-900'
               }`}
             >
               {tab.label}
@@ -360,20 +346,20 @@ export default function VehicleManagement() {
           <div className="relative flex-1">
             <Search
               size={18}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-[#475569]"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
             />
             <input
               type="text"
               placeholder="모델 검색..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50 transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50 transition-colors"
             />
           </div>
           <select
             value={filterRentType}
             onChange={(e) => setFilterRentType(e.target.value as RentType | '')}
-            className="px-4 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white focus:outline-none focus:border-[#FF9D42]/50 transition-colors"
+            className="px-4 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-900 focus:outline-none focus:border-[#FF9D42]/50 transition-colors"
           >
             <option value="">전체 렌트 유형</option>
             {RENT_TYPE_OPTIONS.map((o) => (
@@ -386,12 +372,12 @@ export default function VehicleManagement() {
 
         {/* Category-grouped vehicle cards */}
         {loading ? (
-          <div className="text-center py-16 text-[#94A3B8]">
+          <div className="text-center py-16 text-gray-400">
             <div className="inline-block w-6 h-6 border-2 border-[#FF9D42] border-t-transparent rounded-full animate-spin" />
             <p className="mt-2">불러오는 중...</p>
           </div>
         ) : groupedByCategory.length === 0 ? (
-          <div className="text-center py-16 text-[#475569]">
+          <div className="text-center py-16 text-gray-400">
             {searchQuery || filterRentType
               ? '검색 결과가 없습니다.'
               : '등록된 차량이 없습니다.'}
@@ -400,29 +386,29 @@ export default function VehicleManagement() {
           <div className="space-y-8">
             {groupedByCategory.map((group) => (
               <div key={group.key}>
-                <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                   <span className="w-1 h-5 bg-[#FF9D42] rounded-full" />
                   {group.label}
-                  <span className="text-xs text-[#475569] font-normal ml-1">{group.vehicles.length}대</span>
+                  <span className="text-xs text-gray-400 font-normal ml-1">{group.vehicles.length}대</span>
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {group.vehicles.map((v) => (
                     <div
                       key={v.id}
-                      className="rounded-2xl bg-white/5 border border-white/[0.08] overflow-hidden hover:border-white/[0.15] transition-all"
+                      className="rounded-2xl bg-white border border-gray-200 overflow-hidden hover:border-accent/30 hover:shadow-sm transition-all"
                     >
                       {/* Image */}
                       <div className="relative h-36 bg-[#f5f5f5] overflow-hidden">
                         {v.image ? (
                           <img src={v.image} alt={v.model} className="w-full h-full object-contain" />
                         ) : (
-                          <div className="w-full h-full bg-white/5" />
+                          <div className="w-full h-full bg-gray-100" />
                         )}
                       </div>
                       {/* Info */}
                       <div className="p-3">
                         <div className="flex items-center justify-between mb-1">
-                          <h4 className="text-sm font-semibold text-white truncate">{v.model}</h4>
+                          <h4 className="text-sm font-semibold text-gray-900 truncate">{v.model}</h4>
                           <button
                             onClick={() => togglePopular(v)}
                             className="shrink-0 ml-1"
@@ -433,12 +419,12 @@ export default function VehicleManagement() {
                               className={
                                 v.is_popular
                                   ? 'fill-[#FF9D42] text-[#FF9D42]'
-                                  : 'text-[#475569] hover:text-[#94A3B8]'
+                                  : 'text-gray-300 hover:text-gray-400'
                               }
                             />
                           </button>
                         </div>
-                        <div className="flex items-center gap-2 text-xs text-[#94A3B8] mb-2">
+                        <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
                           <span>{v.year}년</span>
                           <span>·</span>
                           <span>{v.fuel}</span>
@@ -449,19 +435,19 @@ export default function VehicleManagement() {
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="text-[#FF9D42] font-bold text-sm">
-                            {(v.monthly_payment / 10000).toFixed(0)}만원<span className="text-[#475569] font-normal text-xs"> / 월</span>
+                            {(v.monthly_payment / 10000).toFixed(0)}만원<span className="text-gray-400 font-normal text-xs"> / 월</span>
                           </span>
                           <div className="flex items-center gap-0.5">
                             <button
                               onClick={() => openEditModal(v)}
-                              className="p-1.5 rounded-lg hover:bg-white/10 text-[#94A3B8] hover:text-white transition-colors"
+                              className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-700 transition-colors"
                               title="수정"
                             >
                               <Pencil size={14} />
                             </button>
                             <button
                               onClick={() => setDeleteTarget(v)}
-                              className="p-1.5 rounded-lg hover:bg-red-500/10 text-[#94A3B8] hover:text-red-400 transition-colors"
+                              className="p-1.5 rounded-lg hover:bg-red-50 text-gray-400 hover:text-red-500 transition-colors"
                               title="삭제"
                             >
                               <Trash2 size={14} />
@@ -477,7 +463,7 @@ export default function VehicleManagement() {
           </div>
         )}
 
-        <p className="mt-4 text-xs text-[#475569]">
+        <p className="mt-4 text-xs text-gray-400">
           {BRAND_TABS.find((t) => t.key === activeBrandTab)!.label} {filtered.length}대
           {(searchQuery || filterRentType) && ` (전체 ${vehicles.length}대)`}
         </p>
@@ -487,14 +473,14 @@ export default function VehicleManagement() {
       <AnimatePresence>
         {modalOpen && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/60 backdrop-blur-sm p-4 sm:p-6"
+            className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/30 backdrop-blur-sm p-4 sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setModalOpen(false)}
           >
             <motion.div
-              className="relative w-full max-w-2xl my-8 rounded-2xl backdrop-blur-xl bg-[#0A0A0B]/95 border border-white/[0.08] shadow-2xl"
+              className="relative w-full max-w-2xl my-8 rounded-2xl bg-white border border-gray-200 shadow-2xl"
               initial={{ opacity: 0, y: 40, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 40, scale: 0.97 }}
@@ -502,13 +488,13 @@ export default function VehicleManagement() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal header */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08]">
-                <h2 className="text-lg font-bold text-white">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+                <h2 className="text-lg font-bold text-gray-900">
                   {editingId ? '차량 수정' : '차량 등록'}
                 </h2>
                 <button
                   onClick={() => setModalOpen(false)}
-                  className="p-1.5 rounded-lg hover:bg-white/10 text-[#94A3B8] hover:text-white transition-colors"
+                  className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-700 transition-colors"
                 >
                   <X size={20} />
                 </button>
@@ -517,7 +503,7 @@ export default function VehicleManagement() {
               {/* Modal body */}
               <div className="px-6 py-5 space-y-5 max-h-[70vh] overflow-y-auto">
                 {formError && (
-                  <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+                  <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm">
                     {formError}
                   </div>
                 )}
@@ -525,23 +511,23 @@ export default function VehicleManagement() {
                 {/* Brand & Model */}
                 <div className="grid grid-cols-2 gap-4">
                   <label className="space-y-1.5">
-                    <span className="text-sm text-[#94A3B8]">브랜드 *</span>
+                    <span className="text-sm text-gray-500">브랜드 *</span>
                     <input
                       type="text"
                       value={form.brand}
                       onChange={(e) => updateField('brand', e.target.value)}
                       placeholder="현대"
-                      className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
+                      className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50"
                     />
                   </label>
                   <label className="space-y-1.5">
-                    <span className="text-sm text-[#94A3B8]">모델 *</span>
+                    <span className="text-sm text-gray-500">모델 *</span>
                     <input
                       type="text"
                       value={form.model}
                       onChange={(e) => updateField('model', e.target.value)}
                       placeholder="아반떼"
-                      className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
+                      className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50"
                     />
                   </label>
                 </div>
@@ -549,20 +535,20 @@ export default function VehicleManagement() {
                 {/* Year, Fuel, Category */}
                 <div className="grid grid-cols-3 gap-4">
                   <label className="space-y-1.5">
-                    <span className="text-sm text-[#94A3B8]">연식 *</span>
+                    <span className="text-sm text-gray-500">연식 *</span>
                     <input
                       type="number"
                       value={form.year}
                       onChange={(e) => updateField('year', Number(e.target.value))}
-                      className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white focus:outline-none focus:border-[#FF9D42]/50"
+                      className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:outline-none focus:border-[#FF9D42]/50"
                     />
                   </label>
                   <label className="space-y-1.5">
-                    <span className="text-sm text-[#94A3B8]">연료</span>
+                    <span className="text-sm text-gray-500">연료</span>
                     <select
                       value={form.fuel}
                       onChange={(e) => updateField('fuel', e.target.value as Fuel)}
-                      className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white focus:outline-none focus:border-[#FF9D42]/50"
+                      className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:outline-none focus:border-[#FF9D42]/50"
                     >
                       {FUEL_OPTIONS.map((f) => (
                         <option key={f} value={f}>
@@ -572,11 +558,11 @@ export default function VehicleManagement() {
                     </select>
                   </label>
                   <label className="space-y-1.5">
-                    <span className="text-sm text-[#94A3B8]">카테고리</span>
+                    <span className="text-sm text-gray-500">카테고리</span>
                     <select
                       value={form.category}
                       onChange={(e) => updateField('category', e.target.value as Category)}
-                      className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white focus:outline-none focus:border-[#FF9D42]/50"
+                      className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:outline-none focus:border-[#FF9D42]/50"
                     >
                       {CATEGORY_OPTIONS.map((c) => (
                         <option key={c.value} value={c.value}>
@@ -590,11 +576,11 @@ export default function VehicleManagement() {
                 {/* Rent type, Monthly payment */}
                 <div className="grid grid-cols-2 gap-4">
                   <label className="space-y-1.5">
-                    <span className="text-sm text-[#94A3B8]">렌트 유형</span>
+                    <span className="text-sm text-gray-500">렌트 유형</span>
                     <select
                       value={form.rent_type}
                       onChange={(e) => updateField('rent_type', e.target.value as RentType)}
-                      className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white focus:outline-none focus:border-[#FF9D42]/50"
+                      className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:outline-none focus:border-[#FF9D42]/50"
                     >
                       {RENT_TYPE_OPTIONS.map((r) => (
                         <option key={r.value} value={r.value}>
@@ -604,38 +590,38 @@ export default function VehicleManagement() {
                     </select>
                   </label>
                   <label className="space-y-1.5">
-                    <span className="text-sm text-[#94A3B8]">월 납입금 (원) *</span>
+                    <span className="text-sm text-gray-500">월 납입금 (원) *</span>
                     <input
                       type="number"
                       value={form.monthly_payment || ''}
                       onChange={(e) => updateField('monthly_payment', Number(e.target.value))}
                       placeholder="350000"
-                      className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
+                      className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50"
                     />
                   </label>
                 </div>
 
                 <div className="grid grid-cols-3 gap-4">
                   <label className="space-y-1.5">
-                    <span className="text-sm text-[#94A3B8]">보증금 (원)</span>
+                    <span className="text-sm text-gray-500">보증금 (원)</span>
                     <input
                       type="number"
                       value={form.deposit || ''}
                       onChange={(e) => updateField('deposit', Number(e.target.value))}
-                      className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white focus:outline-none focus:border-[#FF9D42]/50"
+                      className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:outline-none focus:border-[#FF9D42]/50"
                     />
                   </label>
                   <label className="space-y-1.5">
-                    <span className="text-sm text-[#94A3B8]">계약 개월</span>
+                    <span className="text-sm text-gray-500">계약 개월</span>
                     <input
                       type="number"
                       value={form.contract_months || ''}
                       onChange={(e) => updateField('contract_months', Number(e.target.value))}
-                      className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white focus:outline-none focus:border-[#FF9D42]/50"
+                      className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:outline-none focus:border-[#FF9D42]/50"
                     />
                   </label>
                   <label className="space-y-1.5">
-                    <span className="text-sm text-[#94A3B8]">주행거리 (km)</span>
+                    <span className="text-sm text-gray-500">주행거리 (km)</span>
                     <input
                       type="number"
                       value={form.mileage ?? ''}
@@ -646,51 +632,51 @@ export default function VehicleManagement() {
                         )
                       }
                       placeholder="중고차만"
-                      className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
+                      className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50"
                     />
                   </label>
                 </div>
 
                 {/* Specs */}
                 <div>
-                  <p className="text-sm text-[#94A3B8] mb-2">사양</p>
+                  <p className="text-sm text-gray-500 mb-2">사양</p>
                   <div className="grid grid-cols-2 gap-4">
                     <input
                       type="text"
                       value={form.specs.engine}
                       onChange={(e) => updateSpec('engine', e.target.value)}
                       placeholder="엔진 (예: 2.0 가솔린)"
-                      className="px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
+                      className="px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50"
                     />
                     <input
                       type="text"
                       value={form.specs.transmission}
                       onChange={(e) => updateSpec('transmission', e.target.value)}
                       placeholder="변속기 (예: 자동 8단)"
-                      className="px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
+                      className="px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50"
                     />
                     <input
                       type="number"
                       value={form.specs.seats || ''}
                       onChange={(e) => updateSpec('seats', Number(e.target.value))}
                       placeholder="좌석 수"
-                      className="px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
+                      className="px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50"
                     />
                     <input
                       type="text"
                       value={form.specs.fuelEfficiency}
                       onChange={(e) => updateSpec('fuelEfficiency', e.target.value)}
                       placeholder="연비 (예: 12.5km/L)"
-                      className="px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
+                      className="px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50"
                     />
                   </div>
                 </div>
 
                 {/* Image upload */}
                 <div className="space-y-1.5">
-                  <span className="text-sm text-[#94A3B8]">이미지</span>
+                  <span className="text-sm text-gray-500">이미지</span>
                   <div
-                    className="relative flex flex-col items-center justify-center gap-2 p-6 rounded-xl border-2 border-dashed border-white/[0.08] hover:border-[#FF9D42]/30 transition-colors cursor-pointer"
+                    className="relative flex flex-col items-center justify-center gap-2 p-6 rounded-xl border-2 border-dashed border-gray-200 hover:border-[#FF9D42]/30 transition-colors cursor-pointer"
                     onClick={() => fileInputRef.current?.click()}
                   >
                     {imagePreview ? (
@@ -713,8 +699,8 @@ export default function VehicleManagement() {
                       </div>
                     ) : (
                       <>
-                        <Upload size={24} className="text-[#475569]" />
-                        <p className="text-sm text-[#475569]">클릭하여 이미지 업로드</p>
+                        <Upload size={24} className="text-gray-400" />
+                        <p className="text-sm text-gray-400">클릭하여 이미지 업로드</p>
                       </>
                     )}
                     <input
@@ -733,7 +719,7 @@ export default function VehicleManagement() {
 
                 {/* Options */}
                 <div className="space-y-1.5">
-                  <span className="text-sm text-[#94A3B8]">옵션</span>
+                  <span className="text-sm text-gray-500">옵션</span>
                   <div className="flex gap-2">
                     <input
                       type="text"
@@ -746,12 +732,12 @@ export default function VehicleManagement() {
                         }
                       }}
                       placeholder="옵션 입력 후 Enter"
-                      className="flex-1 px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
+                      className="flex-1 px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50"
                     />
                     <button
                       type="button"
                       onClick={addOption}
-                      className="px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-[#94A3B8] hover:text-white hover:bg-white/10 transition-colors"
+                      className="px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
                     >
                       <Plus size={18} />
                     </button>
@@ -761,7 +747,7 @@ export default function VehicleManagement() {
                       {form.options.map((opt) => (
                         <span
                           key={opt}
-                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 text-sm text-[#94A3B8]"
+                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gray-100 text-sm text-gray-600"
                         >
                           {opt}
                           <button
@@ -778,13 +764,13 @@ export default function VehicleManagement() {
 
                 {/* Description */}
                 <label className="block space-y-1.5">
-                  <span className="text-sm text-[#94A3B8]">설명</span>
+                  <span className="text-sm text-gray-500">설명</span>
                   <textarea
                     value={form.description}
                     onChange={(e) => updateField('description', e.target.value)}
                     rows={3}
                     placeholder="차량에 대한 간단한 설명을 입력하세요."
-                    className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50 resize-none"
+                    className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50 resize-none"
                   />
                 </label>
 
@@ -792,7 +778,7 @@ export default function VehicleManagement() {
                 <label className="flex items-center gap-3 cursor-pointer">
                   <div
                     className={`w-10 h-6 rounded-full relative transition-colors ${
-                      form.is_popular ? 'bg-[#FF9D42]' : 'bg-white/10'
+                      form.is_popular ? 'bg-[#FF9D42]' : 'bg-gray-200'
                     }`}
                     onClick={() => updateField('is_popular', !form.is_popular)}
                   >
@@ -802,15 +788,15 @@ export default function VehicleManagement() {
                       }`}
                     />
                   </div>
-                  <span className="text-sm text-[#94A3B8]">인기 차량</span>
+                  <span className="text-sm text-gray-500">인기 차량</span>
                 </label>
               </div>
 
               {/* Modal footer */}
-              <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-white/[0.08]">
+              <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-200">
                 <button
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-[#94A3B8] hover:text-white hover:bg-white/10 transition-colors"
+                  className="px-4 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors"
                 >
                   취소
                 </button>
@@ -836,22 +822,22 @@ export default function VehicleManagement() {
       <AnimatePresence>
         {deleteTarget && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setDeleteTarget(null)}
           >
             <motion.div
-              className="w-full max-w-sm rounded-2xl backdrop-blur-xl bg-[#0A0A0B]/95 border border-white/[0.08] shadow-2xl p-6"
+              className="w-full max-w-sm rounded-2xl bg-white border border-gray-200 shadow-2xl p-6"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-lg font-bold text-white mb-2">차량 삭제</h3>
-              <p className="text-sm text-[#94A3B8] mb-6">
-                <span className="text-white font-medium">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">차량 삭제</h3>
+              <p className="text-sm text-gray-500 mb-6">
+                <span className="text-gray-900 font-medium">
                   {deleteTarget.brand} {deleteTarget.model}
                 </span>
                 을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.
@@ -859,13 +845,13 @@ export default function VehicleManagement() {
               <div className="flex items-center justify-end gap-3">
                 <button
                   onClick={() => setDeleteTarget(null)}
-                  className="px-4 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-[#94A3B8] hover:text-white hover:bg-white/10 transition-colors"
+                  className="px-4 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors"
                 >
                   취소
                 </button>
                 <button
                   onClick={handleDelete}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-red-50 border border-red-200 text-red-600 hover:bg-red-100 transition-colors"
                 >
                   <Trash2 size={16} />
                   삭제

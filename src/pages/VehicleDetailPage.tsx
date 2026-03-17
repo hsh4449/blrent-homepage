@@ -65,7 +65,7 @@ export default function VehicleDetailPage() {
                 {rentTypeLabel[vehicle.rentType]}
               </span>
               {vehicle.isPopular && (
-                <span className="absolute top-4 right-4 px-3 py-1.5 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-xl">인기</span>
+                <span className="absolute top-4 right-4 px-3 py-1.5 bg-black/30 backdrop-blur-sm text-white text-sm font-medium rounded-xl">인기</span>
               )}
             </div>
           </motion.div>
@@ -153,7 +153,7 @@ export default function VehicleDetailPage() {
                 <label className="block text-xs text-text-muted mb-3">계약 기간: <span className="text-accent font-semibold">{contractMonths}개월</span></label>
                 <div className="flex gap-2">
                   {[24, 36, 48, 60].map((months) => (
-                    <button key={months} onClick={() => setContractMonths(months)} className={`flex-1 py-2.5 text-sm rounded-xl transition-all ${contractMonths === months ? 'bg-accent text-white' : 'glass text-text-muted hover:text-white'}`}>
+                    <button key={months} onClick={() => setContractMonths(months)} className={`flex-1 py-2.5 text-sm rounded-xl transition-all ${contractMonths === months ? 'bg-accent text-white' : 'glass text-text-muted hover:text-gray-900'}`}>
                       {months}개월
                     </button>
                   ))}
@@ -163,7 +163,7 @@ export default function VehicleDetailPage() {
                 <label className="block text-xs text-text-muted mb-3">보증금: <span className="text-accent font-semibold">{depositRate * 10}%</span></label>
                 <div className="flex gap-2">
                   {[0, 1, 2, 3].map((rate) => (
-                    <button key={rate} onClick={() => setDepositRate(rate)} className={`flex-1 py-2.5 text-sm rounded-xl transition-all ${depositRate === rate ? 'bg-accent text-white' : 'glass text-text-muted hover:text-white'}`}>
+                    <button key={rate} onClick={() => setDepositRate(rate)} className={`flex-1 py-2.5 text-sm rounded-xl transition-all ${depositRate === rate ? 'bg-accent text-white' : 'glass text-text-muted hover:text-gray-900'}`}>
                       {rate * 10}%
                     </button>
                   ))}
@@ -173,7 +173,7 @@ export default function VehicleDetailPage() {
                 <label className="block text-xs text-text-muted mb-3">선납금: <span className="text-accent font-semibold">{prepayRate * 10}%</span></label>
                 <div className="flex gap-2">
                   {[0, 1, 2, 3].map((rate) => (
-                    <button key={rate} onClick={() => setPrepayRate(rate)} className={`flex-1 py-2.5 text-sm rounded-xl transition-all ${prepayRate === rate ? 'bg-accent text-white' : 'glass text-text-muted hover:text-white'}`}>
+                    <button key={rate} onClick={() => setPrepayRate(rate)} className={`flex-1 py-2.5 text-sm rounded-xl transition-all ${prepayRate === rate ? 'bg-accent text-white' : 'glass text-text-muted hover:text-gray-900'}`}>
                       {rate * 10}%
                     </button>
                   ))}

@@ -16,7 +16,7 @@ export default function ReviewPreview() {
           transition={{ duration: 0.6 }}
           className="flex items-center justify-between mb-10"
         >
-          <h2 className="text-2xl md:text-3xl font-bold">출고 후기</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-text-primary">출고 후기</h2>
           <Link to="/reviews" className="flex items-center gap-1 text-sm text-accent font-medium hover:underline">
             전체보기 <ArrowRight size={16} />
           </Link>
@@ -30,11 +30,11 @@ export default function ReviewPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="glass rounded-2xl p-5 hover:bg-white/[0.08] transition-all duration-300"
+              className="bg-white rounded-2xl border border-gray-200 p-5 hover:border-accent/30 hover:shadow-sm transition-all duration-300"
             >
               <div className="flex items-center gap-1 mb-3">
                 {Array.from({ length: 5 }).map((_, si) => (
-                  <Star key={si} size={14} className={si < review.rating ? 'text-accent fill-accent' : 'text-text-muted'} />
+                  <Star key={si} size={14} className={si < review.rating ? 'text-accent fill-accent' : 'text-gray-300'} />
                 ))}
               </div>
               <p className="text-sm text-text-secondary line-clamp-3 mb-4 leading-relaxed">

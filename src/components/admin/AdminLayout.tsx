@@ -29,7 +29,7 @@ export default function AdminLayout() {
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/30 z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -38,20 +38,20 @@ export default function AdminLayout() {
       <aside
         className={`
           fixed lg:static inset-y-0 left-0 z-50 w-64 flex flex-col
-          glass border-r border-white/[0.08] bg-bg-main/95
+          glass border-r border-gray-200 bg-white
           transform transition-transform duration-200 ease-in-out
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}
       >
         {/* Sidebar Header */}
-        <div className="flex items-center justify-between p-6 border-b border-white/[0.08]">
-          <h1 className="text-xl font-bold text-white">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+          <h1 className="text-xl font-bold text-gray-900">
             BL<span className="text-accent">렌트카</span>
             <span className="text-text-secondary text-sm font-normal ml-2">Admin</span>
           </h1>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden text-text-secondary hover:text-white transition-colors"
+            className="lg:hidden text-text-secondary hover:text-gray-900 transition-colors"
           >
             <X size={20} />
           </button>
@@ -69,7 +69,7 @@ export default function AdminLayout() {
                 `flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                   isActive
                     ? 'bg-accent/10 text-accent'
-                    : 'text-text-secondary hover:text-white hover:bg-white/5'
+                    : 'text-text-secondary hover:text-gray-900 hover:bg-gray-100'
                 }`
               }
             >
@@ -80,10 +80,10 @@ export default function AdminLayout() {
         </nav>
 
         {/* Logout */}
-        <div className="p-4 border-t border-white/[0.08]">
+        <div className="p-4 border-t border-gray-200">
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm font-medium text-text-secondary hover:text-red-400 hover:bg-white/5 transition-colors"
+            className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm font-medium text-text-secondary hover:text-red-600 hover:bg-gray-100 transition-colors"
           >
             <LogOut size={20} />
             로그아웃
@@ -94,14 +94,14 @@ export default function AdminLayout() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-h-screen">
         {/* Top Bar (mobile) */}
-        <header className="lg:hidden flex items-center justify-between p-4 border-b border-white/[0.08]">
+        <header className="lg:hidden flex items-center justify-between p-4 border-b border-gray-200">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="text-text-secondary hover:text-white transition-colors"
+            className="text-text-secondary hover:text-gray-900 transition-colors"
           >
             <Menu size={24} />
           </button>
-          <h1 className="text-lg font-bold text-white">
+          <h1 className="text-lg font-bold text-gray-900">
             BL<span className="text-accent">렌트카</span>
             <span className="text-text-secondary text-sm font-normal ml-2">Admin</span>
           </h1>

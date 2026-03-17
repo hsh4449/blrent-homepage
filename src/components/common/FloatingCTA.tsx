@@ -8,16 +8,16 @@ export default function FloatingCTA() {
   return (
     <>
       {/* Mobile bottom bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-bg-card/95 backdrop-blur-xl border-t border-white/5 safe-bottom">
+      <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-white backdrop-blur-xl border-t border-gray-200 safe-bottom">
         <div className="flex">
           <a
             href={`tel:${PHONE}`}
-            className="flex-1 flex items-center justify-center gap-2 py-4 text-sm font-semibold text-white transition-all active:bg-white/5"
+            className="flex-1 flex items-center justify-center gap-2 py-4 text-sm font-semibold text-gray-900 transition-all active:bg-gray-100"
           >
             <Phone size={18} />
             전화상담
           </a>
-          <div className="w-px bg-white/10" />
+          <div className="w-px bg-gray-200" />
           <a
             href={KAKAO_URL}
             target="_blank"
@@ -40,7 +40,7 @@ export default function FloatingCTA() {
           rel="noopener noreferrer"
           className="group relative flex items-center"
         >
-          <span className="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-bg-card text-xs font-medium text-text-secondary whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-white/5">
+          <span className="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-white text-xs font-medium text-text-secondary whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-gray-200">
             실시간 상담
           </span>
           <div className="w-14 h-14 rounded-full bg-kakao text-kakao-text flex items-center justify-center shadow-lg shadow-kakao/20">

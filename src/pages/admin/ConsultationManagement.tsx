@@ -204,18 +204,18 @@ export default function ConsultationManagement() {
   })
 
   return (
-    <div className="min-h-screen bg-[#0A0A0B] text-white">
+    <div className="min-h-screen bg-gray-50 text-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold">상담 <span className="text-[#FF9D42]">관리</span></h1>
-            <p className="text-[#94A3B8] text-sm mt-1">고객 상담 요청을 관리합니다.</p>
+            <p className="text-gray-500 text-sm mt-1">고객 상담 요청을 관리합니다.</p>
           </div>
           <button
             onClick={fetchConsultations}
             disabled={loading}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/[0.08] hover:bg-white/10 transition-colors text-sm disabled:opacity-50 self-start sm:self-auto"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-gray-200 hover:bg-gray-100 transition-colors text-sm disabled:opacity-50 self-start sm:self-auto"
           >
             <RefreshCw size={16} className={loading ? 'animate-spin' : ''} />
             새로고침
@@ -225,16 +225,16 @@ export default function ConsultationManagement() {
         {/* Search */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="mb-6">
           <div className="relative max-w-md">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#475569]" />
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               placeholder="이름, 전화번호, 차량으로 검색..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-sm text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50 transition-colors"
+              className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50 transition-colors"
             />
             {searchQuery && (
-              <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#475569] hover:text-white transition-colors">
+              <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-900 transition-colors">
                 <X size={16} />
               </button>
             )}
@@ -250,12 +250,12 @@ export default function ConsultationManagement() {
               className={`relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-colors ${
                 activeTab === status
                   ? 'bg-[#FF9D42]/10 text-[#FF9D42] border border-[#FF9D42]/30'
-                  : 'bg-white/5 border border-white/[0.08] text-[#94A3B8] hover:bg-white/10 hover:text-white'
+                  : 'bg-white border border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-900'
               }`}
             >
               {STATUS_LABELS[status]}
               <span className={`inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-xs font-semibold ${
-                activeTab === status ? 'bg-[#FF9D42]/20 text-[#FF9D42]' : 'bg-white/10 text-[#94A3B8]'
+                activeTab === status ? 'bg-[#FF9D42]/20 text-[#FF9D42]' : 'bg-gray-100 text-gray-500'
               }`}>
                 {statusCounts[status] || 0}
               </span>
@@ -270,10 +270,10 @@ export default function ConsultationManagement() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center justify-between"
+              className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm flex items-center justify-between"
             >
               <span>{error}</span>
-              <button onClick={() => setError(null)} className="ml-4 hover:text-red-300 transition-colors">
+              <button onClick={() => setError(null)} className="ml-4 hover:text-red-700 transition-colors">
                 <X size={16} />
               </button>
             </motion.div>
@@ -290,11 +290,11 @@ export default function ConsultationManagement() {
         {/* Empty State */}
         {!loading && filtered.length === 0 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-20">
-            <MessageSquare size={48} className="mx-auto mb-4 text-[#475569]" />
-            <p className="text-[#94A3B8] text-lg font-medium mb-2">
+            <MessageSquare size={48} className="mx-auto mb-4 text-gray-400" />
+            <p className="text-gray-500 text-lg font-medium mb-2">
               {searchQuery ? '검색 결과가 없습니다.' : '상담 요청이 없습니다.'}
             </p>
-            <p className="text-[#475569] text-sm">
+            <p className="text-gray-400 text-sm">
               {searchQuery ? '다른 검색어를 입력해보세요.' : '새로운 상담 요청이 들어오면 여기에 표시됩니다.'}
             </p>
           </motion.div>
@@ -304,16 +304,16 @@ export default function ConsultationManagement() {
         {!loading && filtered.length > 0 && (
           <>
             <div className="hidden lg:block">
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="rounded-2xl backdrop-blur-xl bg-white/5 border border-white/[0.08] overflow-hidden">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="rounded-2xl bg-white border border-gray-200 overflow-hidden">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-white/[0.08]">
-                      <th className="text-left px-6 py-4 text-xs font-semibold text-[#94A3B8] uppercase tracking-wider">고객정보</th>
-                      <th className="text-left px-6 py-4 text-xs font-semibold text-[#94A3B8] uppercase tracking-wider">차량</th>
-                      <th className="text-left px-6 py-4 text-xs font-semibold text-[#94A3B8] uppercase tracking-wider">메시지</th>
-                      <th className="text-left px-6 py-4 text-xs font-semibold text-[#94A3B8] uppercase tracking-wider">상태</th>
-                      <th className="text-left px-6 py-4 text-xs font-semibold text-[#94A3B8] uppercase tracking-wider">메모</th>
-                      <th className="text-left px-6 py-4 text-xs font-semibold text-[#94A3B8] uppercase tracking-wider">접수일시</th>
+                    <tr className="border-b border-gray-200">
+                      <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">고객정보</th>
+                      <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">차량</th>
+                      <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">메시지</th>
+                      <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">상태</th>
+                      <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">메모</th>
+                      <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">접수일시</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -327,7 +327,7 @@ export default function ConsultationManagement() {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ delay: idx * 0.02 }}
-                            className="border-b border-white/[0.04] hover:bg-white/[0.02] transition-colors"
+                            className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
                           >
                             {/* Customer Info */}
                             <td className="px-6 py-4">
@@ -341,13 +341,13 @@ export default function ConsultationManagement() {
                               </a>
                             </td>
                             {/* Car */}
-                            <td className="px-6 py-4 text-sm text-[#94A3B8]">
-                              {item.car || <span className="text-[#475569]">-</span>}
+                            <td className="px-6 py-4 text-sm text-gray-500">
+                              {item.car || <span className="text-gray-400">-</span>}
                             </td>
                             {/* Message */}
                             <td className="px-6 py-4">
-                              <div className="text-sm text-[#94A3B8] max-w-[200px] truncate" title={item.message || ''}>
-                                {item.message || <span className="text-[#475569]">-</span>}
+                              <div className="text-sm text-gray-500 max-w-[200px] truncate" title={item.message || ''}>
+                                {item.message || <span className="text-gray-400">-</span>}
                               </div>
                             </td>
                             {/* Status */}
@@ -370,7 +370,7 @@ export default function ConsultationManagement() {
                                   <ChevronDown size={12} />
                                 </button>
                                 {openDropdown === item.id && (
-                                  <div className="absolute z-50 top-full left-0 mt-1 w-36 rounded-xl bg-[#1a1a1b] border border-white/[0.08] shadow-xl overflow-hidden">
+                                  <div className="absolute z-50 top-full left-0 mt-1 w-36 rounded-xl bg-white border border-gray-200 shadow-xl overflow-hidden">
                                     {(['pending', 'contacted', 'completed', 'cancelled'] as ConsultationStatus[]).map((s) => {
                                       const conf = STATUS_CONFIG[s]
                                       return (
@@ -380,8 +380,8 @@ export default function ConsultationManagement() {
                                             e.stopPropagation()
                                             handleStatusChange(item.id, s)
                                           }}
-                                          className={`w-full flex items-center gap-2 px-4 py-2.5 text-xs hover:bg-white/5 transition-colors ${
-                                            item.status === s ? conf.color + ' font-semibold' : 'text-[#94A3B8]'
+                                          className={`w-full flex items-center gap-2 px-4 py-2.5 text-xs hover:bg-gray-100 transition-colors ${
+                                            item.status === s ? conf.color + ' font-semibold' : 'text-gray-500'
                                           }`}
                                         >
                                           {conf.icon}
@@ -404,7 +404,7 @@ export default function ConsultationManagement() {
                                     onKeyDown={(e) => e.key === 'Enter' && handleMemoSave(item.id)}
                                     placeholder="메모 입력..."
                                     autoFocus
-                                    className="w-40 px-3 py-1.5 rounded-lg bg-white/5 border border-white/[0.08] text-xs text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
+                                    className="w-40 px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50"
                                   />
                                   <button
                                     onClick={() => handleMemoSave(item.id)}
@@ -415,7 +415,7 @@ export default function ConsultationManagement() {
                                   </button>
                                   <button
                                     onClick={() => setEditingMemo(null)}
-                                    className="text-[#475569] hover:text-white transition-colors"
+                                    className="text-gray-400 hover:text-gray-900 transition-colors"
                                   >
                                     <X size={14} />
                                   </button>
@@ -423,15 +423,15 @@ export default function ConsultationManagement() {
                               ) : (
                                 <button
                                   onClick={() => startMemoEdit(item)}
-                                  className="flex items-center gap-1.5 text-xs text-[#94A3B8] hover:text-white transition-colors group"
+                                  className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-900 transition-colors group"
                                 >
-                                  <StickyNote size={12} className="text-[#475569] group-hover:text-[#FF9D42] transition-colors" />
+                                  <StickyNote size={12} className="text-gray-400 group-hover:text-[#FF9D42] transition-colors" />
                                   <span className="max-w-[150px] truncate">{item.memo || '메모 추가...'}</span>
                                 </button>
                               )}
                             </td>
                             {/* Date */}
-                            <td className="px-6 py-4 text-xs text-[#475569] whitespace-nowrap">
+                            <td className="px-6 py-4 text-xs text-gray-400 whitespace-nowrap">
                               {formatDate(item.created_at)}
                             </td>
                           </motion.tr>
@@ -455,7 +455,7 @@ export default function ConsultationManagement() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
                       transition={{ delay: idx * 0.03 }}
-                      className="rounded-2xl backdrop-blur-xl bg-white/5 border border-white/[0.08] p-4 space-y-3"
+                      className="rounded-2xl bg-white border border-gray-200 p-4 space-y-3"
                     >
                       {/* Top row */}
                       <div className="flex items-start justify-between">
@@ -487,7 +487,7 @@ export default function ConsultationManagement() {
                             <ChevronDown size={12} />
                           </button>
                           {openDropdown === item.id && (
-                            <div className="absolute z-50 top-full right-0 mt-1 w-36 rounded-xl bg-[#1a1a1b] border border-white/[0.08] shadow-xl overflow-hidden">
+                            <div className="absolute z-50 top-full right-0 mt-1 w-36 rounded-xl bg-white border border-gray-200 shadow-xl overflow-hidden">
                               {(['pending', 'contacted', 'completed', 'cancelled'] as ConsultationStatus[]).map((s) => {
                                 const conf = STATUS_CONFIG[s]
                                 return (
@@ -497,8 +497,8 @@ export default function ConsultationManagement() {
                                       e.stopPropagation()
                                       handleStatusChange(item.id, s)
                                     }}
-                                    className={`w-full flex items-center gap-2 px-4 py-2.5 text-xs hover:bg-white/5 transition-colors ${
-                                      item.status === s ? conf.color + ' font-semibold' : 'text-[#94A3B8]'
+                                    className={`w-full flex items-center gap-2 px-4 py-2.5 text-xs hover:bg-gray-100 transition-colors ${
+                                      item.status === s ? conf.color + ' font-semibold' : 'text-gray-500'
                                     }`}
                                   >
                                     {conf.icon}
@@ -513,21 +513,21 @@ export default function ConsultationManagement() {
 
                       {/* Car */}
                       {item.car && (
-                        <div className="text-xs text-[#94A3B8]">
-                          <span className="text-[#475569]">차량:</span> {item.car}
+                        <div className="text-xs text-gray-500">
+                          <span className="text-gray-400">차량:</span> {item.car}
                         </div>
                       )}
 
                       {/* Message */}
                       {item.message && (
                         <div className="flex items-start gap-2">
-                          <MessageSquare size={14} className="text-[#475569] mt-0.5 shrink-0" />
-                          <p className="text-xs text-[#94A3B8] line-clamp-3">{item.message}</p>
+                          <MessageSquare size={14} className="text-gray-400 mt-0.5 shrink-0" />
+                          <p className="text-xs text-gray-500 line-clamp-3">{item.message}</p>
                         </div>
                       )}
 
                       {/* Memo */}
-                      <div className="pt-2 border-t border-white/[0.04]">
+                      <div className="pt-2 border-t border-gray-100">
                         {editingMemo === item.id ? (
                           <div className="flex items-center gap-2">
                             <input
@@ -537,7 +537,7 @@ export default function ConsultationManagement() {
                               onKeyDown={(e) => e.key === 'Enter' && handleMemoSave(item.id)}
                               placeholder="메모 입력..."
                               autoFocus
-                              className="flex-1 px-3 py-1.5 rounded-lg bg-white/5 border border-white/[0.08] text-xs text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
+                              className="flex-1 px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50"
                             />
                             <button
                               onClick={() => handleMemoSave(item.id)}
@@ -548,7 +548,7 @@ export default function ConsultationManagement() {
                             </button>
                             <button
                               onClick={() => setEditingMemo(null)}
-                              className="text-[#475569] hover:text-white transition-colors"
+                              className="text-gray-400 hover:text-gray-900 transition-colors"
                             >
                               <X size={14} />
                             </button>
@@ -556,16 +556,16 @@ export default function ConsultationManagement() {
                         ) : (
                           <button
                             onClick={() => startMemoEdit(item)}
-                            className="flex items-center gap-1.5 text-xs text-[#94A3B8] hover:text-white transition-colors group"
+                            className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-900 transition-colors group"
                           >
-                            <StickyNote size={12} className="text-[#475569] group-hover:text-[#FF9D42] transition-colors" />
+                            <StickyNote size={12} className="text-gray-400 group-hover:text-[#FF9D42] transition-colors" />
                             <span>{item.memo || '메모 추가...'}</span>
                           </button>
                         )}
                       </div>
 
                       {/* Date */}
-                      <div className="text-[10px] text-[#475569]">
+                      <div className="text-[10px] text-gray-400">
                         {formatDate(item.created_at)}
                       </div>
                     </motion.div>
@@ -575,7 +575,7 @@ export default function ConsultationManagement() {
             </div>
 
             {/* Result count */}
-            <div className="mt-4 text-xs text-[#475569] text-center">
+            <div className="mt-4 text-xs text-gray-400 text-center">
               총 {filtered.length}건
             </div>
           </>
