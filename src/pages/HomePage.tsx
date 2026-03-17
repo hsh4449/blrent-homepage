@@ -1,5 +1,4 @@
 import HeroSection from '../components/home/HeroSection'
-import SearchBar from '../components/home/SearchBar'
 import WhyChooseUs from '../components/home/WhyChooseUs'
 import PopularVehicles from '../components/home/PopularVehicles'
 import ReviewPreview from '../components/home/ReviewPreview'
@@ -9,9 +8,8 @@ export default function HomePage() {
   return (
     <div>
       <HeroSection />
-      <SearchBar />
-      <WhyChooseUs />
       <PopularVehicles />
+      <WhyChooseUs />
       <ReviewPreview />
       <CTABanner />
     </div>

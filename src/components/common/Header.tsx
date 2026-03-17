@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Phone, Menu, X, Search } from 'lucide-react'
+import { Phone, Menu, X } from 'lucide-react'
 
 const NAV_ITEMS = [
   { label: '신차장기렌트', path: '/new-car' },
@@ -31,11 +31,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-bg-main/80 backdrop-blur-xl border-b border-white/5'
-            : 'bg-transparent'
-        }`}
+        className={`fixed top-0 inset-x-0 z-50 bg-black border-b border-white/10`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -55,7 +51,7 @@ export default function Header() {
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   location.pathname === item.path
                     ? 'text-accent bg-accent/10'
-                    : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
+                    : 'text-text-secondary hover:text-white hover:bg-white/5'
                 }`}
               >
                 {item.label}
@@ -67,7 +63,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href={`tel:${PHONE}`}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-white hover:bg-white/5 transition-all"
             >
               <Phone size={16} />
               <span>{PHONE}</span>

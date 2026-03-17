@@ -10,12 +10,12 @@ import {
   X,
   Save,
 } from 'lucide-react'
-import { supabase } from '../../lib/supabase'
+import { vehicleStorage, type StorageVehicle } from '../../lib/vehicleStorage'
 
 /* ─── Types ──────────────────────────────────────────── */
 
 type Fuel = '가솔린' | '디젤' | '하이브리드' | '전기'
-type Category = 'sedan' | 'suv' | 'truck' | 'van' | 'sports'
+type Category = 'compact' | 'sedan' | 'suv' | 'electric'
 type RentType = 'new' | 'used' | 'monthly'
 
 interface Specs {
@@ -25,8 +25,7 @@ interface Specs {
   fuelEfficiency: string
 }
 
-interface Vehicle {
-  id: string
+type VehicleForm = {
   brand: string
   model: string
   year: number
@@ -42,12 +41,9 @@ interface Vehicle {
   options: string[]
   description: string
   is_popular: boolean
-  created_at: string
 }
 
-type VehicleInsert = Omit<Vehicle, 'id' | 'created_at'>
-
-const emptyForm: VehicleInsert = {
+const emptyForm: VehicleForm = {
   brand: '',
   model: '',
   year: new Date().getFullYear(),
@@ -67,11 +63,10 @@ const emptyForm: VehicleInsert = {
 
 const FUEL_OPTIONS: Fuel[] = ['가솔린', '디젤', '하이브리드', '전기']
 const CATEGORY_OPTIONS: { value: Category; label: string }[] = [
-  { value: 'sedan', label: '세단' },
+  { value: 'compact', label: '경차' },
+  { value: 'sedan', label: '승용' },
   { value: 'suv', label: 'SUV' },
-  { value: 'truck', label: '트럭' },
-  { value: 'van', label: '밴' },
-  { value: 'sports', label: '스포츠' },
+  { value: 'electric', label: '친환경' },
 ]
 const RENT_TYPE_OPTIONS: { value: RentType; label: string }[] = [
   { value: 'new', label: '신차' },
@@ -84,6 +79,24 @@ const rentTypeLabel: Record<RentType, string> = {
   used: '중고',
   monthly: '월렌트',
 }
+
+const BRAND_TABS = [
+  { key: 'hyundai', label: '현대', brands: ['현대'] },
+  { key: 'kia', label: '기아', brands: ['기아'] },
+  { key: 'domestic', label: '그외국산', brands: ['제네시스', '쉐보레', '르노', '쌍용', 'KGM'] },
+  { key: 'import', label: '수입차', brands: ['BMW', '벤츠', '아우디', '폭스바겐', '볼보', '렉서스', '토요타', '혼다'] },
+] as const
+
+type BrandTabKey = typeof BRAND_TABS[number]['key']
+
+const categoryLabel: Record<string, string> = {
+  compact: '경차',
+  sedan: '승용',
+  suv: 'SUV',
+  electric: '친환경',
+}
+
+const CATEGORY_ORDER = ['compact', 'sedan', 'suv', 'electric'] as const
 
 /* ─── Helpers ────────────────────────────────────────── */
 
@@ -102,45 +115,39 @@ function formatDate(iso: string) {
 /* ─── Component ──────────────────────────────────────── */
 
 export default function VehicleManagement() {
-  const [vehicles, setVehicles] = useState<Vehicle[]>([])
+  const [vehicles, setVehicles] = useState<StorageVehicle[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   // modal
   const [modalOpen, setModalOpen] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
-  const [form, setForm] = useState<VehicleInsert>(emptyForm)
+  const [form, setForm] = useState<VehicleForm>(emptyForm)
   const [saving, setSaving] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
 
   // image upload
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const [uploading, setUploading] = useState(false)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
 
   // delete
-  const [deleteTarget, setDeleteTarget] = useState<Vehicle | null>(null)
-  const [deleting, setDeleting] = useState(false)
+  const [deleteTarget, setDeleteTarget] = useState<StorageVehicle | null>(null)
 
   // search / filter
   const [searchQuery, setSearchQuery] = useState('')
   const [filterRentType, setFilterRentType] = useState<RentType | ''>('')
+  const [activeBrandTab, setActiveBrandTab] = useState<BrandTabKey>('hyundai')
 
   /* ─── Fetch ───────────────────────────────────────── */
 
-  const fetchVehicles = useCallback(async () => {
+  const fetchVehicles = useCallback(() => {
     setLoading(true)
     setError(null)
-    const { data, error: err } = await supabase
-      .from('homepage_vehicles')
-      .select('*')
-      .order('created_at', { ascending: false })
-
-    if (err) {
+    try {
+      const data = vehicleStorage.getAll()
+      setVehicles(data)
+    } catch {
       setError('차량 목록을 불러오는데 실패했습니다.')
-      console.error(err)
-    } else {
-      setVehicles(data as Vehicle[])
     }
     setLoading(false)
   }, [])
@@ -151,72 +158,48 @@ export default function VehicleManagement() {
 
   /* ─── Filtered list ───────────────────────────────── */
 
+  const activeBrands = BRAND_TABS.find((t) => t.key === activeBrandTab)!.brands
+
   const filtered = vehicles.filter((v) => {
     const q = searchQuery.toLowerCase()
     const matchesSearch =
       !q || v.brand.toLowerCase().includes(q) || v.model.toLowerCase().includes(q)
     const matchesRent = !filterRentType || v.rent_type === filterRentType
-    return matchesSearch && matchesRent
+    const matchesBrand = (activeBrands as readonly string[]).includes(v.brand)
+    return matchesSearch && matchesRent && matchesBrand
   })
+
+  const groupedByCategory = CATEGORY_ORDER.map((cat) => ({
+    key: cat,
+    label: categoryLabel[cat],
+    vehicles: filtered.filter((v) => v.category === cat),
+  })).filter((group) => group.vehicles.length > 0)
 
   /* ─── Toggle popular ──────────────────────────────── */
 
-  const togglePopular = async (vehicle: Vehicle) => {
+  const togglePopular = (vehicle: StorageVehicle) => {
     const newVal = !vehicle.is_popular
-    // optimistic
+    vehicleStorage.update(vehicle.id, { is_popular: newVal })
     setVehicles((prev) =>
       prev.map((v) => (v.id === vehicle.id ? { ...v, is_popular: newVal } : v)),
     )
-
-    const { error: err } = await supabase
-      .from('homepage_vehicles')
-      .update({ is_popular: newVal })
-      .eq('id', vehicle.id)
-
-    if (err) {
-      // revert
-      setVehicles((prev) =>
-        prev.map((v) =>
-          v.id === vehicle.id ? { ...v, is_popular: !newVal } : v,
-        ),
-      )
-      setError('인기 상태 변경에 실패했습니다.')
-    }
   }
 
-  /* ─── Image upload ────────────────────────────────── */
+  /* ─── Image upload (base64 for localStorage) ─────── */
 
-  const handleImageUpload = async (file: File) => {
+  const handleImageUpload = (file: File) => {
     if (!file.type.startsWith('image/')) {
       setFormError('이미지 파일만 업로드 가능합니다.')
       return
     }
 
-    setUploading(true)
-    setFormError(null)
-
-    const ext = file.name.split('.').pop()
-    const fileName = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}.${ext}`
-    const filePath = `vehicles/${fileName}`
-
-    const { error: uploadErr } = await supabase.storage
-      .from('vehicle-images')
-      .upload(filePath, file)
-
-    if (uploadErr) {
-      setFormError('이미지 업로드에 실패했습니다.')
-      console.error(uploadErr)
-      setUploading(false)
-      return
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      const dataUrl = e.target?.result as string
+      setForm((prev) => ({ ...prev, image: dataUrl }))
+      setImagePreview(dataUrl)
     }
-
-    const {
-      data: { publicUrl },
-    } = supabase.storage.from('vehicle-images').getPublicUrl(filePath)
-
-    setForm((prev) => ({ ...prev, image: publicUrl }))
-    setImagePreview(publicUrl)
-    setUploading(false)
+    reader.readAsDataURL(file)
   }
 
   /* ─── Modal open helpers ──────────────────────────── */
@@ -229,10 +212,25 @@ export default function VehicleManagement() {
     setModalOpen(true)
   }
 
-  const openEditModal = (vehicle: Vehicle) => {
+  const openEditModal = (vehicle: StorageVehicle) => {
     setEditingId(vehicle.id)
-    const { id, created_at, ...rest } = vehicle
-    setForm(rest)
+    setForm({
+      brand: vehicle.brand,
+      model: vehicle.model,
+      year: vehicle.year,
+      fuel: vehicle.fuel as Fuel,
+      category: vehicle.category as Category,
+      rent_type: vehicle.rent_type as RentType,
+      monthly_payment: vehicle.monthly_payment,
+      deposit: vehicle.deposit,
+      contract_months: vehicle.contract_months,
+      mileage: vehicle.mileage,
+      image: vehicle.image,
+      specs: vehicle.specs,
+      options: vehicle.options,
+      description: vehicle.description,
+      is_popular: vehicle.is_popular,
+    })
     setImagePreview(vehicle.image || null)
     setFormError(null)
     setModalOpen(true)
@@ -245,19 +243,12 @@ export default function VehicleManagement() {
     if (!form.model.trim()) return '모델명을 입력하세요.'
     if (form.year < 1990 || form.year > 2030) return '연식이 올바르지 않습니다.'
     if (form.monthly_payment <= 0) return '월 납입금을 입력하세요.'
-    if (form.deposit < 0) return '보증금을 확인하세요.'
-    if (form.contract_months <= 0) return '계약 개월수를 입력하세요.'
-    if (!form.image) return '이미지를 업로드하세요.'
-    if (!form.specs.engine.trim()) return '엔진 정보를 입력하세요.'
-    if (!form.specs.transmission.trim()) return '변속기 정보를 입력하세요.'
-    if (form.specs.seats <= 0) return '좌석 수를 입력하세요.'
-    if (!form.specs.fuelEfficiency.trim()) return '연비 정보를 입력하세요.'
     return null
   }
 
   /* ─── Save (Create / Update) ──────────────────────── */
 
-  const handleSave = async () => {
+  const handleSave = () => {
     const validationMsg = validate()
     if (validationMsg) {
       setFormError(validationMsg)
@@ -267,61 +258,33 @@ export default function VehicleManagement() {
     setSaving(true)
     setFormError(null)
 
-    if (editingId) {
-      const { error: err } = await supabase
-        .from('homepage_vehicles')
-        .update(form)
-        .eq('id', editingId)
-
-      if (err) {
-        setFormError('수정에 실패했습니다.')
-        console.error(err)
-        setSaving(false)
-        return
+    try {
+      if (editingId) {
+        vehicleStorage.update(editingId, form)
+      } else {
+        vehicleStorage.create(form)
       }
-    } else {
-      const { error: err } = await supabase
-        .from('homepage_vehicles')
-        .insert(form)
-
-      if (err) {
-        setFormError('등록에 실패했습니다.')
-        console.error(err)
-        setSaving(false)
-        return
-      }
+      setModalOpen(false)
+      fetchVehicles()
+    } catch {
+      setFormError(editingId ? '수정에 실패했습니다.' : '등록에 실패했습니다.')
     }
 
     setSaving(false)
-    setModalOpen(false)
-    fetchVehicles()
   }
 
   /* ─── Delete ──────────────────────────────────────── */
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     if (!deleteTarget) return
-    setDeleting(true)
-
-    const { error: err } = await supabase
-      .from('homepage_vehicles')
-      .delete()
-      .eq('id', deleteTarget.id)
-
-    if (err) {
-      setError('삭제에 실패했습니다.')
-      console.error(err)
-    } else {
-      setVehicles((prev) => prev.filter((v) => v.id !== deleteTarget.id))
-    }
-
-    setDeleting(false)
+    vehicleStorage.delete(deleteTarget.id)
+    setVehicles((prev) => prev.filter((v) => v.id !== deleteTarget.id))
     setDeleteTarget(null)
   }
 
   /* ─── Form field updaters ─────────────────────────── */
 
-  const updateField = <K extends keyof VehicleInsert>(key: K, value: VehicleInsert[K]) =>
+  const updateField = <K extends keyof VehicleForm>(key: K, value: VehicleForm[K]) =>
     setForm((prev) => ({ ...prev, [key]: value }))
 
   const updateSpec = <K extends keyof Specs>(key: K, value: Specs[K]) =>
@@ -375,6 +338,23 @@ export default function VehicleManagement() {
           )}
         </AnimatePresence>
 
+        {/* Brand Tabs */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+          {BRAND_TABS.map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveBrandTab(tab.key)}
+              className={`py-3 px-4 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                activeBrandTab === tab.key
+                  ? 'bg-[#FF9D42]/10 border border-[#FF9D42]/40 text-[#FF9D42]'
+                  : 'bg-white/5 border border-white/[0.08] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
         {/* Search & Filter */}
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <div className="relative flex-1">
@@ -384,7 +364,7 @@ export default function VehicleManagement() {
             />
             <input
               type="text"
-              placeholder="브랜드 또는 모델 검색..."
+              placeholder="모델 검색..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50 transition-colors"
@@ -404,100 +384,101 @@ export default function VehicleManagement() {
           </select>
         </div>
 
-        {/* Table */}
-        <div className="rounded-2xl backdrop-blur-xl bg-white/5 border border-white/[0.08] overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-white/[0.08]">
-                  <th className="text-left px-4 py-3 text-[#94A3B8] font-medium">브랜드</th>
-                  <th className="text-left px-4 py-3 text-[#94A3B8] font-medium">모델</th>
-                  <th className="text-left px-4 py-3 text-[#94A3B8] font-medium">연식</th>
-                  <th className="text-left px-4 py-3 text-[#94A3B8] font-medium">유형</th>
-                  <th className="text-right px-4 py-3 text-[#94A3B8] font-medium">월 납입금</th>
-                  <th className="text-center px-4 py-3 text-[#94A3B8] font-medium">인기</th>
-                  <th className="text-left px-4 py-3 text-[#94A3B8] font-medium">등록일</th>
-                  <th className="text-right px-4 py-3 text-[#94A3B8] font-medium">관리</th>
-                </tr>
-              </thead>
-              <tbody>
-                {loading ? (
-                  <tr>
-                    <td colSpan={8} className="text-center py-16 text-[#94A3B8]">
-                      <div className="inline-block w-6 h-6 border-2 border-[#FF9D42] border-t-transparent rounded-full animate-spin" />
-                      <p className="mt-2">불러오는 중...</p>
-                    </td>
-                  </tr>
-                ) : filtered.length === 0 ? (
-                  <tr>
-                    <td colSpan={8} className="text-center py-16 text-[#475569]">
-                      {searchQuery || filterRentType
-                        ? '검색 결과가 없습니다.'
-                        : '등록된 차량이 없습니다.'}
-                    </td>
-                  </tr>
-                ) : (
-                  filtered.map((v) => (
-                    <tr
+        {/* Category-grouped vehicle cards */}
+        {loading ? (
+          <div className="text-center py-16 text-[#94A3B8]">
+            <div className="inline-block w-6 h-6 border-2 border-[#FF9D42] border-t-transparent rounded-full animate-spin" />
+            <p className="mt-2">불러오는 중...</p>
+          </div>
+        ) : groupedByCategory.length === 0 ? (
+          <div className="text-center py-16 text-[#475569]">
+            {searchQuery || filterRentType
+              ? '검색 결과가 없습니다.'
+              : '등록된 차량이 없습니다.'}
+          </div>
+        ) : (
+          <div className="space-y-8">
+            {groupedByCategory.map((group) => (
+              <div key={group.key}>
+                <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                  <span className="w-1 h-5 bg-[#FF9D42] rounded-full" />
+                  {group.label}
+                  <span className="text-xs text-[#475569] font-normal ml-1">{group.vehicles.length}대</span>
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {group.vehicles.map((v) => (
+                    <div
                       key={v.id}
-                      className="border-b border-white/[0.04] hover:bg-white/[0.02] transition-colors"
+                      className="rounded-2xl bg-white/5 border border-white/[0.08] overflow-hidden hover:border-white/[0.15] transition-all"
                     >
-                      <td className="px-4 py-3 text-white font-medium">{v.brand}</td>
-                      <td className="px-4 py-3 text-white">{v.model}</td>
-                      <td className="px-4 py-3 text-[#94A3B8]">{v.year}</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-block px-2 py-0.5 rounded-md text-xs font-medium bg-[#FF9D42]/10 text-[#FF9D42]">
-                          {rentTypeLabel[v.rent_type]}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 text-right text-white">
-                        {formatNumber(v.monthly_payment)}원
-                      </td>
-                      <td className="px-4 py-3 text-center">
-                        <button
-                          onClick={() => togglePopular(v)}
-                          className="transition-colors"
-                          title={v.is_popular ? '인기 해제' : '인기 설정'}
-                        >
-                          <Star
-                            size={18}
-                            className={
-                              v.is_popular
-                                ? 'fill-[#FF9D42] text-[#FF9D42]'
-                                : 'text-[#475569] hover:text-[#94A3B8]'
-                            }
-                          />
-                        </button>
-                      </td>
-                      <td className="px-4 py-3 text-[#94A3B8]">{formatDate(v.created_at)}</td>
-                      <td className="px-4 py-3 text-right">
-                        <div className="flex items-center justify-end gap-1">
+                      {/* Image */}
+                      <div className="relative h-36 bg-[#f5f5f5] overflow-hidden">
+                        {v.image ? (
+                          <img src={v.image} alt={v.model} className="w-full h-full object-contain" />
+                        ) : (
+                          <div className="w-full h-full bg-white/5" />
+                        )}
+                      </div>
+                      {/* Info */}
+                      <div className="p-3">
+                        <div className="flex items-center justify-between mb-1">
+                          <h4 className="text-sm font-semibold text-white truncate">{v.model}</h4>
                           <button
-                            onClick={() => openEditModal(v)}
-                            className="p-2 rounded-lg hover:bg-white/10 text-[#94A3B8] hover:text-white transition-colors"
-                            title="수정"
+                            onClick={() => togglePopular(v)}
+                            className="shrink-0 ml-1"
+                            title={v.is_popular ? '인기 해제' : '인기 설정'}
                           >
-                            <Pencil size={16} />
-                          </button>
-                          <button
-                            onClick={() => setDeleteTarget(v)}
-                            className="p-2 rounded-lg hover:bg-red-500/10 text-[#94A3B8] hover:text-red-400 transition-colors"
-                            title="삭제"
-                          >
-                            <Trash2 size={16} />
+                            <Star
+                              size={16}
+                              className={
+                                v.is_popular
+                                  ? 'fill-[#FF9D42] text-[#FF9D42]'
+                                  : 'text-[#475569] hover:text-[#94A3B8]'
+                              }
+                            />
                           </button>
                         </div>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+                        <div className="flex items-center gap-2 text-xs text-[#94A3B8] mb-2">
+                          <span>{v.year}년</span>
+                          <span>·</span>
+                          <span>{v.fuel}</span>
+                          <span>·</span>
+                          <span className="px-1.5 py-0.5 rounded bg-[#FF9D42]/10 text-[#FF9D42] font-medium">
+                            {rentTypeLabel[v.rent_type as RentType]}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-[#FF9D42] font-bold text-sm">
+                            {(v.monthly_payment / 10000).toFixed(0)}만원<span className="text-[#475569] font-normal text-xs"> / 월</span>
+                          </span>
+                          <div className="flex items-center gap-0.5">
+                            <button
+                              onClick={() => openEditModal(v)}
+                              className="p-1.5 rounded-lg hover:bg-white/10 text-[#94A3B8] hover:text-white transition-colors"
+                              title="수정"
+                            >
+                              <Pencil size={14} />
+                            </button>
+                            <button
+                              onClick={() => setDeleteTarget(v)}
+                              className="p-1.5 rounded-lg hover:bg-red-500/10 text-[#94A3B8] hover:text-red-400 transition-colors"
+                              title="삭제"
+                            >
+                              <Trash2 size={14} />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
+        )}
 
-        <p className="mt-3 text-xs text-[#475569]">
-          총 {filtered.length}대
+        <p className="mt-4 text-xs text-[#475569]">
+          {BRAND_TABS.find((t) => t.key === activeBrandTab)!.label} {filtered.length}대
           {(searchQuery || filterRentType) && ` (전체 ${vehicles.length}대)`}
         </p>
       </div>
@@ -606,7 +587,7 @@ export default function VehicleManagement() {
                   </label>
                 </div>
 
-                {/* Rent type, Monthly payment, Deposit, Contract months */}
+                {/* Rent type, Monthly payment */}
                 <div className="grid grid-cols-2 gap-4">
                   <label className="space-y-1.5">
                     <span className="text-sm text-[#94A3B8]">렌트 유형</span>
@@ -645,7 +626,7 @@ export default function VehicleManagement() {
                     />
                   </label>
                   <label className="space-y-1.5">
-                    <span className="text-sm text-[#94A3B8]">계약 개월 *</span>
+                    <span className="text-sm text-[#94A3B8]">계약 개월</span>
                     <input
                       type="number"
                       value={form.contract_months || ''}
@@ -678,28 +659,28 @@ export default function VehicleManagement() {
                       type="text"
                       value={form.specs.engine}
                       onChange={(e) => updateSpec('engine', e.target.value)}
-                      placeholder="엔진 (예: 2.0 가솔린) *"
+                      placeholder="엔진 (예: 2.0 가솔린)"
                       className="px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
                     />
                     <input
                       type="text"
                       value={form.specs.transmission}
                       onChange={(e) => updateSpec('transmission', e.target.value)}
-                      placeholder="변속기 (예: 자동 8단) *"
+                      placeholder="변속기 (예: 자동 8단)"
                       className="px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
                     />
                     <input
                       type="number"
                       value={form.specs.seats || ''}
                       onChange={(e) => updateSpec('seats', Number(e.target.value))}
-                      placeholder="좌석 수 *"
+                      placeholder="좌석 수"
                       className="px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
                     />
                     <input
                       type="text"
                       value={form.specs.fuelEfficiency}
                       onChange={(e) => updateSpec('fuelEfficiency', e.target.value)}
-                      placeholder="연비 (예: 12.5km/L) *"
+                      placeholder="연비 (예: 12.5km/L)"
                       className="px-3 py-2.5 rounded-xl bg-white/5 border border-white/[0.08] text-white placeholder-[#475569] focus:outline-none focus:border-[#FF9D42]/50"
                     />
                   </div>
@@ -707,17 +688,12 @@ export default function VehicleManagement() {
 
                 {/* Image upload */}
                 <div className="space-y-1.5">
-                  <span className="text-sm text-[#94A3B8]">이미지 *</span>
+                  <span className="text-sm text-[#94A3B8]">이미지</span>
                   <div
                     className="relative flex flex-col items-center justify-center gap-2 p-6 rounded-xl border-2 border-dashed border-white/[0.08] hover:border-[#FF9D42]/30 transition-colors cursor-pointer"
                     onClick={() => fileInputRef.current?.click()}
                   >
-                    {uploading ? (
-                      <div className="flex flex-col items-center gap-2">
-                        <div className="w-6 h-6 border-2 border-[#FF9D42] border-t-transparent rounded-full animate-spin" />
-                        <p className="text-sm text-[#94A3B8]">업로드 중...</p>
-                      </div>
-                    ) : imagePreview ? (
+                    {imagePreview ? (
                       <div className="relative w-full">
                         <img
                           src={imagePreview}
@@ -889,14 +865,9 @@ export default function VehicleManagement() {
                 </button>
                 <button
                   onClick={handleDelete}
-                  disabled={deleting}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-colors disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-colors"
                 >
-                  {deleting ? (
-                    <div className="w-4 h-4 border-2 border-red-400 border-t-transparent rounded-full animate-spin" />
-                  ) : (
-                    <Trash2 size={16} />
-                  )}
+                  <Trash2 size={16} />
                   삭제
                 </button>
               </div>

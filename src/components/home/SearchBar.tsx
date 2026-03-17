@@ -34,7 +34,7 @@ export default function SearchBar() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="max-w-7xl mx-auto px-4 sm:px-6 -mt-8 relative z-20"
+      className="max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-20"
     >
       <div className="glass rounded-2xl p-6 md:p-8">
         <h2 className="text-lg font-semibold mb-5">차량 검색</h2>

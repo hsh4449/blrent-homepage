@@ -4,7 +4,7 @@ export interface Vehicle {
   model: string
   year: number
   fuel: '가솔린' | '디젤' | '하이브리드' | '전기'
-  category: 'sedan' | 'suv' | 'truck' | 'van' | 'sports'
+  category: 'compact' | 'sedan' | 'suv' | 'electric'
   rentType: 'new' | 'used' | 'monthly'
   monthlyPayment: number
   deposit: number

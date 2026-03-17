@@ -16,7 +16,7 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
             src={vehicle.image}
             alt={`${vehicle.brand} ${vehicle.model}`}
             loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
           />
           {/* Hover overlay */}
           <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/10 transition-all duration-300 flex items-center justify-center">
@@ -25,20 +25,11 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
               상담하기
             </span>
           </div>
-          {/* Badges */}
-          <div className="absolute top-3 left-3 flex gap-2">
-            <span className="px-2.5 py-1 rounded-lg bg-black/50 backdrop-blur-sm text-xs font-medium">
-              {vehicle.rentType === 'new' ? '신차' : vehicle.rentType === 'used' ? '중고' : '월렌트'}
-            </span>
-            {vehicle.isPopular && (
-              <span className="px-2.5 py-1 rounded-lg bg-accent/80 text-xs font-medium">인기</span>
-            )}
-          </div>
         </div>
 
         {/* Info */}
         <div className="p-4">
-          <h3 className="font-semibold text-sm mb-1">{vehicle.brand} {vehicle.model}</h3>
+          <h3 className="font-semibold text-sm mb-1">{vehicle.model}</h3>
           <div className="flex items-center gap-3 text-xs text-text-muted mb-3">
             <span className="flex items-center gap-1"><Calendar size={12} /> {vehicle.year}년</span>
             <span className="flex items-center gap-1"><Fuel size={12} /> {vehicle.fuel}</span>

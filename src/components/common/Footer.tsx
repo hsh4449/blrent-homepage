@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-                <span className="text-white font-bold text-sm">BL</span>
+                <span className="text-text-primary font-bold text-sm">BL</span>
               </div>
               <span className="font-display font-bold text-lg">렌트카</span>
             </div>
