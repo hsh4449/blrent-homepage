@@ -22,8 +22,9 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
               className="w-full h-full object-contain"
             />
           </div>
-          <div className="px-3 py-2.5 bg-gradient-to-r from-accent to-amber-500 text-center">
-            <span className="text-white font-bold text-sm">{priceText}</span>
+          <div className="px-2 py-2 bg-gradient-to-r from-accent to-amber-500 text-center">
+            <p className="text-white font-bold text-sm truncate">{vehicle.model}</p>
+            <p className="text-white font-bold text-xs">{vehicle.monthlyPayment.toLocaleString()}원~</p>
           </div>
         </div>
 
