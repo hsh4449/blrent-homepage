@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Car, MessageSquare, LogOut, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Car, MessageSquare, LogOut, Menu, X, Sparkles } from 'lucide-react';
 import { useAdmin } from '../../contexts/AdminContext';
 import AdminLogin from './AdminLogin';
 
 const navItems = [
   { to: '/admin', icon: LayoutDashboard, label: '대시보드', end: true },
   { to: '/admin/vehicles', icon: Car, label: '차량 관리' },
+  { to: '/admin/promos', icon: Sparkles, label: '프로모션 관리' },
   { to: '/admin/consultations', icon: MessageSquare, label: '상담 관리' },
 ];
 

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Rocket, FileText, Phone, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { vehicleStorage } from '../../lib/vehicleStorage'
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/'
 
@@ -11,30 +12,24 @@ const slides = [
   { img: '/hero-slide-3.png' },
 ]
 
-const promoVehicles = [
-  {
-    id: 'kia-ray',
-    model: '레이',
-    brand: '기아',
-    image: '/vehicles/kia/ray.png',
-    price: '250,000',
-    tag: '경차 인기 1위',
-  },
-  {
-    id: 'kia-k5',
-    model: 'K5',
-    brand: '기아',
-    image: '/vehicles/kia/k5.png',
-    price: '450,000',
-    tag: '중형 세단 추천',
-  },
-]
-
 export default function HeroSection() {
   const [current, setCurrent] = useState(0)
   const [promoCurrent, setPromoCurrent] = useState(0)
+  const [promoData, setPromoData] = useState<{ id: string; model: string; brand: string; image: string; price: string; tag: string }[]>([])
   const touchStartX = useRef(0)
   const promoTouchStartX = useRef(0)
+
+  useEffect(() => {
+    const items = vehicleStorage.getPromosWithVehicles().map((p) => ({
+      id: p.vehicle.id,
+      model: p.vehicle.model,
+      brand: p.vehicle.brand,
+      image: p.vehicle.image,
+      price: p.vehicle.monthly_payment.toLocaleString(),
+      tag: p.tag,
+    }))
+    setPromoData(items.length > 0 ? items : [])
+  }, [])
 
   const goTo = useCallback((idx: number) => {
     setCurrent(((idx % slides.length) + slides.length) % slides.length)
@@ -44,8 +39,8 @@ export default function HeroSection() {
   const prev = useCallback(() => goTo(current - 1), [current, goTo])
 
   const promoNext = useCallback(() => {
-    setPromoCurrent((prev) => (prev + 1) % promoVehicles.length)
-  }, [])
+    setPromoCurrent((prev) => promoData.length > 0 ? (prev + 1) % promoData.length : 0)
+  }, [promoData.length])
 
   useEffect(() => {
     const timer = setInterval(next, 3000)
@@ -57,7 +52,7 @@ export default function HeroSection() {
     return () => clearInterval(timer)
   }, [promoNext])
 
-  const v = promoVehicles[promoCurrent]
+  const v = promoData[promoCurrent]
 
   return (
     <section
@@ -115,7 +110,7 @@ export default function HeroSection() {
               e.stopPropagation()
               const diff = promoTouchStartX.current - e.changedTouches[0].clientX
               if (Math.abs(diff) > 50) {
-                setPromoCurrent((prev) => (prev + (diff > 0 ? 1 : -1) + promoVehicles.length) % promoVehicles.length)
+                setPromoCurrent((prev) => (prev + (diff > 0 ? 1 : -1) + promoData.length) % promoData.length)
               }
             }}
           >
@@ -126,47 +121,57 @@ export default function HeroSection() {
             </div>
 
             {/* 프로모션 카드 슬라이드 */}
-            <Link to={`/vehicle/${v.id}`} className="flex-1 flex flex-col group px-5 pb-4">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={v.id}
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -30 }}
-                  transition={{ duration: 0.4 }}
-                  className="flex-1 flex flex-col"
-                >
-                  <span className="inline-block self-start px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-bold rounded-full mb-3">
-                    {v.tag}
-                  </span>
-                  <div className="flex-1 flex items-center justify-center py-4">
-                    <img
-                      src={v.image}
-                      alt={`${v.brand} ${v.model}`}
-                      className="max-h-44 lg:max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="text-center mt-auto pt-3">
-                    <p className="font-bold text-lg text-text-primary">{v.brand} {v.model}</p>
-                    <p className="text-accent font-extrabold text-xl">월 {v.price}원~</p>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </Link>
+            {v ? (
+              <>
+                <Link to={`/vehicle/${v.id}`} className="flex-1 flex flex-col group px-5 pb-4">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={v.id}
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -30 }}
+                      transition={{ duration: 0.4 }}
+                      className="flex-1 flex flex-col"
+                    >
+                      <span className="inline-block self-start px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-bold rounded-full mb-3">
+                        {v.tag}
+                      </span>
+                      <div className="flex-1 flex items-center justify-center py-4">
+                        <img
+                          src={v.image}
+                          alt={`${v.brand} ${v.model}`}
+                          className="max-h-44 lg:max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                      <div className="text-center mt-auto pt-3">
+                        <p className="font-bold text-lg text-text-primary">{v.brand} {v.model}</p>
+                        <p className="text-accent font-extrabold text-xl">월 {v.price}원~</p>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </Link>
 
-            {/* Dot indicators */}
-            <div className="flex justify-center gap-2 pb-4">
-              {promoVehicles.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setPromoCurrent(i)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === promoCurrent ? 'w-6 bg-accent' : 'w-2 bg-gray-300 hover:bg-gray-400'
-                  }`}
-                  aria-label={`프로모션 ${i + 1}`}
-                />
-              ))}
-            </div>
+                {/* Dot indicators */}
+                {promoData.length > 1 && (
+                  <div className="flex justify-center gap-2 pb-4">
+                    {promoData.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setPromoCurrent(i)}
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          i === promoCurrent ? 'w-6 bg-accent' : 'w-2 bg-gray-300 hover:bg-gray-400'
+                        }`}
+                        aria-label={`프로모션 ${i + 1}`}
+                      />
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="flex-1 flex items-center justify-center text-gray-400 text-sm">
+                프로모션 차량이 없습니다.
+              </div>
+            )}
           </div>
         </div>
 

@@ -4,6 +4,17 @@ import { vehicles as defaultVehicles } from '../data/vehicles'
 const STORAGE_KEY = 'blrent_vehicles'
 const DATA_VERSION = 'v6_kia'
 const VERSION_KEY = 'blrent_data_version'
+const PROMO_KEY = 'blrent_promos'
+
+export interface PromoVehicle {
+  vehicleId: string
+  tag: string
+}
+
+const DEFAULT_PROMOS: PromoVehicle[] = [
+  { vehicleId: 'kia-ray', tag: '경차 인기 1위' },
+  { vehicleId: 'kia-k5', tag: '중형 세단 추천' },
+]
 
 // Convert static data format (camelCase) to storage format (snake_case) for initial seed
 function seedFromDefaults(): StorageVehicle[] {
@@ -129,5 +140,28 @@ export const vehicleStorage = {
 
   getAllForHomepage(): Vehicle[] {
     return getAll().map((v) => this.toHomepageFormat(v))
+  },
+
+  // === 프로모션 관리 ===
+  getPromos(): PromoVehicle[] {
+    const raw = localStorage.getItem(PROMO_KEY)
+    if (!raw) return DEFAULT_PROMOS
+    return JSON.parse(raw)
+  },
+
+  savePromos(promos: PromoVehicle[]) {
+    localStorage.setItem(PROMO_KEY, JSON.stringify(promos))
+  },
+
+  getPromosWithVehicles() {
+    const promos = this.getPromos()
+    const all = getAll()
+    return promos
+      .map((p) => {
+        const v = all.find((vehicle) => vehicle.id === p.vehicleId)
+        if (!v) return null
+        return { ...p, vehicle: v }
+      })
+      .filter(Boolean) as (PromoVehicle & { vehicle: StorageVehicle })[]
   },
 }

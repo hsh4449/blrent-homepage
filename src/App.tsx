@@ -15,6 +15,7 @@ const VehicleDetailPage = lazy(() => import('./pages/VehicleDetailPage'))
 const Dashboard = lazy(() => import('./pages/admin/Dashboard'))
 const VehicleManagement = lazy(() => import('./pages/admin/VehicleManagement'))
 const ConsultationManagement = lazy(() => import('./pages/admin/ConsultationManagement'))
+const PromoManagement = lazy(() => import('./pages/admin/PromoManagement'))
 
 function LoadingFallback() {
   return (
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="/admin" element={<AdminProvider><AdminLayout /></AdminProvider>}>
             <Route index element={<Dashboard />} />
             <Route path="vehicles" element={<VehicleManagement />} />
+            <Route path="promos" element={<PromoManagement />} />
             <Route path="consultations" element={<ConsultationManagement />} />
           </Route>
         </Routes>
