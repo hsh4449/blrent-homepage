@@ -32,7 +32,9 @@ const promoVehicles = [
 
 export default function HeroSection() {
   const [current, setCurrent] = useState(0)
+  const [promoCurrent, setPromoCurrent] = useState(0)
   const touchStartX = useRef(0)
+  const promoTouchStartX = useRef(0)
 
   const goTo = useCallback((idx: number) => {
     setCurrent(((idx % slides.length) + slides.length) % slides.length)
@@ -41,10 +43,21 @@ export default function HeroSection() {
   const next = useCallback(() => goTo(current + 1), [current, goTo])
   const prev = useCallback(() => goTo(current - 1), [current, goTo])
 
+  const promoNext = useCallback(() => {
+    setPromoCurrent((prev) => (prev + 1) % promoVehicles.length)
+  }, [])
+
   useEffect(() => {
     const timer = setInterval(next, 3000)
     return () => clearInterval(timer)
   }, [next])
+
+  useEffect(() => {
+    const timer = setInterval(promoNext, 4000)
+    return () => clearInterval(timer)
+  }, [promoNext])
+
+  const v = promoVehicles[promoCurrent]
 
   return (
     <section
@@ -61,7 +74,7 @@ export default function HeroSection() {
       {/* 슬라이드 + 프로모션 가로 배치 */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {/* 슬라이드 이미지 - 왼쪽 2/3 */}
+          {/* 메인 슬라이드 - 왼쪽 2/3 */}
           <div className="lg:col-span-2 relative rounded-2xl overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.img
@@ -91,40 +104,69 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* 3월의 프로모션 - 오른쪽 1/3 */}
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-2 mb-1">
-              <Sparkles size={20} className="text-accent" />
-              <h3 className="text-lg font-bold text-text-primary">3월의 프로모션</h3>
+          {/* 프로모션 슬라이드 - 오른쪽 1/3 */}
+          <div
+            className="relative rounded-2xl overflow-hidden border border-gray-200 bg-white flex flex-col"
+            onTouchStart={(e) => {
+              e.stopPropagation()
+              promoTouchStartX.current = e.touches[0].clientX
+            }}
+            onTouchEnd={(e) => {
+              e.stopPropagation()
+              const diff = promoTouchStartX.current - e.changedTouches[0].clientX
+              if (Math.abs(diff) > 50) {
+                setPromoCurrent((prev) => (prev + (diff > 0 ? 1 : -1) + promoVehicles.length) % promoVehicles.length)
+              }
+            }}
+          >
+            {/* 타이틀 */}
+            <div className="flex items-center gap-2 px-5 pt-4 pb-2">
+              <Sparkles size={18} className="text-accent" />
+              <h3 className="text-base font-bold text-text-primary">3월의 프로모션</h3>
             </div>
-            {promoVehicles.map((v, i) => (
-              <motion.div
-                key={v.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 + i * 0.15 }}
-              >
-                <Link
-                  to={`/vehicle/${v.id}`}
-                  className="block bg-white rounded-2xl border border-gray-200 p-4 hover:border-accent/50 hover:shadow-md transition-all duration-300 group"
+
+            {/* 프로모션 카드 슬라이드 */}
+            <Link to={`/vehicle/${v.id}`} className="flex-1 flex flex-col group px-5 pb-4">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={v.id}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -30 }}
+                  transition={{ duration: 0.4 }}
+                  className="flex-1 flex flex-col"
                 >
-                  <span className="inline-block px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-bold rounded-full mb-2">
+                  <span className="inline-block self-start px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-bold rounded-full mb-3">
                     {v.tag}
                   </span>
-                  <div className="h-28 flex items-center justify-center mb-2">
+                  <div className="flex-1 flex items-center justify-center py-4">
                     <img
                       src={v.image}
                       alt={`${v.brand} ${v.model}`}
-                      className="h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                      className="max-h-44 lg:max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <div className="text-center">
-                    <p className="font-bold text-text-primary">{v.brand} {v.model}</p>
-                    <p className="text-accent font-extrabold text-lg">월 {v.price}원~</p>
+                  <div className="text-center mt-auto pt-3">
+                    <p className="font-bold text-lg text-text-primary">{v.brand} {v.model}</p>
+                    <p className="text-accent font-extrabold text-xl">월 {v.price}원~</p>
                   </div>
-                </Link>
-              </motion.div>
-            ))}
+                </motion.div>
+              </AnimatePresence>
+            </Link>
+
+            {/* Dot indicators */}
+            <div className="flex justify-center gap-2 pb-4">
+              {promoVehicles.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setPromoCurrent(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === promoCurrent ? 'w-6 bg-accent' : 'w-2 bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  aria-label={`프로모션 ${i + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
 

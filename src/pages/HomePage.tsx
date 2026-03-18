@@ -8,8 +8,8 @@ export default function HomePage() {
   return (
     <div>
       <HeroSection />
-      <WhyChooseUs />
       <PopularVehicles />
+      <WhyChooseUs />
       <ReviewPreview />
       <CTABanner />
     </div>
