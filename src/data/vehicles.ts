@@ -233,7 +233,7 @@ export const vehicles: Vehicle[] = [
   {
     id: 'new-casper-ev',
     brand: '현대',
-    model: '캐스퍼 일렉트릭',
+    model: '캐스퍼 EV',
     year: 2025,
     fuel: '전기',
     category: 'electric',
@@ -255,7 +255,7 @@ export const vehicles: Vehicle[] = [
   {
     id: 'new-kona-ev',
     brand: '현대',
-    model: '코나 일렉트릭',
+    model: '코나 EV',
     year: 2025,
     fuel: '전기',
     category: 'electric',
