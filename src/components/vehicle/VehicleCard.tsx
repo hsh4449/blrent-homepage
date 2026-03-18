@@ -4,7 +4,7 @@ import { MessageCircle, Fuel } from 'lucide-react'
 import type { Vehicle } from '../../types/vehicle'
 
 export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
-  const priceText = `${vehicle.model} 월 ${vehicle.monthlyPayment.toLocaleString()}원~`
+  const priceText = `${vehicle.model} ${vehicle.monthlyPayment.toLocaleString()}원~`
 
   return (
     <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
