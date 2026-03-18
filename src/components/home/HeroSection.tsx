@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Shield, Clock, Users, FileCheck, Rocket, FileText, Phone } from 'lucide-react'
+import { Rocket, FileText, Phone, Sparkles } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/'
 
@@ -10,11 +11,23 @@ const slides = [
   { img: '/hero-slide-3.png' },
 ]
 
-const features = [
-  { icon: Shield, title: '500여개 협력사 비교', desc: '다수의 렌트사 견적을 비교해 최저가로 안내드립니다' },
-  { icon: Clock, title: '즉시 출고 가능', desc: '무심사 즉시 출고 가능 차량 다수 보유' },
-  { icon: Users, title: '전담 매니저 배정', desc: '계약부터 반납까지 1:1 전담 케어' },
-  { icon: FileCheck, title: '간편한 심사', desc: '최소 서류로 빠른 심사 진행' },
+const promoVehicles = [
+  {
+    id: 'kia-ray',
+    model: '레이',
+    brand: '기아',
+    image: '/vehicles/kia/ray.png',
+    price: '250,000',
+    tag: '경차 인기 1위',
+  },
+  {
+    id: 'kia-k5',
+    model: 'K5',
+    brand: '기아',
+    image: '/vehicles/kia/k5.png',
+    price: '450,000',
+    tag: '중형 세단 추천',
+  },
 ]
 
 export default function HeroSection() {
@@ -45,7 +58,7 @@ export default function HeroSection() {
       {/* 헤더 높이만큼 여백 */}
       <div className="h-16 md:h-20" />
 
-      {/* 슬라이드 + Features 가로 배치 */}
+      {/* 슬라이드 + 프로모션 가로 배치 */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* 슬라이드 이미지 - 왼쪽 2/3 */}
@@ -78,19 +91,38 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Features - 오른쪽 1/3, 2x2 그리드 */}
-          <div className="grid grid-cols-2 gap-3">
-            {features.map((f, i) => (
+          {/* 3월의 프로모션 - 오른쪽 1/3 */}
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-2 mb-1">
+              <Sparkles size={20} className="text-accent" />
+              <h3 className="text-lg font-bold text-text-primary">3월의 프로모션</h3>
+            </div>
+            {promoVehicles.map((v, i) => (
               <motion.div
-                key={f.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                className="bg-white rounded-2xl border border-gray-200 p-4 hover:border-accent/30 hover:shadow-sm transition-all duration-300 cursor-default group flex flex-col items-center justify-center text-center"
+                key={v.id}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.15 }}
               >
-                <f.icon size={32} className="text-accent mb-3 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xs sm:text-sm font-semibold mb-1 text-text-primary">{f.title}</h3>
-                <p className="text-[10px] sm:text-xs text-text-muted leading-relaxed">{f.desc}</p>
+                <Link
+                  to={`/vehicle/${v.id}`}
+                  className="block bg-white rounded-2xl border border-gray-200 p-4 hover:border-accent/50 hover:shadow-md transition-all duration-300 group"
+                >
+                  <span className="inline-block px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-bold rounded-full mb-2">
+                    {v.tag}
+                  </span>
+                  <div className="h-28 flex items-center justify-center mb-2">
+                    <img
+                      src={v.image}
+                      alt={`${v.brand} ${v.model}`}
+                      className="h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <p className="font-bold text-text-primary">{v.brand} {v.model}</p>
+                    <p className="text-accent font-extrabold text-lg">월 {v.price}원~</p>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </div>
