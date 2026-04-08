@@ -34,10 +34,12 @@ export default function VehicleFilter({ rentType, filters, brands, onChange, onR
         <label className="block text-xs text-text-muted mb-2 font-medium">차종</label>
         <select className={selectClass} value={filters.category} onChange={(e) => onChange('category', e.target.value)}>
           <option value="">전체</option>
+          <option value="compact">경차</option>
           <option value="sedan">세단</option>
           <option value="suv">SUV</option>
-          <option value="van">승합</option>
-          <option value="truck">트럭</option>
+          <option value="electric">전기차</option>
+          <option value="sports">스포츠카</option>
+          <option value="luxury">럭셔리</option>
         </select>
       </div>
       <div>
@@ -48,6 +50,7 @@ export default function VehicleFilter({ rentType, filters, brands, onChange, onR
           <option value="디젤">디젤</option>
           <option value="하이브리드">하이브리드</option>
           <option value="전기">전기</option>
+          <option value="수소전기">수소전기</option>
         </select>
       </div>
       {rentType === 'used' && (

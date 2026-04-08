@@ -4,7 +4,7 @@ export interface Vehicle {
   model: string
   year: number
   fuel: string
-  category: 'compact' | 'sedan' | 'suv' | 'electric'
+  category: 'compact' | 'sedan' | 'suv' | 'electric' | 'sports' | 'luxury'
   rentType: 'new' | 'used' | 'monthly'
   monthlyPayment: number
   deposit: number

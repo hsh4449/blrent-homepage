@@ -57,15 +57,33 @@ export default function SearchBar() {
               <option value="제네시스">제네시스</option>
               <option value="BMW">BMW</option>
               <option value="벤츠">벤츠</option>
+              <option value="아우디">아우디</option>
+              <option value="볼보">볼보</option>
+              <option value="테슬라">테슬라</option>
+              <option value="포르쉐">포르쉐</option>
+              <option value="페라리">페라리</option>
+              <option value="람보르기니">람보르기니</option>
+              <option value="롤스로이스">롤스로이스</option>
+              <option value="벤틀리">벤틀리</option>
+              <option value="마세라티">마세라티</option>
+              <option value="랜드로버">랜드로버</option>
+              <option value="지프">지프</option>
+              <option value="캐딜락">캐딜락</option>
+              <option value="폭스바겐">폭스바겐</option>
+              <option value="르노">르노</option>
+              <option value="KGM">KGM</option>
             </select>
           </div>
           <div>
             <label className="block text-xs text-text-muted mb-2 font-medium">차종</label>
             <select className={selectClass} value={filters.category} onChange={(e) => handleChange('category', e.target.value)}>
               <option value="">전체 차종</option>
+              <option value="compact">경차</option>
               <option value="sedan">세단</option>
               <option value="suv">SUV</option>
-              <option value="van">승합</option>
+              <option value="electric">전기차</option>
+              <option value="sports">스포츠카</option>
+              <option value="luxury">럭셔리</option>
             </select>
           </div>
           <div>
