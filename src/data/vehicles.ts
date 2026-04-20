@@ -251,7 +251,7 @@ export const vehicles: Vehicle[] = [
     fuel: '가솔린',
     category: 'compact',
     rentType: 'new',
-    monthlyPayment: 350000,
+    monthlyPayment: 390000,
     deposit: 0,
     contractMonths: 48,
     image: '/vehicles/hyundai/캐스퍼.png',
