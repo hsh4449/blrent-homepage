@@ -45,7 +45,7 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
               </span>
             </div>
           </div>
-          <div className="p-4 bg-gradient-to-b from-accent to-amber-600">
+          <div className="p-4 bg-gradient-to-b from-accent to-amber-600 text-center">
             <h3 className="font-extrabold text-lg mb-3 text-white">{vehicle.model}</h3>
             <div>
               <span className="text-white font-bold text-lg">{priceLabel}</span>
