@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { MessageCircle, Fuel } from 'lucide-react'
+import { MessageCircle } from 'lucide-react'
 import type { Vehicle } from '../../types/vehicle'
 
 export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
@@ -47,14 +47,15 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
             </div>
           </div>
           <div className="p-4 bg-gradient-to-b from-accent to-amber-600">
-            <h3 className="font-extrabold text-lg mb-2 text-white">{vehicle.model}</h3>
-            <div className="flex items-center gap-1.5 text-sm text-white font-medium mb-3">
-              <Fuel size={14} />
-              <span>{vehicle.fuel}</span>
-            </div>
+            <h3 className="font-extrabold text-lg mb-3 text-white">{vehicle.model}</h3>
             <div>
               <span className="text-white font-bold text-lg">{priceLabelMan}</span>
-              {!isConsultOnly && <span className="text-white/60 text-xs ml-1">/ 월</span>}
+              {!isConsultOnly && (
+                <>
+                  <span className="text-white/60 text-xs ml-1">/ 월</span>
+                  <span className="text-white/80 text-xs ml-1">(최저가)</span>
+                </>
+              )}
             </div>
           </div>
         </div>
