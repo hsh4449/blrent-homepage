@@ -5,8 +5,7 @@ import type { Vehicle } from '../../types/vehicle'
 
 export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
   const isConsultOnly = vehicle.monthlyPayment <= 0
-  const priceLabel = isConsultOnly ? '상담문의' : `${vehicle.monthlyPayment.toLocaleString()}원~`
-  const priceLabelMan = isConsultOnly ? '상담문의' : `${(vehicle.monthlyPayment / 10000).toFixed(0)}만원`
+  const priceLabel = isConsultOnly ? '상담문의' : `월 ${vehicle.monthlyPayment.toLocaleString()}원~`
 
   return (
     <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
@@ -49,13 +48,7 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
           <div className="p-4 bg-gradient-to-b from-accent to-amber-600">
             <h3 className="font-extrabold text-lg mb-3 text-white">{vehicle.model}</h3>
             <div>
-              <span className="text-white font-bold text-lg">{priceLabelMan}</span>
-              {!isConsultOnly && (
-                <>
-                  <span className="text-white/60 text-xs ml-1">/ 월</span>
-                  <span className="text-white/80 text-xs ml-1">(최저가)</span>
-                </>
-              )}
+              <span className="text-white font-bold text-lg">{priceLabel}</span>
             </div>
           </div>
         </div>
