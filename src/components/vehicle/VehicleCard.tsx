@@ -4,7 +4,9 @@ import { MessageCircle, Fuel } from 'lucide-react'
 import type { Vehicle } from '../../types/vehicle'
 
 export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
-  const priceText = `${vehicle.model} ${vehicle.monthlyPayment.toLocaleString()}원~`
+  const isConsultOnly = vehicle.monthlyPayment <= 0
+  const priceLabel = isConsultOnly ? '상담문의' : `${vehicle.monthlyPayment.toLocaleString()}원~`
+  const priceLabelMan = isConsultOnly ? '상담문의' : `${(vehicle.monthlyPayment / 10000).toFixed(0)}만원`
 
   return (
     <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
@@ -24,7 +26,7 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
           </div>
           <div className="px-2 py-2 bg-gradient-to-r from-accent to-amber-500 text-center">
             <p className="text-white font-bold text-sm truncate">{vehicle.model}</p>
-            <p className="text-white font-bold text-xs">{vehicle.monthlyPayment.toLocaleString()}원~</p>
+            <p className="text-white font-bold text-xs">{priceLabel}</p>
           </div>
         </div>
 
@@ -51,8 +53,8 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
               <span>{vehicle.fuel}</span>
             </div>
             <div>
-              <span className="text-white font-bold text-lg">{(vehicle.monthlyPayment / 10000).toFixed(0)}만원</span>
-              <span className="text-white/60 text-xs ml-1">/ 월</span>
+              <span className="text-white font-bold text-lg">{priceLabelMan}</span>
+              {!isConsultOnly && <span className="text-white/60 text-xs ml-1">/ 월</span>}
             </div>
           </div>
         </div>

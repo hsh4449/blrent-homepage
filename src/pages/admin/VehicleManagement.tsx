@@ -228,7 +228,7 @@ export default function VehicleManagement() {
     if (!form.brand.trim()) return '브랜드를 입력하세요.'
     if (!form.model.trim()) return '모델명을 입력하세요.'
     if (form.year < 1990 || form.year > 2030) return '연식이 올바르지 않습니다.'
-    if (form.monthly_payment <= 0) return '월 납입금을 입력하세요.'
+    if (form.monthly_payment < 0) return '월 납입금이 올바르지 않습니다.'
     return null
   }
 
@@ -435,7 +435,11 @@ export default function VehicleManagement() {
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="text-[#FF9D42] font-bold text-sm">
-                            {(v.monthly_payment / 10000).toFixed(0)}만원<span className="text-gray-400 font-normal text-xs"> / 월</span>
+                            {v.monthly_payment > 0 ? (
+                              <>{(v.monthly_payment / 10000).toFixed(0)}만원<span className="text-gray-400 font-normal text-xs"> / 월</span></>
+                            ) : (
+                              '상담문의'
+                            )}
                           </span>
                           <div className="flex items-center gap-0.5">
                             <button
@@ -590,12 +594,12 @@ export default function VehicleManagement() {
                     </select>
                   </label>
                   <label className="space-y-1.5">
-                    <span className="text-sm text-gray-500">월 납입금 (원) *</span>
+                    <span className="text-sm text-gray-500">월 납입금 (원) <span className="text-gray-400 text-xs">0 입력 시 "상담문의" 표시</span></span>
                     <input
                       type="number"
                       value={form.monthly_payment || ''}
                       onChange={(e) => updateField('monthly_payment', Number(e.target.value))}
-                      placeholder="350000"
+                      placeholder="350000 (0 = 상담문의)"
                       className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#FF9D42]/50"
                     />
                   </label>

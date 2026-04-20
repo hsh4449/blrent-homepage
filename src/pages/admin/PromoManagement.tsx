@@ -126,7 +126,7 @@ export default function PromoManagement() {
                   {/* 차량 정보 */}
                   <div className="flex-1 min-w-0">
                     <p className="font-semibold text-gray-900">{v.brand} {v.model}</p>
-                    <p className="text-sm text-gray-500">월 {v.monthly_payment.toLocaleString()}원</p>
+                    <p className="text-sm text-gray-500">{v.monthly_payment > 0 ? `월 ${v.monthly_payment.toLocaleString()}원` : '상담문의'}</p>
                   </div>
 
                   {/* 태그 */}
@@ -215,7 +215,7 @@ export default function PromoManagement() {
                       />
                       <div className="flex-1 min-w-0">
                         <p className="font-medium text-gray-900 text-sm">{v.brand} {v.model}</p>
-                        <p className="text-xs text-gray-500">월 {v.monthly_payment.toLocaleString()}원</p>
+                        <p className="text-xs text-gray-500">{v.monthly_payment > 0 ? `월 ${v.monthly_payment.toLocaleString()}원` : '상담문의'}</p>
                       </div>
                       <Plus size={18} className="text-accent flex-shrink-0" />
                     </button>

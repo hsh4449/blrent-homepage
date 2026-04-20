@@ -129,7 +129,7 @@ export default function Dashboard() {
                       {v.brand} {v.model}
                     </p>
                     <p className="text-gray-400 text-xs mt-0.5">
-                      {v.year}년 &middot; 월 {v.monthly_payment?.toLocaleString()}원
+                      {v.year}년 &middot; {v.monthly_payment > 0 ? `월 ${v.monthly_payment.toLocaleString()}원` : '상담문의'}
                     </p>
                   </div>
                   <span className="text-gray-500 text-xs whitespace-nowrap">

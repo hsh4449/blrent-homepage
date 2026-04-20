@@ -91,10 +91,14 @@ export default function VehicleDetailPage() {
               <div className="flex items-end justify-between">
                 <div>
                   <span className="text-text-muted text-xs">월 납입금</span>
-                  <p className="text-accent font-bold text-2xl md:text-3xl">
-                    {(vehicle.monthlyPayment / 10000).toFixed(0)}만원
-                    <span className="text-sm font-normal text-text-muted ml-1">/ 월</span>
-                  </p>
+                  {vehicle.monthlyPayment > 0 ? (
+                    <p className="text-accent font-bold text-2xl md:text-3xl">
+                      {(vehicle.monthlyPayment / 10000).toFixed(0)}만원
+                      <span className="text-sm font-normal text-text-muted ml-1">/ 월</span>
+                    </p>
+                  ) : (
+                    <p className="text-accent font-bold text-2xl md:text-3xl">상담문의</p>
+                  )}
                 </div>
                 <div className="text-right text-xs text-text-muted">
                   <p>보증금 {vehicle.deposit.toLocaleString()}원</p>
@@ -184,9 +188,13 @@ export default function VehicleDetailPage() {
             {/* Result */}
             <div className="glass rounded-2xl p-6 flex flex-col justify-center items-center">
               <p className="text-text-muted text-sm mb-2">예상 월 납입금</p>
-              <p className="text-accent font-bold text-4xl mb-1">
-                {(calculatedPayment / 10000).toFixed(0)}<span className="text-lg font-normal text-text-muted">만원</span>
-              </p>
+              {basePayment > 0 ? (
+                <p className="text-accent font-bold text-4xl mb-1">
+                  {(calculatedPayment / 10000).toFixed(0)}<span className="text-lg font-normal text-text-muted">만원</span>
+                </p>
+              ) : (
+                <p className="text-accent font-bold text-3xl mb-1">상담문의</p>
+              )}
               <p className="text-text-muted text-xs mb-6">* 실제 납입금은 심사 결과에 따라 달라질 수 있습니다</p>
               <div className="flex flex-col gap-3 w-full">
                 <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3 bg-[#FEE500] text-[#191919] font-semibold rounded-xl hover:opacity-90 transition-opacity text-sm">
