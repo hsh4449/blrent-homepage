@@ -23,8 +23,10 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
               className="w-full h-full object-contain"
             />
           </div>
+          <div className="py-2 bg-white text-center">
+            <p className="text-text-primary font-bold text-sm truncate px-2">{vehicle.model}</p>
+          </div>
           <div className="px-2 py-2 bg-gradient-to-r from-accent to-amber-500 text-center">
-            <p className="text-white font-bold text-sm truncate">{vehicle.model}</p>
             <p className="text-white font-bold text-xs">{priceLabel}</p>
           </div>
         </div>
@@ -45,11 +47,11 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
               </span>
             </div>
           </div>
-          <div className="p-4 bg-gradient-to-b from-accent to-amber-600 text-center">
-            <h3 className="font-extrabold text-lg mb-3 text-white">{vehicle.model}</h3>
-            <div>
-              <span className="text-white font-bold text-lg">{priceLabel}</span>
-            </div>
+          <div className="py-3 bg-white text-center">
+            <h3 className="font-extrabold text-lg text-text-primary">{vehicle.model}</h3>
+          </div>
+          <div className="py-3 bg-gradient-to-b from-accent to-amber-600 text-center">
+            <span className="text-white font-bold text-lg">{priceLabel}</span>
           </div>
         </div>
       </Link>
