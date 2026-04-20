@@ -22,7 +22,7 @@ export default function WhyChooseUs() {
           className="text-center mb-12"
         >
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-text-primary">
-            왜 <span className="text-gradient">BL렌트카</span>인가요?
+            왜 <span className="text-gradient">비엘모빌리티</span>인가요?
           </h2>
           <p className="text-text-secondary text-sm md:text-base">고객만족을 위한 차별화된 서비스를 제공합니다</p>
         </motion.div>

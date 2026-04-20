@@ -64,7 +64,7 @@ export default function Dashboard() {
         {/* Header */}
         <motion.div variants={itemVariants}>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900">관리자 대시보드</h1>
-          <p className="text-gray-500 mt-1">BL렌트 홈페이지 현황을 한눈에 확인하세요.</p>
+          <p className="text-gray-500 mt-1">비엘모빌리티 홈페이지 현황을 한눈에 확인하세요.</p>
         </motion.div>
 
         {/* Stats Grid */}

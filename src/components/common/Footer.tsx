@@ -13,10 +13,10 @@ export default function Footer() {
               <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
                 <span className="text-white font-bold text-sm">BL</span>
               </div>
-              <span className="font-display font-bold text-lg text-text-primary">렌트카</span>
+              <span className="font-display font-bold text-lg text-text-primary">모빌리티</span>
             </div>
             <p className="text-sm text-text-muted leading-relaxed">
-              상호: BL렌트카 | 대표: 홍길동<br />
+              상호: 비엘모빌리티 | 대표: 홍길동<br />
               사업자등록번호: 000-00-00000<br />
               서울특별시 강남구 테헤란로 00길 00<br />
               info@blrentcar.co.kr
@@ -57,7 +57,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-200 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
-          <span className="text-xs text-text-muted">&copy; 2026 BL렌트카. All rights reserved.</span>
+          <span className="text-xs text-text-muted">&copy; 2026 비엘모빌리티. All rights reserved.</span>
           <div className="flex items-center gap-4">
             {['카카오', '인스타', '블로그'].map((name) => (
               <span key={name} className="text-xs text-text-muted hover:text-text-primary cursor-pointer transition-colors">{name}</span>

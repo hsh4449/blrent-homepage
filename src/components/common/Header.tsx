@@ -39,7 +39,7 @@ export default function Header() {
             <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
               <span className="text-white font-bold text-sm">BL</span>
             </div>
-            <span className="font-display font-bold text-lg tracking-tight text-text-primary">렌트카</span>
+            <span className="font-display font-bold text-lg tracking-tight text-text-primary">모빌리티</span>
           </Link>
 
           {/* Desktop Nav */}

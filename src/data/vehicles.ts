@@ -4193,7 +4193,7 @@ export const vehicles: Vehicle[] = [
     monthlyPayment: 550000,
     deposit: 0,
     contractMonths: 48,
-    image: '/vehicles/renault/그랑콜레오스.webp',
+    image: '/vehicles/renault/그랑콜레오스.png',
     specs: {
       engine: '1.5 터보 하이브리드 E-Tech',
       transmission: '다단 자동',
@@ -4215,7 +4215,7 @@ export const vehicles: Vehicle[] = [
     monthlyPayment: 420000,
     deposit: 0,
     contractMonths: 48,
-    image: '/vehicles/renault/아르카나.webp',
+    image: '/vehicles/renault/아르카나.png',
     specs: {
       engine: '1.6 하이브리드 E-Tech',
       transmission: '다단 자동',
@@ -4237,7 +4237,7 @@ export const vehicles: Vehicle[] = [
     monthlyPayment: 380000,
     deposit: 0,
     contractMonths: 48,
-    image: '/vehicles/renault/필랑트.webp',
+    image: '/vehicles/renault/필랑트.png',
     specs: {
       engine: '1.6 하이브리드 E-Tech',
       transmission: '다단 자동',

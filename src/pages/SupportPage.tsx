@@ -78,7 +78,7 @@ export default function SupportPage() {
             <div className="glass rounded-2xl p-6 space-y-6">
               <div>
                 <h3 className="font-semibold text-sm mb-2">주소</h3>
-                <p className="text-text-secondary text-sm">서울특별시 강남구 테헤란로 123<br />BL렌트카 사무실</p>
+                <p className="text-text-secondary text-sm">서울특별시 강남구 테헤란로 123<br />비엘모빌리티 사무실</p>
               </div>
               <div>
                 <h3 className="font-semibold text-sm mb-2">교통 안내</h3>

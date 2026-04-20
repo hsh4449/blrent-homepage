@@ -19,7 +19,7 @@ export default function ReviewsPage() {
         <div className="max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <h1 className="text-2xl md:text-4xl font-bold mb-3">출고 후기</h1>
-            <p className="text-text-secondary text-sm md:text-base">BL렌트카를 통해 차량을 출고하신 고객님들의 생생한 후기입니다</p>
+            <p className="text-text-secondary text-sm md:text-base">비엘모빌리티를 통해 차량을 출고하신 고객님들의 생생한 후기입니다</p>
           </motion.div>
           <div className="flex gap-1 mt-8 p-1 rounded-xl bg-gray-50 w-fit">
             {tabs.map((tab) => (

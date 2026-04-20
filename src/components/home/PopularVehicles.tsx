@@ -6,8 +6,8 @@ import VehicleCard from '../vehicle/VehicleCard'
 const BRAND_TABS = [
   { key: 'hyundai', label: '현대', brands: ['현대'] },
   { key: 'kia', label: '기아', brands: ['기아'] },
-  { key: 'domestic', label: '그외국산', brands: ['쉐보레', '르노', '쌍용', 'KGM'] },
-  { key: 'import', label: '수입차 & 제네시스', brands: ['제네시스', 'BMW', '벤츠', '아우디', '폭스바겐', '볼보', '렉서스', '토요타', '혼다'] },
+  { key: 'domestic', label: '르노 & KGM', brands: ['르노', 'KGM'] },
+  { key: 'import', label: '수입차 & 제네시스', brands: ['제네시스', 'BMW', '벤츠', '아우디', '볼보', '테슬라', '포르쉐', '페라리', '람보르기니', '롤스로이스', '벤틀리', '마세라티', '랜드로버', '지프', '캐딜락', '폭스바겐'] },
 ] as const
 
 type BrandTabKey = typeof BRAND_TABS[number]['key']
@@ -18,6 +18,8 @@ const CATEGORIES = [
   { key: 'sedan', label: '승용' },
   { key: 'suv', label: 'SUV' },
   { key: 'electric', label: '친환경' },
+  { key: 'sports', label: '스포츠카' },
+  { key: 'luxury', label: '럭셔리' },
 ] as const
 
 type CategoryKey = typeof CATEGORIES[number]['key']
