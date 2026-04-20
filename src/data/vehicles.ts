@@ -2,28 +2,6 @@ import type { Vehicle } from '../types/vehicle'
 
 export const vehicles: Vehicle[] = [
   {
-    id: 'v-001',
-    brand: '현대',
-    model: 'ST1',
-    year: 2025,
-    fuel: '가솔린',
-    category: 'suv',
-    rentType: 'new',
-    monthlyPayment: 0,
-    deposit: 0,
-    contractMonths: 48,
-    image: '/vehicles/hyundai/ST1.png',
-    specs: {
-      engine: '2.5 터보',
-      transmission: '8단 자동',
-      seats: 7,
-      fuelEfficiency: '10.5km/L',
-    },
-    options: ['어댑티브 서스펜션', '파노라마 루프', '서라운드 뷰', 'HDA 2'],
-    description: '현대 최초의 대형 럭셔리 SUV.',
-    isPopular: true,
-  },
-  {
     id: 'v-002',
     brand: '현대',
     model: '그랜저 하이브리드',
@@ -273,7 +251,7 @@ export const vehicles: Vehicle[] = [
     fuel: '가솔린',
     category: 'compact',
     rentType: 'new',
-    monthlyPayment: 445000,
+    monthlyPayment: 350000,
     deposit: 0,
     contractMonths: 48,
     image: '/vehicles/hyundai/캐스퍼.png',
