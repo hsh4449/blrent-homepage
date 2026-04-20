@@ -2,7 +2,7 @@ import type { Vehicle } from '../types/vehicle'
 import { vehicles as defaultVehicles } from '../data/vehicles'
 
 const STORAGE_KEY = 'blrent_vehicles'
-const DATA_VERSION = 'v10_harmony_prices'
+const DATA_VERSION = 'v11_harmony_full'
 const VERSION_KEY = 'blrent_data_version'
 const PROMO_KEY = 'blrent_promos'
 
