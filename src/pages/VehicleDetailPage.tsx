@@ -26,8 +26,14 @@ export default function VehicleDetailPage() {
     )
   }
 
-  // Similar vehicles
-  const similarVehicles = vehicles.filter((v) => v.id !== vehicle.id && v.category === vehicle.category).slice(0, 4)
+  // Similar vehicles: 같은 카테고리 + 월 렌트료 비슷한 순 4대
+  const sameCategory = vehicles.filter((v) => v.id !== vehicle.id && v.category === vehicle.category)
+  const similarVehicles = vehicle.monthlyPayment > 0
+    ? sameCategory
+        .filter((v) => v.monthlyPayment > 0)
+        .sort((a, b) => Math.abs(a.monthlyPayment - vehicle.monthlyPayment) - Math.abs(b.monthlyPayment - vehicle.monthlyPayment))
+        .slice(0, 4)
+    : sameCategory.slice(0, 4)
 
   const specItems = [
     { icon: <Settings size={16} />, label: '엔진', value: vehicle.specs.engine },
