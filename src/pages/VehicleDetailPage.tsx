@@ -27,14 +27,17 @@ export default function VehicleDetailPage() {
   }
 
   // Similar vehicles: 같은 카테고리 + 월 렌트료 ±5만원 이내, 가까운 순 최대 4대
+  // 매칭되는 차량이 없으면 섹션 자체를 표시하지 않음 (아래 length > 0 조건)
   const PRICE_RANGE = 50000
-  const sameCategory = vehicles.filter((v) => v.id !== vehicle.id && v.category === vehicle.category)
   const similarVehicles = vehicle.monthlyPayment > 0
-    ? sameCategory
-        .filter((v) => v.monthlyPayment > 0 && Math.abs(v.monthlyPayment - vehicle.monthlyPayment) <= PRICE_RANGE)
+    ? vehicles
+        .filter((v) => v.id !== vehicle.id
+          && v.category === vehicle.category
+          && v.monthlyPayment > 0
+          && Math.abs(v.monthlyPayment - vehicle.monthlyPayment) <= PRICE_RANGE)
         .sort((a, b) => Math.abs(a.monthlyPayment - vehicle.monthlyPayment) - Math.abs(b.monthlyPayment - vehicle.monthlyPayment))
         .slice(0, 4)
-    : sameCategory.slice(0, 4)
+    : []
 
   const specItems = [
     { icon: <Settings size={16} />, label: '엔진', value: vehicle.specs.engine },
