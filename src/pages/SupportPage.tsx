@@ -78,13 +78,14 @@ export default function SupportPage() {
             <div className="glass rounded-2xl p-6 space-y-6">
               <div>
                 <h3 className="font-semibold text-sm mb-2">주소</h3>
-                <p className="text-text-secondary text-sm">서울특별시 강남구 테헤란로 123<br />비엘모빌리티 사무실</p>
+                <p className="text-text-secondary text-sm">충청북도 옥천군 옥천읍 중앙로 32<br />(주)비엘모빌리티</p>
               </div>
               <div>
                 <h3 className="font-semibold text-sm mb-2">교통 안내</h3>
                 <ul className="text-text-secondary text-sm space-y-1">
-                  <li>지하철 2호선 강남역 3번 출구 도보 5분</li>
-                  <li>주차장 이용 가능 (건물 내 지하주차장)</li>
+                  <li>경부고속도로 옥천IC 진출 후 약 5분</li>
+                  <li>옥천역에서 차량으로 약 5분</li>
+                  <li>방문 주차 가능</li>
                 </ul>
               </div>
             </div>

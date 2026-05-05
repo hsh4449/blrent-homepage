@@ -16,9 +16,9 @@ export default function Footer() {
               <span className="font-display font-bold text-lg text-text-primary">모빌리티</span>
             </div>
             <p className="text-sm text-text-muted leading-relaxed">
-              상호: 비엘모빌리티 | 대표: 홍길동<br />
+              상호: (주)비엘모빌리티 | 대표: 오재영<br />
               사업자등록번호: 000-00-00000<br />
-              서울특별시 강남구 테헤란로 00길 00<br />
+              충청북도 옥천군 옥천읍 중앙로 32<br />
               info@blrentcar.co.kr
             </p>
           </div>
@@ -57,7 +57,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-200 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
-          <span className="text-xs text-text-muted">&copy; 2026 비엘모빌리티. All rights reserved.</span>
+          <span className="text-xs text-text-muted">&copy; 2026 (주)비엘모빌리티. All rights reserved.</span>
           <div className="flex items-center gap-4">
             {['카카오', '인스타', '블로그'].map((name) => (
               <span key={name} className="text-xs text-text-muted hover:text-text-primary cursor-pointer transition-colors">{name}</span>
