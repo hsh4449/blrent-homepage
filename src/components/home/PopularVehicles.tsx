@@ -35,9 +35,14 @@ export default function PopularVehicles() {
 
   const activeBrands = BRAND_TABS.find((t) => t.key === activeTab)!.brands
   const filtered = vehicles.filter((v) => (activeBrands as readonly string[]).includes(v.brand))
-  const displayVehicles = activeCategory === 'all'
+  const displayVehicles = (activeCategory === 'all'
     ? filtered
     : filtered.filter((v) => v.category === activeCategory)
+  ).slice().sort((a, b) => {
+    const aConsult = a.monthlyPayment <= 0 ? 1 : 0
+    const bConsult = b.monthlyPayment <= 0 ? 1 : 0
+    return aConsult - bConsult
+  })
 
   // 브랜드 변경 시 카테고리 초기화
   const handleBrandChange = (tab: BrandTabKey) => {
