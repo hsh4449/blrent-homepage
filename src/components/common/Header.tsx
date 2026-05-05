@@ -59,23 +59,6 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Right side */}
-          <div className="hidden lg:flex items-center gap-3">
-            <a
-              href={`tel:${PHONE}`}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-gray-100 transition-all"
-            >
-              <Phone size={16} />
-              <span>{PHONE}</span>
-            </a>
-            <Link
-              to="/support"
-              className="px-5 py-2.5 bg-accent text-white text-sm font-semibold rounded-xl hover:bg-accent-hover transition-all glow-accent-sm"
-            >
-              상담 신청
-            </Link>
-          </div>
-
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
