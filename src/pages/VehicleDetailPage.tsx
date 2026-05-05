@@ -105,7 +105,7 @@ export default function VehicleDetailPage() {
       {similarVehicles.length > 0 && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-xl md:text-2xl font-bold mb-6">유사 <span className="text-gradient">차량 추천</span></h2>
+            <h2 className="text-xl md:text-2xl font-bold mb-6">이런 차량은 어떠신가요?</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {similarVehicles.map((v) => (
                 <VehicleCard key={v.id} vehicle={v} />
