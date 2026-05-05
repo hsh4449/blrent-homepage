@@ -10,8 +10,14 @@ export default function Footer() {
           {/* Logo & Company */}
           <div className="md:col-span-1">
             <div className="mb-4 leading-tight">
-              <p className="font-display font-bold text-lg text-text-primary">비엘 모빌리티</p>
-              <p className="text-xs text-text-muted mt-0.5">비대면 무심사 장기렌트</p>
+              <p className="font-display font-extrabold text-lg">
+                <span className="text-accent">비엘</span>
+                <span className="text-text-primary"> 모빌리티</span>
+              </p>
+              <p className="flex items-center gap-1.5 text-xs font-semibold text-text-secondary mt-1">
+                <span className="w-1 h-1 rounded-full bg-accent" />
+                <span>비대면 <span className="text-accent">·</span> 무심사 <span className="text-accent">·</span> 장기렌트</span>
+              </p>
             </div>
             <p className="text-sm text-text-muted leading-relaxed">
               상호: (주)비엘모빌리티 | 대표: 오재영<br />
