@@ -97,15 +97,6 @@ export default function VehicleDetailPage() {
               </div>
             </div>
 
-            {/* Options */}
-            <div>
-              <h3 className="font-semibold text-sm mb-3">주요 옵션</h3>
-              <div className="flex flex-wrap gap-2">
-                {vehicle.options.map((option) => (
-                  <span key={option} className="px-3 py-1.5 glass rounded-lg text-xs text-text-secondary">{option}</span>
-                ))}
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>
