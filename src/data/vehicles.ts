@@ -11,7 +11,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 710000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/그랜저 하이브리드.png',
     specs: {
       engine: '1.6 터보 하이브리드',
@@ -33,7 +33,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 680000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/그랜저.png',
     specs: {
       engine: '2.5 가솔린',
@@ -55,7 +55,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/넥쏘.png',
     specs: {
       engine: '수소 연료전지',
@@ -77,7 +77,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 420000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/베뉴.png',
     specs: {
       engine: '1.6 가솔린',
@@ -99,7 +99,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/스타리아.png',
     specs: {
       engine: '2.2 디젤',
@@ -121,7 +121,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 730000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/싼타페.png',
     specs: {
       engine: '1.6 터보 하이브리드',
@@ -143,7 +143,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 442000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/쏘나타.png',
     specs: {
       engine: '2.0 가솔린',
@@ -165,7 +165,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 450000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/아반떼.png',
     specs: {
       engine: '1.6 가솔린',
@@ -187,7 +187,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/아이오닉5.png',
     specs: {
       engine: '전기모터',
@@ -209,7 +209,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/아이오닉6.png',
     specs: {
       engine: '전기모터',
@@ -231,7 +231,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/아이오닉9.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -253,7 +253,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 390000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/캐스퍼.png',
     specs: {
       engine: '1.0 터보',
@@ -275,7 +275,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 583000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/코나.png',
     specs: {
       engine: '1.6 터보',
@@ -297,7 +297,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 600000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/투싼.png',
     specs: {
       engine: '1.6 터보 하이브리드',
@@ -319,7 +319,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 820000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/hyundai/팰리세이드.png',
     specs: {
       engine: '2.2 디젤',
@@ -341,7 +341,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/EV3.png',
     specs: {
       engine: '전기모터',
@@ -363,7 +363,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/EV4.png',
     specs: {
       engine: '전기모터',
@@ -385,7 +385,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/EV5.png',
     specs: {
       engine: '전기모터',
@@ -407,7 +407,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/EV6.png',
     specs: {
       engine: '전기모터',
@@ -429,7 +429,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/EV9.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -451,7 +451,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/K5 하이브리드.png',
     specs: {
       engine: '1.6 터보 하이브리드',
@@ -473,7 +473,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 588000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/K5.png',
     specs: {
       engine: '2.0 가솔린',
@@ -495,7 +495,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/K8 하이브리드.png',
     specs: {
       engine: '1.6 터보 하이브리드',
@@ -517,7 +517,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/K8.png',
     specs: {
       engine: '2.5 가솔린',
@@ -539,7 +539,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/K9.png',
     specs: {
       engine: '3.3 V6',
@@ -561,7 +561,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/PV5.png',
     specs: {
       engine: '전기모터',
@@ -583,7 +583,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/니로.png',
     specs: {
       engine: '1.6 하이브리드',
@@ -605,7 +605,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/레이 EV.png',
     specs: {
       engine: '전기모터',
@@ -627,7 +627,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 445000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/레이.png',
     specs: {
       engine: '1.0 가솔린',
@@ -649,7 +649,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 389000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/모닝.png',
     specs: {
       engine: '1.0 가솔린',
@@ -671,7 +671,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/셀토스 하이브리드.png',
     specs: {
       engine: '1.6 하이브리드',
@@ -693,7 +693,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 578000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/셀토스.png',
     specs: {
       engine: '1.6 가솔린',
@@ -715,7 +715,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 750000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/스포티지 하이브리드.png',
     specs: {
       engine: '1.6 터보 하이브리드',
@@ -737,7 +737,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 622000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/스포티지.png',
     specs: {
       engine: '1.6 터보',
@@ -759,7 +759,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 895000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/쏘렌토 하이브리드.png',
     specs: {
       engine: '1.6 터보 하이브리드',
@@ -781,7 +781,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 796000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/쏘렌토.png',
     specs: {
       engine: '2.2 디젤',
@@ -803,7 +803,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/카니발 하이브리드.png',
     specs: {
       engine: '1.6 터보 하이브리드',
@@ -825,7 +825,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 754000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/카니발.png',
     specs: {
       engine: '2.2 디젤',
@@ -847,7 +847,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kia/타스만.png',
     specs: {
       engine: '2.2 디젤',
@@ -869,7 +869,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/genesis/G70 슈팅브레이크.png',
     specs: {
       engine: '2.0 터보',
@@ -891,7 +891,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/genesis/G70.png',
     specs: {
       engine: '2.0 터보',
@@ -913,7 +913,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 1213000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/genesis/G80.png',
     specs: {
       engine: '2.5 터보',
@@ -935,7 +935,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/genesis/G90.png',
     specs: {
       engine: '3.5 V6 터보',
@@ -957,7 +957,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/genesis/GV60 마그마.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -979,7 +979,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/genesis/GV60.png',
     specs: {
       engine: '전기모터',
@@ -1001,7 +1001,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 825000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/genesis/GV70.png',
     specs: {
       engine: '2.5 터보',
@@ -1023,7 +1023,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/genesis/GV80 쿠페.png',
     specs: {
       engine: '2.5 터보',
@@ -1045,7 +1045,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 1213000,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/genesis/GV80.png',
     specs: {
       engine: '2.5 터보',
@@ -1067,7 +1067,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/genesis/일렉트리파이드 G80.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -1089,7 +1089,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/genesis/일렉트리파이드 GV70.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -1111,7 +1111,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/1시리즈.png',
     specs: {
       engine: '2.0 터보',
@@ -1133,7 +1133,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/2시리즈 그란쿠페.png',
     specs: {
       engine: '2.0 터보',
@@ -1155,7 +1155,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/3시리즈.png',
     specs: {
       engine: '2.0 터보',
@@ -1177,7 +1177,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/4시리즈.png',
     specs: {
       engine: '2.0 터보',
@@ -1199,7 +1199,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/5시리즈.png',
     specs: {
       engine: '2.0 터보',
@@ -1221,7 +1221,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/7시리즈.png',
     specs: {
       engine: '3.0 터보',
@@ -1243,7 +1243,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/8시리즈.png',
     specs: {
       engine: '4.4 V8 트윈터보',
@@ -1265,7 +1265,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/M8.png',
     specs: {
       engine: '4.4 V8 트윈터보 625hp',
@@ -1287,7 +1287,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/M시리즈.png',
     specs: {
       engine: '3.0 직6 트윈터보',
@@ -1309,7 +1309,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/X1.png',
     specs: {
       engine: '2.0 터보',
@@ -1331,7 +1331,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/X2.png',
     specs: {
       engine: '2.0 터보',
@@ -1353,7 +1353,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/X3.png',
     specs: {
       engine: '2.0 터보',
@@ -1375,7 +1375,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/X4.png',
     specs: {
       engine: '2.0 터보',
@@ -1397,7 +1397,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/X5.png',
     specs: {
       engine: '3.0 직6 터보',
@@ -1419,7 +1419,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/X6.png',
     specs: {
       engine: '3.0 직6 터보',
@@ -1441,7 +1441,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/X7.png',
     specs: {
       engine: '3.0 직6 터보',
@@ -1463,7 +1463,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/XM.png',
     specs: {
       engine: 'V8+전기모터 750hp',
@@ -1485,7 +1485,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/Z4.png',
     specs: {
       engine: '2.0 터보',
@@ -1507,7 +1507,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/i4.png',
     specs: {
       engine: '전기모터',
@@ -1529,7 +1529,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/i5.png',
     specs: {
       engine: '전기모터',
@@ -1551,7 +1551,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/i7.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -1573,7 +1573,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/iX.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -1595,7 +1595,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/iX1.png',
     specs: {
       engine: '전기모터',
@@ -1617,7 +1617,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bmw/iX2.png',
     specs: {
       engine: '전기모터',
@@ -1639,7 +1639,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/benz/A-클래스.png',
     specs: {
       engine: '1.3 터보',
@@ -1661,7 +1661,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/benz/AMG GT.png',
     specs: {
       engine: '4.0 V8 트윈터보',
@@ -1683,7 +1683,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/benz/C-클래스.png',
     specs: {
       engine: '2.0 터보',
@@ -1705,7 +1705,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/benz/CLA-클래스.png',
     specs: {
       engine: '2.0 터보',
@@ -1727,7 +1727,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/benz/CLE-클래스.png',
     specs: {
       engine: '2.0 터보',
@@ -1749,7 +1749,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/benz/E-클래스.png',
     specs: {
       engine: '2.0 터보',
@@ -1771,7 +1771,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/benz/EQA.png',
     specs: {
       engine: '전기모터',
@@ -1793,7 +1793,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/benz/GLA-클래스.png',
     specs: {
       engine: '2.0 터보',
@@ -1815,7 +1815,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/benz/GLE-클래스.png',
     specs: {
       engine: '3.0 직6 터보',
@@ -1837,7 +1837,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/benz/마이바흐 S-클래스.png',
     specs: {
       engine: '6.0 V12',
@@ -1859,7 +1859,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/A3.png',
     specs: {
       engine: '2.0 TFSI',
@@ -1881,7 +1881,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/A5.png',
     specs: {
       engine: '2.0 TFSI',
@@ -1903,7 +1903,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/A6 e-트론.png',
     specs: {
       engine: '전기모터',
@@ -1925,7 +1925,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/A6.png',
     specs: {
       engine: '2.0 TFSI',
@@ -1947,7 +1947,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/A7.png',
     specs: {
       engine: '2.0 TFSI',
@@ -1969,7 +1969,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/A8.png',
     specs: {
       engine: '3.0 V6 TFSI',
@@ -1991,7 +1991,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/Q3.png',
     specs: {
       engine: '2.0 TFSI',
@@ -2013,7 +2013,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/Q4 e-트론.png',
     specs: {
       engine: '전기모터',
@@ -2035,7 +2035,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/Q5.png',
     specs: {
       engine: '2.0 TFSI',
@@ -2057,7 +2057,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/Q6 e-트론.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -2079,7 +2079,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/Q7.png',
     specs: {
       engine: '3.0 V6 TFSI',
@@ -2101,7 +2101,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/Q8.png',
     specs: {
       engine: '3.0 V6 TFSI',
@@ -2123,7 +2123,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/RS Q8.png',
     specs: {
       engine: '4.0 V8 트윈터보 600hp',
@@ -2145,7 +2145,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/RS e-트론 GT.png',
     specs: {
       engine: '전기모터 듀얼 646hp',
@@ -2167,7 +2167,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/RS3.png',
     specs: {
       engine: '2.5 직5 TFSI 400hp',
@@ -2189,7 +2189,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/RS6 아반트.png',
     specs: {
       engine: '4.0 V8 트윈터보 621hp',
@@ -2211,7 +2211,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/RS7.png',
     specs: {
       engine: '4.0 V8 트윈터보 621hp',
@@ -2233,7 +2233,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/S e-트론 GT.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -2255,7 +2255,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/S5.png',
     specs: {
       engine: '3.0 V6 TFSI 354hp',
@@ -2277,7 +2277,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/S6 e-트론.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -2299,7 +2299,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/SQ6 e-트론.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -2321,7 +2321,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/audi/SQ7.png',
     specs: {
       engine: '4.0 V8 TFSI',
@@ -2343,7 +2343,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volvo/C40 리차지.png',
     specs: {
       engine: '전기모터',
@@ -2365,7 +2365,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volvo/EX30 크로스컨트리.png',
     specs: {
       engine: '전기모터',
@@ -2387,7 +2387,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volvo/EX30.png',
     specs: {
       engine: '전기모터',
@@ -2409,7 +2409,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volvo/EX40.png',
     specs: {
       engine: '전기모터',
@@ -2431,7 +2431,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volvo/EX90.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -2453,7 +2453,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volvo/S60.png',
     specs: {
       engine: '2.0 터보',
@@ -2475,7 +2475,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volvo/S90.png',
     specs: {
       engine: '2.0 터보',
@@ -2497,7 +2497,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volvo/V60 크로스컨트리.png',
     specs: {
       engine: '2.0 터보',
@@ -2519,7 +2519,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volvo/V90 크로스컨트리.png',
     specs: {
       engine: '2.0 터보',
@@ -2541,7 +2541,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volvo/XC40.png',
     specs: {
       engine: '2.0 터보',
@@ -2563,7 +2563,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volvo/XC60.png',
     specs: {
       engine: '2.0 터보',
@@ -2585,7 +2585,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volvo/XC90.png',
     specs: {
       engine: '2.0 터보',
@@ -2607,7 +2607,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/tesla/모델 3.png',
     specs: {
       engine: '전기모터',
@@ -2629,7 +2629,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/tesla/모델 S.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -2651,7 +2651,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/tesla/모델 X.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -2673,7 +2673,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/tesla/모델 Y.png',
     specs: {
       engine: '전기모터',
@@ -2695,7 +2695,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/tesla/사이버트럭.png',
     specs: {
       engine: '전기모터 트라이',
@@ -2717,7 +2717,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/porsche/718 박스터.png',
     specs: {
       engine: '2.0 터보 복서',
@@ -2739,7 +2739,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/porsche/718 카이맨.png',
     specs: {
       engine: '2.0 터보 복서',
@@ -2761,7 +2761,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/porsche/911.png',
     specs: {
       engine: '3.0 트윈터보 복서',
@@ -2783,7 +2783,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/porsche/마칸 일렉트릭.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -2805,7 +2805,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/porsche/카이엔 쿠페.png',
     specs: {
       engine: '3.0 V6 터보',
@@ -2827,7 +2827,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/porsche/카이엔.png',
     specs: {
       engine: '3.0 V6 터보',
@@ -2849,7 +2849,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/porsche/타이칸.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -2871,7 +2871,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/porsche/파나메라.png',
     specs: {
       engine: '2.9 V6 트윈터보',
@@ -2893,7 +2893,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/ferrari/12 칠린드리.png',
     specs: {
       engine: '6.5 V12 830hp',
@@ -2915,7 +2915,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/ferrari/296 GTB.png',
     specs: {
       engine: 'V6+전기모터 830hp',
@@ -2937,7 +2937,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/ferrari/296 GTS.png',
     specs: {
       engine: 'V6+전기모터 830hp',
@@ -2959,7 +2959,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/ferrari/812 GTS.png',
     specs: {
       engine: '6.5 V12 800hp',
@@ -2981,7 +2981,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/ferrari/SF90 스트라달레.png',
     specs: {
       engine: 'V8+전기모터 1000hp',
@@ -3003,7 +3003,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/ferrari/로마 스파이더.png',
     specs: {
       engine: '3.9 V8 트윈터보 620hp',
@@ -3025,7 +3025,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/ferrari/로마.png',
     specs: {
       engine: '3.9 V8 트윈터보 620hp',
@@ -3047,7 +3047,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/ferrari/아말피.png',
     specs: {
       engine: 'V6+전기모터',
@@ -3069,7 +3069,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/ferrari/푸로산게.png',
     specs: {
       engine: '6.5 V12 725hp',
@@ -3091,7 +3091,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/lamborghini/레부엘토.png',
     specs: {
       engine: 'V12+전기모터 1015hp',
@@ -3113,7 +3113,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/lamborghini/우라칸.png',
     specs: {
       engine: '5.2 V10 640hp',
@@ -3135,7 +3135,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/lamborghini/우루스.png',
     specs: {
       engine: '4.0 V8 트윈터보 666hp',
@@ -3157,7 +3157,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/rollsroyce/고스트.png',
     specs: {
       engine: '6.75 V12 571hp',
@@ -3179,7 +3179,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/rollsroyce/스펙터.png',
     specs: {
       engine: '전기모터 듀얼 585hp',
@@ -3201,7 +3201,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/rollsroyce/컬리넌.png',
     specs: {
       engine: '6.75 V12 571hp',
@@ -3223,7 +3223,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/rollsroyce/팬텀.png',
     specs: {
       engine: '6.75 V12 571hp',
@@ -3245,7 +3245,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bentley/벤테이가.png',
     specs: {
       engine: '4.0 V8 트윈터보 550hp',
@@ -3267,7 +3267,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bentley/컨티넨탈.png',
     specs: {
       engine: '4.0 V8 트윈터보 550hp',
@@ -3289,7 +3289,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/bentley/플라잉스퍼.png',
     specs: {
       engine: '6.0 W12 635hp',
@@ -3311,7 +3311,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/maserati/GT2 스트라달레.png',
     specs: {
       engine: '3.0 V6 트윈터보 640hp',
@@ -3333,7 +3333,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/maserati/MC20 첼로.png',
     specs: {
       engine: '전기모터 트리플 761hp',
@@ -3355,7 +3355,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/maserati/MC20.png',
     specs: {
       engine: '3.0 V6 트윈터보 630hp',
@@ -3377,7 +3377,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/maserati/MC푸라 첼로.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -3399,7 +3399,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/maserati/MC푸라.png',
     specs: {
       engine: '3.0 V6 트윈터보',
@@ -3421,7 +3421,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/maserati/그란카브리오.png',
     specs: {
       engine: '3.0 V6 트윈터보 550hp',
@@ -3443,7 +3443,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/maserati/그란투리스모.png',
     specs: {
       engine: '3.0 V6 트윈터보 490hp',
@@ -3465,7 +3465,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/maserati/그레칼레.png',
     specs: {
       engine: '2.0 터보',
@@ -3487,7 +3487,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/landrover/디스커버리 스포트.png',
     specs: {
       engine: '2.0 터보',
@@ -3509,7 +3509,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/landrover/디펜더.png',
     specs: {
       engine: '3.0 직6 터보',
@@ -3531,7 +3531,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/landrover/레인지로버 벨라.png',
     specs: {
       engine: '2.0 터보',
@@ -3553,7 +3553,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/landrover/레인지로버 스포츠.png',
     specs: {
       engine: '3.0 직6 터보',
@@ -3575,7 +3575,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/landrover/레인지로버 이보크.png',
     specs: {
       engine: '2.0 터보',
@@ -3597,7 +3597,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/landrover/레인지로버.png',
     specs: {
       engine: '4.4 V8 트윈터보',
@@ -3619,7 +3619,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/jeep/그랜드 체로키 4XE.png',
     specs: {
       engine: '2.0 터보+전기모터',
@@ -3641,7 +3641,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/jeep/그랜드 체로키 L.png',
     specs: {
       engine: '3.6 V6',
@@ -3663,7 +3663,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/jeep/그랜드 체로키.png',
     specs: {
       engine: '2.0 터보',
@@ -3685,7 +3685,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/jeep/글래디에이터.png',
     specs: {
       engine: '3.6 V6',
@@ -3707,7 +3707,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/jeep/랭글러 4XE.png',
     specs: {
       engine: '2.0 터보+전기모터',
@@ -3729,7 +3729,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/jeep/랭글러.png',
     specs: {
       engine: '2.0 터보',
@@ -3751,7 +3751,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/jeep/레니게이드.png',
     specs: {
       engine: '1.3 터보',
@@ -3773,7 +3773,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/jeep/어벤저.png',
     specs: {
       engine: '전기모터',
@@ -3795,7 +3795,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/cadillac/리릭.png',
     specs: {
       engine: '전기모터',
@@ -3817,7 +3817,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/cadillac/에스컬레이드 IQ.png',
     specs: {
       engine: '전기모터 듀얼',
@@ -3839,7 +3839,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/cadillac/에스컬레이드.png',
     specs: {
       engine: '6.2 V8',
@@ -3861,7 +3861,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volkswagen/ID.4.png',
     specs: {
       engine: '전기모터',
@@ -3883,7 +3883,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volkswagen/골프 GTI.png',
     specs: {
       engine: '2.0 TSI 245hp',
@@ -3905,7 +3905,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volkswagen/골프.png',
     specs: {
       engine: '2.0 TSI',
@@ -3927,7 +3927,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volkswagen/아틀라스.png',
     specs: {
       engine: '2.0 TSI',
@@ -3949,7 +3949,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volkswagen/제타.png',
     specs: {
       engine: '1.4 TSI',
@@ -3971,7 +3971,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volkswagen/투아렉.png',
     specs: {
       engine: '3.0 V6 TSI',
@@ -3993,7 +3993,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/volkswagen/티구안.png',
     specs: {
       engine: '2.0 TSI',
@@ -4016,7 +4016,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/renault/그랑콜레오스.png',
     specs: {
       engine: '1.5 터보 하이브리드 E-Tech',
@@ -4038,7 +4038,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/renault/아르카나.png',
     specs: {
       engine: '1.6 하이브리드 E-Tech',
@@ -4060,7 +4060,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/renault/필랑트.png',
     specs: {
       engine: '1.6 하이브리드 E-Tech',
@@ -4083,7 +4083,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kgm/토레스.png',
     specs: {
       engine: '1.5 터보',
@@ -4105,7 +4105,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kgm/토레스 EVX.png',
     specs: {
       engine: '전기모터',
@@ -4127,7 +4127,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kgm/액티언.png',
     specs: {
       engine: '1.5 터보',
@@ -4149,7 +4149,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kgm/티볼리.png',
     specs: {
       engine: '1.5 터보',
@@ -4171,7 +4171,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kgm/렉스턴.png',
     specs: {
       engine: '2.2 디젤',
@@ -4193,7 +4193,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kgm/무쏘.png',
     specs: {
       engine: '2.2 디젤',
@@ -4215,7 +4215,7 @@ export const vehicles: Vehicle[] = [
     rentType: 'new',
     monthlyPayment: 0,
     deposit: 0,
-    contractMonths: 48,
+    contractMonths: 60,
     image: '/vehicles/kgm/무쏘 EV.png',
     specs: {
       engine: '전기모터',

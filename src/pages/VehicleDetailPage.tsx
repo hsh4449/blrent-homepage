@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Phone, MessageCircle, Users, Gauge, Settings, Zap } from 'lucide-react'
@@ -18,10 +17,6 @@ export default function VehicleDetailPage() {
   const { id } = useParams<{ id: string }>()
   const vehicle = vehicles.find((v) => v.id === id)
 
-  const [contractMonths, setContractMonths] = useState(48)
-  const [depositRate, setDepositRate] = useState(0)
-  const [prepayRate, setPrepayRate] = useState(0)
-
   if (!vehicle) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -33,13 +28,6 @@ export default function VehicleDetailPage() {
       </div>
     )
   }
-
-  // Price simulator
-  const basePayment = vehicle.monthlyPayment
-  const monthsMultiplier = contractMonths === 24 ? 1.3 : contractMonths === 36 ? 1.1 : contractMonths === 48 ? 1.0 : 0.95
-  const depositDiscount = 1 - (depositRate * 0.08)
-  const prepayDiscount = 1 - (prepayRate * 0.06)
-  const calculatedPayment = Math.round(basePayment * monthsMultiplier * depositDiscount * prepayDiscount / 1000) * 1000
 
   // Similar vehicles
   const similarVehicles = vehicles.filter((v) => v.id !== vehicle.id && v.category === vehicle.category).slice(0, 4)
@@ -90,7 +78,7 @@ export default function VehicleDetailPage() {
                   )}
                 </div>
                 <div className="text-right text-xs text-text-muted">
-                  <p>보증금 {vehicle.deposit.toLocaleString()}원</p>
+                  <p>선납금 30%</p>
                   <p>계약기간 {vehicle.contractMonths}개월</p>
                 </div>
               </div>
@@ -135,67 +123,16 @@ export default function VehicleDetailPage() {
         </div>
       </div>
 
-      {/* Price Simulator */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <h2 className="text-xl md:text-2xl font-bold text-center mb-8">월 납입금 <span className="text-gradient">시뮬레이션</span></h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Controls */}
-            <div className="glass rounded-2xl p-6 space-y-6">
-              <div>
-                <label className="block text-xs text-text-muted mb-3">계약 기간: <span className="text-accent font-semibold">{contractMonths}개월</span></label>
-                <div className="flex gap-2">
-                  {[24, 36, 48, 60].map((months) => (
-                    <button key={months} onClick={() => setContractMonths(months)} className={`flex-1 py-2.5 text-sm rounded-xl transition-all ${contractMonths === months ? 'bg-accent text-white' : 'glass text-text-muted hover:text-gray-900'}`}>
-                      {months}개월
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs text-text-muted mb-3">보증금: <span className="text-accent font-semibold">{depositRate * 10}%</span></label>
-                <div className="flex gap-2">
-                  {[0, 1, 2, 3].map((rate) => (
-                    <button key={rate} onClick={() => setDepositRate(rate)} className={`flex-1 py-2.5 text-sm rounded-xl transition-all ${depositRate === rate ? 'bg-accent text-white' : 'glass text-text-muted hover:text-gray-900'}`}>
-                      {rate * 10}%
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs text-text-muted mb-3">선납금: <span className="text-accent font-semibold">{prepayRate * 10}%</span></label>
-                <div className="flex gap-2">
-                  {[0, 1, 2, 3].map((rate) => (
-                    <button key={rate} onClick={() => setPrepayRate(rate)} className={`flex-1 py-2.5 text-sm rounded-xl transition-all ${prepayRate === rate ? 'bg-accent text-white' : 'glass text-text-muted hover:text-gray-900'}`}>
-                      {rate * 10}%
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Result */}
-            <div className="glass rounded-2xl p-6 flex flex-col justify-center items-center">
-              <p className="text-text-muted text-sm mb-2">예상 월 납입금</p>
-              {basePayment > 0 ? (
-                <p className="text-accent font-bold text-4xl mb-1">
-                  {(calculatedPayment / 10000).toFixed(0)}<span className="text-lg font-normal text-text-muted">만원</span>
-                </p>
-              ) : (
-                <p className="text-accent font-bold text-3xl mb-1">상담문의</p>
-              )}
-              <p className="text-text-muted text-xs mb-6">* 실제 납입금은 심사 결과에 따라 달라질 수 있습니다</p>
-              <div className="flex flex-col gap-3 w-full">
-                <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3 bg-[#FEE500] text-[#191919] font-semibold rounded-xl hover:opacity-90 transition-opacity text-sm">
-                  <MessageCircle size={16} /> 카카오톡 상담
-                </a>
-                <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 py-3 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-colors text-sm">
-                  <Phone size={16} /> 전화 상담 ({PHONE})
-                </a>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+      {/* Consultation buttons (위치는 추후 이동 예정) */}
+      <section className="max-w-md mx-auto px-4 sm:px-6 py-12">
+        <div className="flex flex-col gap-3">
+          <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3 bg-[#FEE500] text-[#191919] font-semibold rounded-xl hover:opacity-90 transition-opacity text-sm">
+            <MessageCircle size={16} /> 카카오톡 상담
+          </a>
+          <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 py-3 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-colors text-sm">
+            <Phone size={16} /> 전화 상담 ({PHONE})
+          </a>
+        </div>
       </section>
 
       {/* Similar Vehicles */}
