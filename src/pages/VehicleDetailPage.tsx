@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Phone, MessageCircle, Calendar, Fuel, Users, Gauge, Settings, Zap } from 'lucide-react'
+import { Phone, MessageCircle, Users, Gauge, Settings, Zap } from 'lucide-react'
 import { vehicles } from '../data/vehicles'
 import VehicleCard from '../components/vehicle/VehicleCard'
 
@@ -74,16 +74,6 @@ export default function VehicleDetailPage() {
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
             <p className="text-text-muted text-sm mb-1">{vehicle.brand}</p>
             <h1 className="text-2xl md:text-3xl font-bold mb-6">{vehicle.model}</h1>
-
-            {/* Quick info badges */}
-            <div className="flex flex-wrap gap-2 mb-6">
-              <span className="flex items-center gap-1.5 px-3 py-1.5 glass rounded-lg text-xs"><Calendar size={12} className="text-accent" /> {vehicle.year}년</span>
-              <span className="flex items-center gap-1.5 px-3 py-1.5 glass rounded-lg text-xs"><Fuel size={12} className="text-accent" /> {vehicle.fuel}</span>
-              <span className="flex items-center gap-1.5 px-3 py-1.5 glass rounded-lg text-xs"><Users size={12} className="text-accent" /> {vehicle.specs.seats}인승</span>
-              {vehicle.mileage && (
-                <span className="flex items-center gap-1.5 px-3 py-1.5 glass rounded-lg text-xs"><Gauge size={12} className="text-accent" /> {(vehicle.mileage / 10000).toFixed(1)}만km</span>
-              )}
-            </div>
 
             {/* Price card */}
             <div className="glass rounded-2xl p-5 mb-6">
