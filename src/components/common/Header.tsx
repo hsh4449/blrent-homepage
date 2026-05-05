@@ -35,11 +35,8 @@ export default function Header() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-              <span className="text-white font-bold text-sm">BL</span>
-            </div>
-            <span className="font-display font-bold text-lg tracking-tight text-text-primary">모빌리티</span>
+          <Link to="/" className="flex items-center">
+            <span className="font-display font-bold text-lg tracking-tight text-text-primary">비엘모빌리티</span>
           </Link>
 
           {/* Desktop Nav */}
