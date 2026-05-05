@@ -4,7 +4,7 @@ const PHONE = import.meta.env.VITE_PHONE_NUMBER || '1234-5678'
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200 pb-28 md:pb-8">
+    <footer className="bg-gray-50 border-t border-gray-200 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
           {/* Logo & Company */}

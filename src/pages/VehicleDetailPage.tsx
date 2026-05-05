@@ -1,11 +1,8 @@
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Phone, MessageCircle, Users, Gauge, Settings, Zap } from 'lucide-react'
+import { Users, Gauge, Settings, Zap } from 'lucide-react'
 import { vehicles } from '../data/vehicles'
 import VehicleCard from '../components/vehicle/VehicleCard'
-
-const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/'
-const PHONE = import.meta.env.VITE_PHONE_NUMBER || '1234-5678'
 
 const rentTypeLabel: Record<string, string> = {
   new: '신차 장기렌트',
@@ -101,7 +98,7 @@ export default function VehicleDetailPage() {
             </div>
 
             {/* Options */}
-            <div className="mb-6">
+            <div>
               <h3 className="font-semibold text-sm mb-3">주요 옵션</h3>
               <div className="flex flex-wrap gap-2">
                 {vehicle.options.map((option) => (
@@ -109,31 +106,9 @@ export default function VehicleDetailPage() {
                 ))}
               </div>
             </div>
-
-            {/* CTA buttons */}
-            <div className="flex gap-3">
-              <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 py-4 bg-[#FEE500] text-[#191919] font-semibold rounded-xl hover:opacity-90 transition-opacity text-sm">
-                <MessageCircle size={18} /> 카카오톡 상담
-              </a>
-              <a href={`tel:${PHONE}`} className="flex-1 flex items-center justify-center gap-2 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-colors glow-accent text-sm">
-                <Phone size={18} /> 전화 상담
-              </a>
-            </div>
           </motion.div>
         </div>
       </div>
-
-      {/* Consultation buttons (위치는 추후 이동 예정) */}
-      <section className="max-w-md mx-auto px-4 sm:px-6 py-12">
-        <div className="flex flex-col gap-3">
-          <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3 bg-[#FEE500] text-[#191919] font-semibold rounded-xl hover:opacity-90 transition-opacity text-sm">
-            <MessageCircle size={16} /> 카카오톡 상담
-          </a>
-          <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 py-3 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-colors text-sm">
-            <Phone size={16} /> 전화 상담 ({PHONE})
-          </a>
-        </div>
-      </section>
 
       {/* Similar Vehicles */}
       {similarVehicles.length > 0 && (
