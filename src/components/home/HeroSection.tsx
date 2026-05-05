@@ -4,7 +4,7 @@ import { Rocket, FileText, Phone, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { vehicleStorage } from '../../lib/vehicleStorage'
 
-const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/'
+const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://open.kakao.com/o/sM1Ctzti'
 
 const slides = [
   { img: '/hero-slide-1.png' },
