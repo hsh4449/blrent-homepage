@@ -117,7 +117,7 @@ export default function HeroSection() {
             {/* 타이틀 */}
             <div className="flex items-center gap-2 px-5 pt-4 pb-2">
               <Sparkles size={18} className="text-accent" />
-              <h3 className="text-base font-bold text-text-primary">3월의 프로모션</h3>
+              <h3 className="text-base font-bold text-text-primary">5월의 프로모션</h3>
             </div>
 
             {/* 프로모션 카드 슬라이드 */}
