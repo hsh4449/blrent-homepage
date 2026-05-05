@@ -5,7 +5,7 @@ const items = [
   { icon: TrendingDown, title: '500여개 협력사 비교견적', desc: '다수의 렌트사 견적을 한 번에 비교해, 가장 유리한 조건으로 안내해드립니다.', span: 'md:col-span-2' },
   { icon: Zap, title: '무심사 즉시 출고', desc: '심사 없이 바로 출고 가능한 차량을 다수 보유하고 있습니다.', span: '' },
   { icon: HeadphonesIcon, title: '전담 매니저 1:1 케어', desc: '상담부터 출고, 반납까지 전 과정을 전담 매니저가 책임집니다.', span: '' },
-  { icon: Wrench, title: '보험·정비 올인원', desc: '보험, 정비, 사고 처리까지 모든 관리를 원스톱으로 지원합니다.', span: '' },
+  { icon: Wrench, title: '보험 올인원·직접 정비', desc: '보험 가입과 사고 처리는 원스톱으로 지원해드리고, 정비는 원하시는 정비소에서 직접 받으실 수 있습니다.', span: '' },
   { icon: BadgeCheck, title: '간편 심사', desc: '최소 서류, 빠른 심사. 탈락 시 재도전도 가능합니다.', span: '' },
   { icon: CarFront, title: '전 브랜드 취급', desc: '국산·수입 전 브랜드, 원하시는 차종을 찾아드립니다.', span: 'md:col-span-2' },
 ]
