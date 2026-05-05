@@ -35,7 +35,7 @@ export default function Header() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex flex-col leading-tight group">
+          <Link to="/" className="flex flex-col items-center leading-tight group">
             <span className="font-display font-extrabold text-base md:text-lg tracking-tight text-accent">비엘 모빌리티</span>
             <span className="flex items-center gap-1.5 text-[10px] md:text-xs font-semibold text-text-secondary">
               <span className="w-1 h-1 rounded-full bg-accent" />
