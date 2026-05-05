@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Phone, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 const NAV_ITEMS = [
   { label: '신차장기렌트', path: '/new-car' },
@@ -10,8 +10,6 @@ const NAV_ITEMS = [
   { label: '출고후기', path: '/reviews' },
   { label: '고객센터', path: '/support' },
 ]
-
-const PHONE = import.meta.env.VITE_PHONE_NUMBER || '1234-5678'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -42,22 +40,30 @@ export default function Header() {
             </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  location.pathname === item.path
-                    ? 'text-accent bg-accent/10'
-                    : 'text-text-secondary hover:text-text-primary hover:bg-gray-100'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          {/* Desktop Nav + Partner CTA */}
+          <div className="hidden lg:flex items-center gap-3">
+            <nav className="flex items-center gap-1">
+              {NAV_ITEMS.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    location.pathname === item.path
+                      ? 'text-accent bg-accent/10'
+                      : 'text-text-secondary hover:text-text-primary hover:bg-gray-100'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <Link
+              to="/support"
+              className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold border border-accent text-accent hover:bg-accent hover:text-white transition-all"
+            >
+              협력사 문의
+            </Link>
+          </div>
 
           {/* Mobile hamburger */}
           <button
@@ -111,21 +117,6 @@ export default function Header() {
                   </Link>
                 ))}
               </nav>
-              <div className="p-4 space-y-3 border-t border-gray-100">
-                <a
-                  href={`tel:${PHONE}`}
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm font-medium text-text-primary"
-                >
-                  <Phone size={16} />
-                  전화 상담 {PHONE}
-                </a>
-                <Link
-                  to="/support"
-                  className="block text-center w-full py-3 bg-accent text-white rounded-xl text-sm font-semibold hover:bg-accent-hover transition-all"
-                >
-                  상담 신청
-                </Link>
-              </div>
             </motion.div>
           </>
         )}
