@@ -73,8 +73,7 @@ export default function VehicleDetailPage() {
           {/* Vehicle Info */}
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
             <p className="text-text-muted text-sm mb-1">{vehicle.brand}</p>
-            <h1 className="text-2xl md:text-3xl font-bold mb-2">{vehicle.model}</h1>
-            <p className="text-text-secondary text-sm mb-6 leading-relaxed">{vehicle.description}</p>
+            <h1 className="text-2xl md:text-3xl font-bold mb-6">{vehicle.model}</h1>
 
             {/* Quick info badges */}
             <div className="flex flex-wrap gap-2 mb-6">
