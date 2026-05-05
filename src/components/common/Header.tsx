@@ -36,10 +36,14 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex flex-col items-center leading-tight group">
-            <span className="font-display font-black text-xl md:text-2xl tracking-tighter text-accent leading-none">비엘 모빌리티</span>
-            <span className="flex items-center gap-1.5 text-[11px] md:text-xs font-bold text-text-secondary mt-1">
+            <span className="font-display font-black text-2xl md:text-3xl tracking-tighter leading-none bg-gradient-to-r from-[#FFB85C] via-[#FF9D42] to-[#E88D35] bg-clip-text text-transparent">비엘 모빌리티</span>
+            <span className="flex items-center gap-1.5 text-[11px] md:text-xs font-bold text-text-secondary mt-1.5">
               <span className="w-1 h-1 rounded-full bg-accent" />
-              <span>비대면 <span className="text-accent">·</span> 무심사 <span className="text-accent">·</span> 장기렌트</span>
+              <span>비대면</span>
+              <span className="w-1 h-1 rounded-full bg-accent" />
+              <span>무심사</span>
+              <span className="w-1 h-1 rounded-full bg-accent" />
+              <span>장기렌트</span>
             </span>
           </Link>
 

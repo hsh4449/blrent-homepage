@@ -9,12 +9,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
           {/* Logo & Company */}
           <div className="md:col-span-1">
-            <p className="font-display font-black text-3xl md:text-4xl tracking-tighter text-accent leading-none mb-3">
+            <p className="font-display font-black text-3xl md:text-4xl tracking-tighter leading-none mb-3 bg-gradient-to-r from-[#FFB85C] via-[#FF9D42] to-[#E88D35] bg-clip-text text-transparent">
               (주)비엘모빌리티
             </p>
             <p className="flex items-center gap-1.5 text-xs font-bold text-text-secondary mb-5">
               <span className="w-1 h-1 rounded-full bg-accent" />
-              <span>비대면 <span className="text-accent">·</span> 무심사 <span className="text-accent">·</span> 장기렌트</span>
+              <span>비대면</span>
+              <span className="w-1 h-1 rounded-full bg-accent" />
+              <span>무심사</span>
+              <span className="w-1 h-1 rounded-full bg-accent" />
+              <span>장기렌트</span>
             </p>
             <p className="text-sm text-text-muted leading-relaxed">
               대표: 오재영 | 사업자등록번호: 000-00-00000<br />
