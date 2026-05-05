@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
           {/* Logo & Company */}
           <div className="md:col-span-1">
-            <p className="font-display font-black text-3xl md:text-4xl tracking-tighter leading-none mb-3 bg-gradient-to-r from-[#FFB85C] via-[#FF9D42] to-[#E88D35] bg-clip-text text-transparent">
+            <p className="font-display font-black text-3xl md:text-4xl tracking-tighter leading-none mb-3 text-accent">
               (주)비엘모빌리티
             </p>
             <p className="flex items-center gap-1.5 text-xs font-bold text-text-secondary mb-5">
