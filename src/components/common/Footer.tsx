@@ -9,16 +9,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
           {/* Logo & Company */}
           <div className="md:col-span-1">
-            <div className="mb-4 leading-tight">
-              <p className="font-display font-extrabold text-lg text-accent">비엘 모빌리티</p>
-              <p className="flex items-center gap-1.5 text-xs font-semibold text-text-secondary mt-1">
-                <span className="w-1 h-1 rounded-full bg-accent" />
-                <span>비대면 <span className="text-accent">·</span> 무심사 <span className="text-accent">·</span> 장기렌트</span>
-              </p>
-            </div>
+            <p className="font-display font-black text-3xl md:text-4xl tracking-tighter text-accent leading-none mb-3">
+              (주)비엘모빌리티
+            </p>
+            <p className="flex items-center gap-1.5 text-xs font-bold text-text-secondary mb-5">
+              <span className="w-1 h-1 rounded-full bg-accent" />
+              <span>비대면 <span className="text-accent">·</span> 무심사 <span className="text-accent">·</span> 장기렌트</span>
+            </p>
             <p className="text-sm text-text-muted leading-relaxed">
-              상호: (주)비엘모빌리티 | 대표: 오재영<br />
-              사업자등록번호: 000-00-00000<br />
+              대표: 오재영 | 사업자등록번호: 000-00-00000<br />
               충청북도 옥천군 옥천읍 중앙로 32<br />
               info@blrentcar.co.kr
             </p>
