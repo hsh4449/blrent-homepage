@@ -9,8 +9,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
           {/* Logo & Company */}
           <div className="md:col-span-1">
-            <div className="mb-4">
-              <span className="font-display font-bold text-lg text-text-primary">비엘모빌리티</span>
+            <div className="mb-4 leading-tight">
+              <p className="font-display font-bold text-lg text-text-primary">비엘 모빌리티</p>
+              <p className="text-xs text-text-muted mt-0.5">비대면 무심사 장기렌트</p>
             </div>
             <p className="text-sm text-text-muted leading-relaxed">
               상호: (주)비엘모빌리티 | 대표: 오재영<br />
