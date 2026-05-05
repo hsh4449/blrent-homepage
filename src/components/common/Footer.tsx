@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Logo & Company */}
           <div className="md:col-span-1">
             <p className="font-display font-black text-3xl md:text-4xl tracking-tighter leading-none mb-3">
-              <span className="text-accent underline decoration-accent decoration-4 underline-offset-4">(주)비엘모빌리티</span>
+              <span className="text-accent underline decoration-black decoration-4 underline-offset-4">(주)비엘모빌리티</span>
             </p>
             <p className="flex items-center gap-1.5 text-xs font-bold text-text-secondary mb-5">
               <span className="w-1 h-1 rounded-full bg-accent" />
