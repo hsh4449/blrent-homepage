@@ -58,8 +58,8 @@ export default function VehicleDetailPage() {
           {/* Vehicle Image */}
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
             <div className="relative rounded-2xl overflow-hidden glass">
-              <div className="aspect-[4/3]">
-                <img src={vehicle.image} alt={`${vehicle.brand} ${vehicle.model}`} className="w-full h-full object-cover" />
+              <div className="aspect-[4/3] bg-gradient-to-br from-gray-50 to-white p-4 sm:p-6">
+                <img src={vehicle.image} alt={`${vehicle.brand} ${vehicle.model}`} className="w-full h-full object-contain" />
               </div>
               <span className="absolute top-4 left-4 px-3 py-1.5 bg-accent/90 backdrop-blur-sm text-white text-sm font-semibold rounded-xl">
                 {rentTypeLabel[vehicle.rentType]}
