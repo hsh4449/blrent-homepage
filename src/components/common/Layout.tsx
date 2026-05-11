@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import FloatingCTA from './FloatingCTA'
+import WelcomeQuiz from '../home/WelcomeQuiz'
 
 export default function Layout() {
   const { pathname } = useLocation()
@@ -19,6 +20,7 @@ export default function Layout() {
       </main>
       <Footer />
       <FloatingCTA />
+      <WelcomeQuiz />
     </div>
   )
 }

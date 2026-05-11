@@ -5,9 +5,10 @@ import { Menu, X } from 'lucide-react'
 
 const NAV_ITEMS = [
   { label: '신차장기렌트', path: '/new-car' },
-  { label: '중고장기렌트', path: '/used-car' },
-  { label: '월렌트', path: '/monthly' },
-  { label: '출고후기', path: '/reviews' },
+  // 보류 (차후 작업): 중고장기렌트, 월렌트, 출고후기
+  // { label: '중고장기렌트', path: '/used-car' },
+  // { label: '월렌트', path: '/monthly' },
+  // { label: '출고후기', path: '/reviews' },
   { label: '고객센터', path: '/support' },
 ]
 

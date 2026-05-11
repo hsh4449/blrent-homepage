@@ -1,6 +1,14 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Rocket, FileText, Phone, Sparkles } from 'lucide-react'
+import { Rocket, Phone, Sparkles } from 'lucide-react'
+
+function KakaoIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M12 3C6.48 3 2 6.48 2 11.18c0 2.85 1.91 5.36 4.81 6.83-.13.49-.81 3.07-.92 3.5 0 0-.02.16.09.22.11.06.23.02.23.02.32-.05 3.79-2.49 4.39-2.92.46.07.92.11 1.4.11 5.52 0 10-3.66 10-8.18S17.52 3 12 3z" />
+    </svg>
+  )
+}
 import { Link } from 'react-router-dom'
 import { vehicleStorage } from '../../lib/vehicleStorage'
 
@@ -183,15 +191,15 @@ export default function HeroSection() {
             href={KAKAO_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-all text-base"
+            className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-kakao text-kakao-text font-semibold rounded-xl hover:brightness-95 transition-all text-base"
           >
-            <FileText size={20} />
-            즉시 견적 신청
+            <KakaoIcon size={20} />
+            카톡 견적신청
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            href={`tel:${import.meta.env.VITE_PHONE_NUMBER || '1234-5678'}`}
+            href={`tel:${import.meta.env.VITE_PHONE_NUMBER || '010-4885-1862'}`}
             className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-white border border-gray-200 rounded-xl font-semibold text-base text-text-primary hover:bg-gray-50 transition-all"
           >
             <Phone size={20} />
@@ -200,7 +208,7 @@ export default function HeroSection() {
           <motion.a
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            href="/new-car"
+            href={`tel:${import.meta.env.VITE_PHONE_NUMBER || '010-4885-1862'}`}
             className="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-xl font-semibold text-base bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:from-violet-500 hover:to-indigo-500 transition-all"
           >
             <Rocket size={20} />

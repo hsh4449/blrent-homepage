@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const PHONE = import.meta.env.VITE_PHONE_NUMBER || '1234-5678'
+const PHONE = import.meta.env.VITE_PHONE_NUMBER || '010-4885-1862'
 
 export default function Footer() {
   return (

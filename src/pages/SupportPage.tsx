@@ -4,7 +4,7 @@ import FAQ from '../components/support/FAQ'
 import ContactForm from '../components/support/ContactForm'
 import { faqs } from '../data/faq'
 
-const PHONE = import.meta.env.VITE_PHONE_NUMBER || '1234-5678'
+const PHONE = import.meta.env.VITE_PHONE_NUMBER || '010-4885-1862'
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://open.kakao.com/o/sM1Ctzti'
 
 export default function SupportPage() {

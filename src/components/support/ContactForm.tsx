@@ -19,8 +19,10 @@ export default function ContactForm() {
       const { error: dbError } = await supabase.from('consultations').insert({
         name: form.name,
         phone: form.phone,
-        car: form.car || null,
-        message: form.message || null,
+        product_type: 'new',
+        desired_car: form.car || null,
+        memo: form.message || null,
+        source: 'support_form',
         status: 'pending',
       })
       if (dbError) throw dbError

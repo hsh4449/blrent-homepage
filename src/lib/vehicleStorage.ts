@@ -2,9 +2,9 @@ import type { Vehicle } from '../types/vehicle'
 import { vehicles as defaultVehicles } from '../data/vehicles'
 
 const STORAGE_KEY = 'blrent_vehicles'
-const DATA_VERSION = 'v18_kia_gt_ev_consult'
+const DATA_VERSION = 'v22_carnival_price'
 const VERSION_KEY = 'blrent_data_version'
-const PROMO_KEY = 'blrent_promos'
+const PROMO_KEY = 'blrent_promos_v2_may'
 
 export interface PromoVehicle {
   vehicleId: string
@@ -12,8 +12,11 @@ export interface PromoVehicle {
 }
 
 const DEFAULT_PROMOS: PromoVehicle[] = [
-  { vehicleId: 'kia-ray', tag: '경차 인기 1위' },
-  { vehicleId: 'kia-k5', tag: '중형 세단 추천' },
+  { vehicleId: 'v-037', tag: '경차 인기 1위' },
+  { vehicleId: 'v-009', tag: '실속 세단 베스트' },
+  { vehicleId: 'v-040', tag: '가성비 SUV' },
+  { vehicleId: 'v-042', tag: '패밀리 SUV' },
+  { vehicleId: 'v-046', tag: '대형 RV 1위' },
 ]
 
 // Convert static data format (camelCase) to storage format (snake_case) for initial seed

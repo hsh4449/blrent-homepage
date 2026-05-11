@@ -2,6 +2,10 @@ import { motion } from 'framer-motion'
 import { SlidersHorizontal, X } from 'lucide-react'
 import { useState } from 'react'
 
+const DOMESTIC_BRANDS = ['현대', '기아', '제네시스', '르노', 'KGM']
+
+type Origin = '' | 'domestic' | 'imported'
+
 interface FilterProps {
   rentType: 'new' | 'used' | 'monthly'
   filters: {
@@ -18,16 +22,48 @@ interface FilterProps {
 
 export default function VehicleFilter({ rentType, filters, brands, onChange, onReset }: FilterProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [origin, setOrigin] = useState<Origin>('')
 
   const selectClass = "w-full bg-white border border-gray-200 text-sm rounded-xl px-4 py-3 outline-none focus:border-accent/50 transition-all"
+
+  const visibleBrands = !origin
+    ? brands
+    : origin === 'domestic'
+      ? brands.filter((b) => DOMESTIC_BRANDS.includes(b))
+      : brands.filter((b) => !DOMESTIC_BRANDS.includes(b))
+
+  const handleOriginChange = (next: Origin) => {
+    setOrigin(next)
+    if (filters.brand) {
+      const nextVisible = !next
+        ? brands
+        : next === 'domestic'
+          ? brands.filter((b) => DOMESTIC_BRANDS.includes(b))
+          : brands.filter((b) => !DOMESTIC_BRANDS.includes(b))
+      if (!nextVisible.includes(filters.brand)) onChange('brand', '')
+    }
+  }
+
+  const handleReset = () => {
+    setOrigin('')
+    onReset()
+  }
 
   const FilterContent = () => (
     <div className="space-y-5">
       <div>
+        <label className="block text-xs text-text-muted mb-2 font-medium">구분</label>
+        <select className={selectClass} value={origin} onChange={(e) => handleOriginChange(e.target.value as Origin)}>
+          <option value="">전체</option>
+          <option value="domestic">국산</option>
+          <option value="imported">수입</option>
+        </select>
+      </div>
+      <div>
         <label className="block text-xs text-text-muted mb-2 font-medium">브랜드</label>
         <select className={selectClass} value={filters.brand} onChange={(e) => onChange('brand', e.target.value)}>
           <option value="">전체</option>
-          {brands.map((b) => <option key={b} value={b}>{b}</option>)}
+          {visibleBrands.map((b) => <option key={b} value={b}>{b}</option>)}
         </select>
       </div>
       <div>
@@ -59,7 +95,7 @@ export default function VehicleFilter({ rentType, filters, brands, onChange, onR
           <select className={selectClass}><option>전체</option><option>2024</option><option>2023</option><option>2022</option></select>
         </div>
       )}
-      <button onClick={onReset} className="w-full py-2.5 text-sm text-text-muted hover:text-gray-900 glass rounded-xl transition-all">필터 초기화</button>
+      <button onClick={handleReset} className="w-full py-2.5 text-sm text-text-muted hover:text-gray-900 glass rounded-xl transition-all">필터 초기화</button>
     </div>
   )
 

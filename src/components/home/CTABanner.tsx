@@ -1,15 +1,36 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Send, CheckCircle } from 'lucide-react'
+import { Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { supabase } from '../../lib/supabase'
 
 export default function CTABanner() {
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const [form, setForm] = useState({ name: '', phone: '', car: '' })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!form.name || !form.phone) return
-    setSubmitted(true)
+    setLoading(true)
+    setError('')
+    try {
+      const { error: dbError } = await supabase.from('consultations').insert({
+        name: form.name,
+        phone: form.phone,
+        product_type: 'new',
+        desired_car: form.car || null,
+        memo: '[홈 하단 CTA] 30초 견적 신청',
+        source: 'cta_banner',
+        status: 'pending',
+      })
+      if (dbError) throw dbError
+      setSubmitted(true)
+    } catch {
+      setError('신청 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -82,14 +103,20 @@ export default function CTABanner() {
                   <input type="checkbox" required className="mt-0.5 accent-accent" />
                   개인정보 수집 및 이용에 동의합니다
                 </label>
+                {error && (
+                  <div className="flex items-center gap-2 text-red-600 text-sm">
+                    <AlertCircle size={16} /> {error}
+                  </div>
+                )}
                 <motion.button
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-all glow-accent text-sm"
+                  disabled={loading}
+                  className="w-full flex items-center justify-center gap-2 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-all glow-accent text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Send size={18} />
-                  30초 만에 견적 신청하기
+                  {loading ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> : <Send size={18} />}
+                  {loading ? '신청 중...' : '30초 만에 견적 신청하기'}
                 </motion.button>
               </form>
             )}
