@@ -18,15 +18,15 @@ export default function FloatingCTA() {
   }
 
   return (
-    <div className="fixed right-3 bottom-20 sm:right-4 sm:bottom-8 z-40 flex flex-col gap-2 sm:gap-3">
+    <div className="fixed right-3 bottom-20 sm:right-4 sm:bottom-8 z-40 flex flex-col gap-2.5 sm:gap-3.5">
       <motion.button
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.96 }}
         onClick={openQuiz}
         aria-label="맞춤 차량 찾기"
-        className="flex items-center gap-2 pl-3 pr-4 py-2.5 sm:pl-4 sm:pr-5 sm:py-3 rounded-full bg-gradient-to-r from-accent to-accent-hover text-white font-bold text-xs sm:text-sm shadow-lg shadow-accent/30"
+        className="flex items-center gap-2.5 pl-4 pr-5 py-3 sm:pl-5 sm:pr-6 sm:py-3.5 rounded-full bg-gradient-to-r from-accent to-accent-hover text-white font-bold text-sm sm:text-base shadow-xl shadow-accent/30"
       >
-        <Sparkles size={18} strokeWidth={2.5} />
+        <Sparkles size={22} strokeWidth={2.5} />
         <span className="whitespace-nowrap">맞춤차량 찾기</span>
       </motion.button>
       <motion.a
@@ -36,9 +36,9 @@ export default function FloatingCTA() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="카카오톡 상담"
-        className="flex items-center gap-2 pl-3 pr-4 py-2.5 sm:pl-4 sm:pr-5 sm:py-3 rounded-full bg-kakao text-kakao-text font-bold text-xs sm:text-sm shadow-lg shadow-kakao/30"
+        className="flex items-center gap-2.5 pl-4 pr-5 py-3 sm:pl-5 sm:pr-6 sm:py-3.5 rounded-full bg-kakao text-kakao-text font-bold text-sm sm:text-base shadow-xl shadow-kakao/30"
       >
-        <KakaoIcon size={18} />
+        <KakaoIcon size={22} />
         <span className="whitespace-nowrap">카톡 상담</span>
       </motion.a>
       <motion.a
@@ -46,9 +46,9 @@ export default function FloatingCTA() {
         whileTap={{ scale: 0.96 }}
         href={`tel:${PHONE}`}
         aria-label="전화 상담"
-        className="flex items-center gap-2 pl-3 pr-4 py-2.5 sm:pl-4 sm:pr-5 sm:py-3 rounded-full bg-accent text-white font-bold text-xs sm:text-sm shadow-lg shadow-accent/30"
+        className="flex items-center gap-2.5 pl-4 pr-5 py-3 sm:pl-5 sm:pr-6 sm:py-3.5 rounded-full bg-accent text-white font-bold text-sm sm:text-base shadow-xl shadow-accent/30"
       >
-        <Phone size={18} strokeWidth={2.5} />
+        <Phone size={22} strokeWidth={2.5} />
         <span className="whitespace-nowrap">전화 상담</span>
       </motion.a>
     </div>
