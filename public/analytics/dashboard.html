@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>비엘모빌리티 · 방문 분석</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+  :root { --bg:#0f1115; --card:#1a1d24; --line:#272b34; --txt:#e6e8ec; --sub:#9aa0aa; --accent:#4f8cff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--txt); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo",sans-serif; }
+  header { padding:20px 24px; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  header h1 { font-size:18px; margin:0; }
+  header .spacer { flex:1; }
+  select, button { background:var(--card); color:var(--txt); border:1px solid var(--line); border-radius:8px; padding:8px 12px; font-size:14px; cursor:pointer; }
+  .wrap { padding:24px; max-width:1200px; margin:0 auto; }
+  .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin-bottom:24px; }
+  .kpi { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .kpi .label { color:var(--sub); font-size:13px; margin-bottom:8px; }
+  .kpi .value { font-size:26px; font-weight:700; }
+  .kpi .value small { font-size:14px; color:var(--sub); font-weight:400; }
+  .grid { display:grid; grid-template-columns:2fr 1fr; gap:16px; margin-bottom:16px; }
+  .grid.two { grid-template-columns:1fr 1fr; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; }
+  .card h2 { font-size:14px; margin:0 0 14px; color:var(--sub); font-weight:600; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th,td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); white-space:nowrap; }
+  th { color:var(--sub); font-weight:600; }
+  .muted { color:var(--sub); }
+  #status { padding:40px; text-align:center; color:var(--sub); }
+  .err { color:#ff6b6b; }
+  .cbox { position:relative; width:100%; }
+  .devrow { display:grid; grid-template-columns:96px 1fr; align-items:center; gap:12px; margin:12px 0; }
+  .devrow .dl { font-weight:600; font-size:14px; }
+  .devbar { display:flex; height:30px; border-radius:7px; overflow:hidden; background:#23262e; }
+  .devbar > div { display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; font-weight:700; min-width:0; white-space:nowrap; }
+  .devnone { color:var(--sub); font-size:13px; }
+  .devmeta { font-size:12px; color:var(--sub); margin-top:2px; }
+  tr.vclick { cursor:pointer; }
+  tr.vclick:hover td { background:#1e222b; }
+  @media (max-width:820px){ .grid,.grid.two{ grid-template-columns:1fr; } }
+  .gohome { background:var(--accent); color:#fff; text-decoration:none; border-radius:8px; padding:8px 14px; font-size:13px; font-weight:700; white-space:nowrap; }
+  .gohome:hover { filter:brightness(1.1); }
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 비엘모빌리티 방문 분석</h1>
+  <a class="gohome" href="/" target="_blank" rel="noopener">🏠 비엘모빌리티 사이트</a>
+  <span class="spacer"></span>
+  <select id="range">
+    <option value="1">오늘</option>
+    <option value="7">최근 7일</option>
+    <option value="30" selected>최근 30일</option>
+    <option value="90">최근 90일</option>
+  </select>
+  <button id="refresh">새로고침</button>
+</header>
+
+<div class="wrap">
+  <div id="status">불러오는 중…</div>
+  <div id="content" style="display:none;">
+    <div class="kpis" id="kpis"></div>
+    <div class="grid">
+      <div class="card"><h2>일별 방문 추이 (페이지뷰 / 순방문자)</h2><div class="cbox" style="height:280px"><canvas id="chartDaily"></canvas></div></div>
+      <div class="card"><h2>유입경로</h2><div class="cbox" style="height:240px"><canvas id="chartRef"></canvas></div>
+        <p class="muted" style="font-size:11.5px;margin:8px 0 0;line-height:1.5">네이버 경유는 referrer가 잘려도 단서(네이버앱·광고키워드)로 <b>네이버</b>에 포함. <b>직접·북마크</b> = 주소 직접입력/즐겨찾기 등 출처를 알 수 없는 방문.</p></div>
+    </div>
+    <div class="grid two">
+      <div class="card"><h2>기기 비율</h2><div class="cbox" style="height:240px"><canvas id="chartDevice"></canvas></div></div>
+      <div class="card"><h2>버튼 전환 (전화/카톡/상담)</h2><div class="cbox" style="height:240px"><canvas id="chartConv"></canvas></div></div>
+    </div>
+    <div class="card">
+      <h2>기기별 전환 채널 (전화 vs 카톡)</h2>
+      <div id="devConv"></div>
+    </div>
+    <div class="card">
+      <h2>최근 전환 이벤트 (전화·카톡·상담신청)</h2>
+      <div style="overflow-x:auto;"><table id="recent"><thead><tr>
+        <th>시각</th><th>유형</th><th>유입</th><th>기기</th><th>OS</th><th>브라우저</th>
+      </tr></thead><tbody></tbody></table></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;">
+        <h2 style="margin:0;">방문자 상세 (중복방문 · 유입 · 기기 · IP · 지역)</h2>
+        <span style="flex:1"></span>
+        <label style="font-size:12px;color:var(--sub);">날짜</label>
+        <select id="vdate"><option value="all">전체 기간</option></select>
+      </div>
+      <div style="overflow-x:auto;"><table id="visitors"><thead><tr>
+        <th>최근 방문</th><th>방문수</th><th>유입 (키워드/경로)</th><th>기기/OS</th><th>체류</th><th>전환</th><th>IP</th><th>지역</th>
+      </tr></thead><tbody></tbody></table></div>
+      <p class="muted" style="font-size:12px;margin-top:8px;">방문수 2회 이상 = 중복방문(관심 높음). IP·지역은 수집 장치 적용 후 방문부터 표시됩니다.</p>
+    </div>
+  </div><!-- /#content -->
+</div>
+
+<script>
+// blrent-homepage 전용 Supabase (RLS off, anon r/w)
+const SUPABASE_URL = 'https://papfidrxnhoncizeugtx.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhcGZpZHJ4bmhvbmNpemV1Z3R4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMjQ5OTUsImV4cCI6MjA4ODYwMDk5NX0.zE0PWNwYPQBjfWT9KcqGto7oGgOENHMZYMbyX_AZ89c';
+
+const ENDPOINT = SUPABASE_URL.replace(/\/+$/,'') + '/rest/v1/blrent_analytics';
+const $ = s => document.querySelector(s);
+const charts = {};
+
+function setStatus(msg, isErr) {
+  const el = $('#status');
+  el.style.display = 'block';
+  el.className = isErr ? 'err' : '';
+  el.textContent = msg;
+  $('#content').style.display = 'none';
+}
+
+async function fetchRows(days) {
+  const since = new Date(Date.now() - days*864e5).toISOString();
+  const url = ENDPOINT + '?select=*&created_at=gte.' + since + '&order=created_at.desc&limit=50000';
+  const res = await fetch(url, { headers: { apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + SUPABASE_ANON_KEY } });
+  if (!res.ok) throw new Error('Supabase 응답 ' + res.status + ' — URL/KEY 또는 테이블을 확인하세요');
+  return res.json();
+}
+
+function fmtDuration(sec) {
+  if (!sec || sec < 1) return '0초';
+  const m = Math.floor(sec/60), s = sec%60;
+  return m ? (m + '분 ' + s + '초') : (s + '초');
+}
+// KST(한국시간) 기준 날짜 'YYYY-MM-DD' — 00:00 으로 끊음
+function kstDate(iso){ return new Date(new Date(iso).getTime()+9*3600*1000).toISOString().slice(0,10); }
+function dayKey(iso){ return kstDate(iso); }
+
+// 유입 채널 분류 — referrer 없어도 단서(브라우저=Naver, n_keyword)로 네이버를 잡아냄
+function channelOf(r){
+  const key = r.utm_source || r.referrer_host || '';
+  if (/naver/i.test(key)) return '네이버';
+  if (/google/i.test(key)) return '구글';
+  if (/kakao|daum/i.test(key)) return '카카오/다음';
+  if (/instagram|facebook|\bfb\b/i.test(key)) return '인스타/페북';
+  if (key) return key;
+  if (/n_keyword=/.test(r.path||'') || r.browser === 'Naver') return '네이버';
+  return '직접·북마크';
+}
+function inflowOf(r){
+  const m = /[?&]n_keyword=([^&]+)/.exec(r.path||'');
+  if(m) return '🔍 '+decodeURIComponent(m[1].replace(/\+/g,' '));
+  const ch = channelOf(r);
+  if(ch==='네이버' && !r.referrer_host) return '네이버 (PC·경로생략)';
+  return ch;
+}
+
+// 지역 영문→한글 (Netlify geo 는 영문만 줌)
+const KO_SIDO = {'Seoul':'서울','Busan':'부산','Incheon':'인천','Daegu':'대구','Daejeon':'대전','Gwangju':'광주','Ulsan':'울산','Sejong':'세종','Gyeonggi-do':'경기','Gangwon-do':'강원','Gangwon':'강원','Chungcheongbuk-do':'충북','Chungcheongnam-do':'충남','Jeollabuk-do':'전북','Jeollanam-do':'전남','Gyeongsangbuk-do':'경북','Gyeongsangnam-do':'경남','Jeju':'제주','Jeju-do':'제주'};
+const KO_GU = {'Jongno-gu':'종로구','Jung-gu':'중구','Yongsan-gu':'용산구','Seongdong-gu':'성동구','Gwangjin-gu':'광진구','Dongdaemun-gu':'동대문구','Jungnang-gu':'중랑구','Seongbuk-gu':'성북구','Gangbuk-gu':'강북구','Dobong-gu':'도봉구','Nowon-gu':'노원구','Eunpyeong-gu':'은평구','Seodaemun-gu':'서대문구','Mapo-gu':'마포구','Yangcheon-gu':'양천구','Gangseo-gu':'강서구','Guro-gu':'구로구','Geumcheon-gu':'금천구','Yeongdeungpo-gu':'영등포구','Dongjak-gu':'동작구','Gwanak-gu':'관악구','Seocho-gu':'서초구','Gangnam-gu':'강남구','Songpa-gu':'송파구','Gangdong-gu':'강동구','Gimpo-si':'김포시','Goyang-si':'고양시','Namyangju-si':'남양주시','Namyangju':'남양주시','Suwon-si':'수원시','Seongnam-si':'성남시','Yongin-si':'용인시','Bucheon-si':'부천시','Ansan-si':'안산시','Anyang-si':'안양시','Pyeongtaek-si':'평택시','Hwaseong-si':'화성시','Uijeongbu-si':'의정부시','Cheonan-si':'천안시','Cheongju-si':'청주시','Jeonju-si':'전주시','Gumi-si':'구미시','Okcheon-gun':'옥천군'};
+function koGeo(region, city){
+  const r = region ? (KO_SIDO[region] || region) : '';
+  let c = '';
+  if(city && city !== region && !KO_SIDO[city]){
+    c = KO_GU[city] || city.replace(/-gu$/,'구').replace(/-si$/,'시').replace(/-gun$/,'군');
+  }
+  return [r, c].filter(Boolean).join(' ');
+}
+
+let allRows = [];
+
+function render(rows) {
+  if (!rows.length) { setStatus('아직 수집된 데이터가 없습니다. (트래커 설치 후 방문이 발생하면 표시됩니다)'); return; }
+  $('#status').style.display = 'none';
+  $('#content').style.display = 'block';
+
+  const pv = rows.filter(r => r.event_type === 'pageview');
+  const exits = rows.filter(r => r.event_type === 'page_exit' && r.duration_sec > 0);
+  const visitors = new Set(pv.map(r => r.visitor_id).filter(Boolean));
+  const phone = rows.filter(r => r.event_type === 'click_phone').length;
+  const kakao = rows.filter(r => r.event_type === 'click_kakao').length;
+  const consult = rows.filter(r => r.event_type === 'submit_consult').length;
+  const avgDur = exits.length ? Math.round(exits.reduce((a,r)=>a+r.duration_sec,0)/exits.length) : 0;
+  const ctr = pv.length ? (((phone+kakao+consult)/pv.length)*100).toFixed(1) : '0';
+
+  const kpis = [
+    ['총 페이지뷰', pv.length.toLocaleString()],
+    ['순 방문자', visitors.size.toLocaleString()],
+    ['평균 체류시간', fmtDuration(avgDur)],
+    ['전화 클릭', phone.toLocaleString()],
+    ['카톡 클릭', kakao.toLocaleString()],
+    ['상담신청', consult.toLocaleString()],
+    ['전환율', ctr + '<small>%</small>']
+  ];
+  $('#kpis').innerHTML = kpis.map(k => '<div class="kpi"><div class="label">'+k[0]+'</div><div class="value">'+k[1]+'</div></div>').join('');
+
+  // 일별 추이 — 재방문자 = 누적 2회 이상 방문
+  const pvCount = {};
+  pv.forEach(r => { if(r.visitor_id) pvCount[r.visitor_id]=(pvCount[r.visitor_id]||0)+1; });
+  const byDay = {};
+  pv.forEach(r => {
+    const d = dayKey(r.created_at);
+    const b = byDay[d] = byDay[d] || {pv:0, v:new Set(), rv:new Set()};
+    b.pv++;
+    if(r.visitor_id){ b.v.add(r.visitor_id); if(pvCount[r.visitor_id] >= 2) b.rv.add(r.visitor_id); }
+  });
+  const days = Object.keys(byDay).sort();
+  drawChart('chartDaily', 'line', {
+    labels: days,
+    datasets: [
+      { label:'페이지뷰', data: days.map(d=>byDay[d].pv), borderColor:'#4f8cff', backgroundColor:'rgba(79,140,255,.15)', fill:true, tension:.3 },
+      { label:'순방문자', data: days.map(d=>byDay[d].v.size), borderColor:'#46d39a', backgroundColor:'transparent', tension:.3 },
+      { label:'재방문자', data: days.map(d=>byDay[d].rv.size), borderColor:'#ffb454', backgroundColor:'transparent', borderDash:[5,4], tension:.3 }
+    ]
+  });
+
+  // 유입경로
+  const refMap = {};
+  pv.forEach(r => { const key = channelOf(r); refMap[key] = (refMap[key]||0)+1; });
+  const refSorted = Object.entries(refMap).sort((a,b)=>b[1]-a[1]);
+  drawChart('chartRef', 'doughnut', {
+    labels: refSorted.map(e=>e[0]),
+    datasets: [{ data: refSorted.map(e=>e[1]), backgroundColor:['#4f8cff','#46d39a','#ffb454','#ff6b6b','#a78bfa','#f472b6','#94a3b8'] }]
+  }, { plugins:{ legend:{ position:'right', labels:{ color:'#e6e8ec' } } } });
+
+  // 기기
+  const devMap = {};
+  pv.forEach(r => { const d = r.device||'기타'; devMap[d]=(devMap[d]||0)+1; });
+  drawChart('chartDevice', 'pie', {
+    labels: Object.keys(devMap), datasets:[{ data:Object.values(devMap), backgroundColor:['#4f8cff','#ffb454','#46d39a','#94a3b8'] }]
+  }, { plugins:{ legend:{ position:'right', labels:{ color:'#e6e8ec' } } } });
+
+  // 전환
+  drawChart('chartConv', 'bar', {
+    labels:['전화','카톡','상담신청'],
+    datasets:[{ data:[phone,kakao,consult], backgroundColor:['#4f8cff','#ffb454','#46d39a'] }]
+  }, { plugins:{ legend:{ display:false } } });
+
+  // 기기별 전환 채널 (전화 vs 카톡)
+  const devLabel = { mobile:'📱 모바일', desktop:'💻 데스크톱', tablet:'📲 태블릿' };
+  const devConvHtml = ['mobile','desktop','tablet'].map(dv => {
+    const p = rows.filter(r => r.event_type === 'click_phone' && r.device === dv).length;
+    const k = rows.filter(r => r.event_type === 'click_kakao' && r.device === dv).length;
+    const tot = p + k;
+    const name = devLabel[dv] || dv;
+    if (!tot) return '<div class="devrow"><span class="dl">'+name+'</span><span class="devnone">전화·카톡 전환 없음</span></div>';
+    const pp = Math.round(p/tot*100), kp = 100 - pp;
+    const segs =
+      (p ? '<div style="width:'+pp+'%;background:#4f8cff">전화 '+p+'</div>' : '') +
+      (k ? '<div style="width:'+kp+'%;background:#ffb454">카톡 '+k+'</div>' : '');
+    return '<div class="devrow"><span class="dl">'+name+'</span><div><div class="devbar">'+segs+'</div>'+
+      '<div class="devmeta">전화 '+pp+'% · 카톡 '+kp+'% (합 '+tot+'건)</div></div></div>';
+  }).join('');
+  $('#devConv').innerHTML = devConvHtml;
+
+  // 최근 전환 테이블
+  const conv = rows.filter(r => ['click_phone','click_kakao','submit_consult'].includes(r.event_type)).slice(0,40);
+  const label = { click_phone:'📞 전화', click_kakao:'💬 카톡', submit_consult:'✅ 상담신청' };
+  $('#recent tbody').innerHTML = conv.length ? conv.map(r =>
+    '<tr><td>'+new Date(r.created_at).toLocaleString('ko-KR')+'</td><td>'+(label[r.event_type]||r.event_type)+
+    '</td><td>'+(r.utm_source||r.referrer_host||'직접')+'</td><td>'+(r.device||'')+'</td><td>'+(r.os||'')+'</td><td>'+(r.browser||'')+'</td></tr>'
+  ).join('') : '<tr><td colspan="6" class="muted">전환 이벤트 없음</td></tr>';
+
+  // 방문자 상세 — 날짜 드롭다운 채우고 렌더 (KST 일자별)
+  const dates = [...new Set(rows.filter(r=>r.event_type==='pageview').map(r=>kstDate(r.created_at)))].sort().reverse();
+  const sel = $('#vdate'); const prev = sel.value;
+  sel.innerHTML = '<option value="all">전체 기간</option>' + dates.map(d=>'<option value="'+d+'">'+d+'</option>').join('');
+  sel.value = (prev && (prev==='all' || dates.includes(prev))) ? prev : 'all';
+  renderVisitors(rows, sel.value);
+}
+
+function renderVisitors(rows, dateFilter){
+  const src = (dateFilter && dateFilter!=='all')
+    ? rows.filter(r => kstDate(r.created_at) === dateFilter) : rows;
+  const vmap = {};
+  src.forEach(r => {
+    const id=r.visitor_id; if(!id) return;
+    const v=vmap[id]||(vmap[id]={visits:0,last:r.created_at,dev:r.device,os:r.os,inflow:null,conv:{},ip:null,region:null,ev:[],dwell:0});
+    if(r.event_type==='pageview'){ v.visits++; v.ev.push({t:r.created_at, inflow:inflowOf(r)}); }
+    if(r.event_type==='page_exit' && r.duration_sec) v.dwell += r.duration_sec;
+    if(r.created_at>v.last) v.last=r.created_at;
+    if(r.device) v.dev=r.device; if(r.os) v.os=r.os;
+    if(r.event_type==='pageview' && !v.inflow){ const inf=inflowOf(r); if(inf) v.inflow=inf; }
+    if(['click_phone','click_kakao','submit_consult'].includes(r.event_type)) v.conv[r.event_type]=(v.conv[r.event_type]||0)+1;
+    const ex=r.extra||{}; if(ex.ip) v.ip=ex.ip; const g=koGeo(ex.region,ex.city); if(g) v.region=g;
+  });
+  const convIco={click_phone:'📞',click_kakao:'💬',submit_consult:'✅'};
+  const vlist=Object.values(vmap).sort((a,b)=>a.last<b.last?1:-1).slice(0,200);
+  $('#visitors tbody').innerHTML = vlist.length ? vlist.map(v => {
+    const conv=Object.keys(v.conv).map(k=>convIco[k]+(v.conv[k]>1?v.conv[k]:'')).join(' ')||'-';
+    const repeat=v.visits>=2;
+    const rep=repeat ? '<b style="color:#ffb454">'+v.visits+'회 ▾</b>' : v.visits+'회';
+    const main='<tr class="vrow'+(repeat?' vclick':'')+'"><td>'+new Date(v.last).toLocaleString('ko-KR')+'</td><td>'+rep+'</td><td>'+(v.inflow||'-')+
+      '</td><td>'+(v.dev||'')+' / '+(v.os||'')+'</td><td>'+(v.dwell?fmtDuration(v.dwell):'—')+'</td><td>'+conv+'</td><td>'+(v.ip||'—')+'</td><td>'+(v.region||'—')+'</td></tr>';
+    if(!repeat) return main;
+    const times=v.ev.slice().sort((a,b)=>a.t<b.t?1:-1).map((e,i)=>
+      (v.visits-i)+'. '+new Date(e.t).toLocaleString('ko-KR')+(e.inflow?' · '+e.inflow:'')).join('<br>');
+    const detail='<tr class="vdetail" style="display:none"><td colspan="8" style="background:#15171d;color:#9aa0aa;font-size:12px;line-height:1.7">📅 방문 이력 ('+v.visits+'회):<br>'+times+'</td></tr>';
+    return main+detail;
+  }).join('') : '<tr><td colspan="8" class="muted">해당 날짜 방문자 없음</td></tr>';
+}
+
+function drawChart(id, type, data, opts) {
+  if (charts[id]) charts[id].destroy();
+  charts[id] = new Chart($('#'+id), {
+    type, data,
+    options: Object.assign({ responsive:true, maintainAspectRatio:false,
+      scales: (type==='line'||type==='bar') ? { x:{ ticks:{color:'#9aa0aa'}, grid:{color:'#272b34'} }, y:{ ticks:{color:'#9aa0aa'}, grid:{color:'#272b34'} } } : {},
+      plugins:{ legend:{ labels:{ color:'#e6e8ec' } } }
+    }, opts||{})
+  });
+}
+
+async function load() {
+  setStatus('불러오는 중…');
+  try { allRows = await fetchRows(parseInt($('#range').value,10)); render(allRows); }
+  catch (e) { setStatus('오류: ' + e.message, true); }
+}
+$('#range').addEventListener('change', load);
+$('#refresh').addEventListener('click', load);
+$('#vdate').addEventListener('change', () => renderVisitors(allRows, $('#vdate').value));
+$('#visitors').addEventListener('click', e => {
+  const tr = e.target.closest('tr.vclick'); if (!tr) return;
+  const d = tr.nextElementSibling;
+  if (d && d.classList.contains('vdetail')) d.style.display = (d.style.display === 'none' ? 'table-row' : 'none');
+});
+load();
+</script>
+</body>
+</html>

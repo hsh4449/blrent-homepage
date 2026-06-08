@@ -513,7 +513,7 @@ export default function WelcomeQuiz() {
                       ? '연락처를 남겨주시면 추천 차량 기준으로 빠르게 연락드립니다.'
                       : '연락처를 남겨주시면 더 다양한 옵션을 안내해드립니다.'}
                   </p>
-                  <form onSubmit={handleSubmit} className="space-y-3">
+                  <form data-track-consult onSubmit={handleSubmit} className="space-y-3">
                     <input
                       type="text"
                       placeholder="이름"

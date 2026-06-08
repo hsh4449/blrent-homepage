@@ -74,7 +74,7 @@ export default function CTABanner() {
                 <p className="text-text-secondary text-sm">빠른 시간 내에 연락드리겠습니다.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 space-y-4 shadow-sm">
+              <form data-track-consult onSubmit={handleSubmit} className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 space-y-4 shadow-sm">
                 <h3 className="text-lg font-semibold mb-2 text-text-primary">30초 만에 견적 신청하기</h3>
                 <input
                   type="text"
