@@ -18,7 +18,7 @@ export default function Footer() {
             <p className="text-sm text-text-muted leading-relaxed">
               대표: 오재영 | 사업자등록번호: 202-81-68978<br />
               충청북도 옥천군 옥천읍 중앙로 32, 3층<br />
-              info@blrentcar.co.kr
+              hsh@blrentcar.co.kr
             </p>
           </div>
 
