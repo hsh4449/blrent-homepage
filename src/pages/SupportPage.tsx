@@ -78,7 +78,7 @@ export default function SupportPage() {
             <div className="glass rounded-2xl p-6 space-y-6">
               <div>
                 <h3 className="font-semibold text-sm mb-2">주소</h3>
-                <p className="text-text-secondary text-sm">충청북도 옥천군 옥천읍 중앙로 32<br />(주)비엘모빌리티</p>
+                <p className="text-text-secondary text-sm">충청북도 옥천군 옥천읍 중앙로 32, 3층<br />(주)비엘모빌리티</p>
               </div>
               <div>
                 <h3 className="font-semibold text-sm mb-2">교통 안내</h3>
