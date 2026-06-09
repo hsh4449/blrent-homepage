@@ -1,4 +1,4 @@
-import { Phone, Sparkles } from 'lucide-react'
+import { Phone } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const PHONE = import.meta.env.VITE_PHONE_NUMBER || '010-4885-1862'
@@ -13,22 +13,8 @@ function KakaoIcon({ size = 18 }: { size?: number }) {
 }
 
 export default function FloatingCTA() {
-  const openQuiz = () => {
-    window.dispatchEvent(new CustomEvent('open-welcome-quiz'))
-  }
-
   return (
     <div className="fixed right-3 bottom-20 sm:right-4 sm:bottom-8 z-40 flex flex-col gap-2.5 sm:gap-3.5">
-      <motion.button
-        whileHover={{ scale: 1.04 }}
-        whileTap={{ scale: 0.96 }}
-        onClick={openQuiz}
-        aria-label="맞춤 차량 찾기"
-        className="flex items-center gap-2.5 pl-4 pr-5 py-3 sm:pl-5 sm:pr-6 sm:py-3.5 rounded-full bg-gradient-to-r from-accent to-accent-hover text-white font-bold text-sm sm:text-base shadow-xl shadow-accent/30"
-      >
-        <Sparkles size={22} strokeWidth={2.5} />
-        <span className="whitespace-nowrap">맞춤차량 찾기</span>
-      </motion.button>
       <motion.a
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.96 }}
